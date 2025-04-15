@@ -1,6 +1,16 @@
 import { defineMiddleware } from "astro:middleware";
 
-export const onRequest = defineMiddleware(async (request, next) => {
-    console.log('middleware');
+const privateRoutes = ['/membresia'];
+
+export const onRequest = defineMiddleware(async ({url, request}, next) => {
+
+    if(privateRoutes.includes(url.pathname)){
+        return new Response('Autorizacion Requerida', {
+            status: 401,
+            headers: {
+                'WWW-Authenticate': 'Basic realm="Secure Area"'
+            }
+        })
+    }
     return next();
 })
