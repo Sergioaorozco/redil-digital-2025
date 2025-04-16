@@ -10,9 +10,12 @@ export const loginUser= defineAction({
     remember_me: z.boolean().optional(),
     password: z.string()
   }),
-  handler: async ({name, password, email, remember_me}, {cookies}) => {
-    if(remember_me) {
-      cookies.set('name', name, {
+  handler: async ({ name, password, email, remember_me }, { cookies }) => {
+    if (remember_me) {
+      cookies.set('name', JSON.stringify({
+        stored_name: name,
+        stored_check: remember_me,
+      }), {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
         path: '/'
       });
@@ -21,6 +24,6 @@ export const loginUser= defineAction({
         path: '/',
       });
     }
-    return { status: 'success', message: 'Ingreso Correcto'};
+    return { status: 'success', message: 'Ingreso Correcto' };
   }
 })
