@@ -49,7 +49,7 @@ export const prerender = false;
         e.preventDefault();
         $submitButton?.setAttribute('disabled', 'disabled');
         const formData = new FormData($form);
-        const {data, error} = await actions.registerUser(formData);
+        const {data, error} = await actions.loginUser(formData);
         
         console.log(data);
 
