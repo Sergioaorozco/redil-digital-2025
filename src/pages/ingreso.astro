@@ -13,7 +13,7 @@ export const prerender = false;
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                        Ingresa a tu Cuenta
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form class="space-y-4 md:space-y-6" action="#" id="redil-login-form">
                         <div>
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email o Usuario</label>
                             <input type="text" name="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="miembro@redil-laureles.com" required="">
@@ -33,10 +33,30 @@ export const prerender = false;
                             </div>
                             <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-white">¿Olvidaste tu contraseña?</a>
                         </div>
-                        <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Entrar</button>
+                        <button type="submit" id="redil-submit-login" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Entrar</button>
                     </form>
                 </div>
             </div>
         </div>
       </section>
 </Layout>
+
+<script>
+    import { actions } from "astro:actions";
+    const $form = document.querySelector('#redil-login-form') as HTMLFormElement;
+    const $submitButton = document.querySelector('#redil-submit-login') as HTMLButtonElement;
+    $form?.addEventListener('submit', async(e) =>{
+        e.preventDefault();
+        $submitButton?.setAttribute('disabled', 'disabled');
+        const formData = new FormData($form);
+        const {data, error} = await actions.registerUser(formData);
+        
+        console.log(data);
+
+        if(error) {
+            alert(error.message);
+            $submitButton?.removeAttribute('disabled');
+        }
+    })
+
+</script>

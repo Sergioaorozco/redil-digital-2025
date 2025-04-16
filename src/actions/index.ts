@@ -1,4 +1,4 @@
-import { registerUser } from "@/actions/auth";
+import { loginUser} from "@/actions/auth";
 
 export const server = {
   // Auth
