@@ -9,4 +9,5 @@ export const onRequest = clerkMiddleware((auth, context) => {
   if(!userId && privateRoutes(context.request)){
     return redirectToSignIn();
   }
+
 });

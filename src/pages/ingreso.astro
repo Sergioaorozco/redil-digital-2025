@@ -5,9 +5,9 @@ import { SignIn } from "@clerk/astro/components";
 export const prerender = true;
 ---
 <Layout>
-    <main class="relative flex justify-center items-center lg:h-screen h-screen">
-        <SignIn class:list={'absolute'} />
-    </main>
+    <section class="relative flex justify-center items-center lg:h-screen h-screen">
+        <SignIn forceRedirectUrl={'/membresia'} class:list={'absolute'} />
+    </section>
 </Layout>
 
 <script>

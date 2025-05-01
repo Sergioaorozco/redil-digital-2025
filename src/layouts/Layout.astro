@@ -2,7 +2,7 @@
 import Nav from '@/components/Nav.astro';
 import './src/styles/global.css';
 import {ClientRouter} from 'astro:transitions';
-import './src/styles/global.css';
+import '@/styles/global.css';
 ---
 
 <!doctype html>
@@ -17,7 +17,7 @@ import './src/styles/global.css';
 	</head>
 	<body>
 		<Nav></Nav>
-		<main>
+		<main class="wrapper">
 			<slot />
 		</main>
 	</body>
