@@ -1,0 +1,14 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { SignIn } from "@clerk/astro/components";
+
+export const prerender = true;
+---
+<Layout>
+    <main class="relative flex justify-center items-center lg:h-screen h-screen">
+        <SignIn class:list={'absolute'} />
+    </main>
+</Layout>
+
+<script>
+</script>

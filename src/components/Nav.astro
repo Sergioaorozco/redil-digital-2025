@@ -1,0 +1,12 @@
+---
+import { SignedIn, UserButton, SignedOut } from "@clerk/astro/components";
+---
+<nav class="mt-4 px-5 py-2 flex justify-between items-center max-inline-nav">
+  <img width="150" src="/redil-blue.svg" alt="logo principal del Redil Laureles">
+  <SignedIn>
+      <UserButton />
+  </SignedIn>
+  <SignedOut>
+    <a href="/ingreso" class="py-3 px-5 bg-blue-200 rounded-4xl"> Ingreso</a>
+  </SignedOut>
+</nav>
