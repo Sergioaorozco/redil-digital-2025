@@ -2,11 +2,11 @@
 import Layout from "@/layouts/Layout.astro"
 import { SignIn } from "@clerk/astro/components";
 
-export const prerender = true;
+export const prerender = false;
 ---
 <Layout>
     <section class="relative flex justify-center items-center lg:h-screen h-screen">
-        <SignIn forceRedirectUrl={'miembro'} signInUrl="/ingreso" />
+        <SignIn />
     </section>
 </Layout>
 
