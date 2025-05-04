@@ -1,4 +1,6 @@
 @import "tailwindcss";
 
 .wrapper {
-  max-inline-size: 1125px;}
+  margin: 0 auto;
+  max-inline-size: 1125px;
+}

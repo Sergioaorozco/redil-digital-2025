@@ -1,21 +1,18 @@
 ---
 import { SignedIn, UserButton, SignedOut } from "@clerk/astro/components";
-export const prerender = false;
 
 ---
 <nav class="mt-4 px-5 py-2 flex justify-between items-center max-inline-nav">
   <a href="/">
     <img width="150" src="/redil-blue.svg" alt="logo principal del Redil Laureles">
   </a>
-  <div class="flex gap-x-4">
-    <ul class="flex gap-x-4">
+    <ul class="flex gap-x-4 items-center">
       <li class="font-medium"><a href="#" class="py-2 px-5 rounded-4xl border-2 border- border-black hover:bg-black hover:text-white transition-all duration-200">Menu</a></li>
       <SignedIn>
-        <UserButton></UserButton>
+        <UserButton/>
       </SignedIn>
       <SignedOut>
         <li class="font-medium"><a href="/ingreso" class="py-2 px-5 rounded-4xl bg-blue-200 hover:bg-blue-300 transition-colors duration-200"> Membresía</a></li>
       </SignedOut>
     </ul>
-  </div>
 </nav>
