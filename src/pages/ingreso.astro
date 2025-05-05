@@ -1,0 +1,11 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SignedOut, SignIn } from "@clerk/astro/components";
+---
+<Layout>
+  <SignedOut>
+    <section class="relative flex justify-center items-center lg:h-screen h-screen">
+      <SignIn oauthFlow="auto"/>
+    </section>
+  </SignedOut>
+</Layout>

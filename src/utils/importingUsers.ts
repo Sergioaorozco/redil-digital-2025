@@ -32,7 +32,7 @@ export async function importingUsers(JSONfile: User[]): Promise<void> {
       const { email, password, firstName, lastName, userId } = user;
       const userData: UserData = {
         emailAddress: [email], // emailAddress is expected to be an array
-        password: `${firstName}-123`,
+        password: `${userId}-123`,
         username: userId,
         firstName: firstName,
         lastName: lastName,

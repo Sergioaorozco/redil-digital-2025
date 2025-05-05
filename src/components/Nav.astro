@@ -9,16 +9,16 @@ import ModalMenu from "./modalMenu/ModalMenu.vue";
   </a>
   <ul class="flex gap-x-3 items-center">
     <ModalMenu></ModalMenu>
-    <!-- Member portal link when there is no user -->
-    <SignedOut>
-      <li class="font-medium">
-        <a href="/miembro" class="nav-button bg-blue-200 hover:bg-blue-300 transition-colors duration-200"> Membresía</a>
-      </li>
-    </SignedOut>
     <!-- User button profile when signed -->
     <SignedIn>
       <UserButton/>
     </SignedIn>
+    <!-- Member portal link when there is no user -->
+    <SignedOut>
+      <li class="font-medium">
+        <a href="/ingreso" class="nav-button bg-blue-200 hover:bg-blue-300 transition-colors duration-200"> Membresía</a>
+      </li>
+    </SignedOut>
   </ul>
 </nav>
 
