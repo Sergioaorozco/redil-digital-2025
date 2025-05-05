@@ -9,4 +9,9 @@ import { SignedIn, SignedOut, SignIn, SignUp } from "@clerk/astro/components";
       <h1 class="text-3xl font-bold">Portal de Miembros</h1>
     </div>
   </SignedIn>
+  <SignedOut>
+    <section class="relative flex justify-center items-center lg:h-screen h-screen">
+      <SignIn oauthFlow="auto"/>
+    </section>
+  </SignedOut>
 </Layout>
