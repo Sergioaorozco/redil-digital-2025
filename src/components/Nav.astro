@@ -1,18 +1,39 @@
 ---
 import { SignedIn, UserButton, SignedOut } from "@clerk/astro/components";
+import ModalMenu from "./modalMenu/ModalMenu.vue";
 
 ---
 <nav class="mt-4 px-5 py-2 flex justify-between items-center max-inline-nav">
   <a href="/">
     <img width="150" src="/redil-blue.svg" alt="logo principal del Redil Laureles">
   </a>
-    <ul class="flex gap-x-4 items-center">
-      <li class="font-medium"><a href="#" class="py-2 px-5 rounded-4xl border-2 border- border-black hover:bg-black hover:text-white transition-all duration-200">Menu</a></li>
-      <SignedIn>
-        <UserButton/>
-      </SignedIn>
-      <SignedOut>
-        <li class="font-medium"><a href="/ingreso" class="py-2 px-5 rounded-4xl bg-blue-200 hover:bg-blue-300 transition-colors duration-200"> Membresía</a></li>
-      </SignedOut>
-    </ul>
+  <ul class="flex gap-x-3 items-center">
+    <ModalMenu></ModalMenu>
+    <!-- Member portal link when there is no user -->
+    <SignedOut>
+      <li class="font-medium">
+        <a href="/miembro" class="nav-button bg-blue-200 hover:bg-blue-300 transition-colors duration-200"> Membresía</a>
+      </li>
+    </SignedOut>
+    <!-- User button profile when signed -->
+    <SignedIn>
+      <UserButton/>
+    </SignedIn>
+  </ul>
 </nav>
+
+<style>
+  .nav-button {
+  font-weight: 600;
+  border-radius: 5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  &.menu {
+    border: 2px solid black;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+</style>

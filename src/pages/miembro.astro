@@ -1,12 +1,17 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/astro/components";
+import { SignedIn, SignedOut, SignIn } from "@clerk/astro/components";
 export const prerender = true
 
 ---
 
 <Layout>
-    <SignedIn>
-        <h1 class="text-6xl font-bold">Portal de Miembros</h1>
-    </SignedIn>
+  <SignedIn>
+    <h1 class="text-6xl font-bold">Portal de Miembros</h1>
+  </SignedIn>
+  <SignedOut>
+    <section class="relative flex justify-center items-center lg:h-screen h-screen">
+      <SignIn />
+    </section>
+  </SignedOut>
 </Layout>
