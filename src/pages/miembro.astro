@@ -1,8 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { SignedIn, SignedOut, SignIn } from "@clerk/astro/components";
-export const prerender = true
-
 ---
 
 <Layout>
@@ -11,7 +9,7 @@ export const prerender = true
   </SignedIn>
   <SignedOut>
     <section class="relative flex justify-center items-center lg:h-screen h-screen">
-      <SignIn />
+      <SignIn forceRedirectUrl={'miembro'} />
     </section>
   </SignedOut>
 </Layout>
