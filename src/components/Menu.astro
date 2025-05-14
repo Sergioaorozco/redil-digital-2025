@@ -1,0 +1,25 @@
+---
+---
+  <button id="modalMenuButton" class="nav-button menu transition-all duration-200">Menu</button>
+  <div id="modalMenu" class="z-20 max-w-dvh max-h-dvh bg-white fixed top-0 right-0 left-0 bottom-0 hidden">
+    <span class="flex flex-col px-4 py-3">
+      <button id="modalClose" class="nav-button menu transition-all duration-200 self-end">Cerrar</button>
+      <p>Testing</p>
+    </span>
+
+  </div>
+
+  <script>
+    // Selectors
+    const $modalMenuBtn = document.getElementById("modalMenuButton");
+    const $modalCloseBtn = document.getElementById("modalClose");
+    const $modal = document.getElementById("modalMenu");
+
+
+    function toggleModal() {
+      $modal?.classList.toggle("hidden");
+    }
+
+    $modalMenuBtn?.addEventListener("click", toggleModal);
+    $modalCloseBtn?.addEventListener("click", toggleModal);
+  </script>
