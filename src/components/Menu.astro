@@ -1,32 +1,80 @@
 ---
+
 ---
-  <button id="modalMenuButton" class="nav-button menu transition-all duration-200">Menu</button>
-  <div id="modalMenu" class="z-20 min-w-full h-dvh bg-white fixed top-0 right-0 left-0 bottom-0 hidden">
-    <span class="flex flex-col px-6 py-5 cursor-pointer">
-      <button id="modalClose" class="nav-button menu transition-all duration-200 self-end">Cerrar</button>
-      <p>Testing</p>
-    </span>
 
-  </div>
+<button id="modalMenuButton" class="nav-button menu transition-all duration-200"
+  >Menu</button
+>
+<div
+  id="modalMenu"
+  class="z-20 min-w-full h-dvh bg-white fixed top-0 right-0 left-0 bottom-0"
+>
+  <span class="flex flex-col px-6 py-5 cursor-pointer">
+    <button
+      id="modalClose"
+      class="nav-button menu transition-all duration-200 self-end"
+      >Cerrar</button
+    >
+    <ul class="text-lg">
+      <li>Nuestra Iglesia</li>
+      <li>Ministerios</li>
+      <li>Membresia</li>
+    </ul>
+  </span>
+</div>
 
-  <script>
-    document.addEventListener("astro:page-load", () => {
-      // Selectors
-      const $modalMenuBtn = document.getElementById("modalMenuButton");
-      const $modalCloseBtn = document.getElementById("modalClose");
-      const $modal = document.getElementById("modalMenu");
-      let modalIsOpened = false;
-  
-      function toggleModal() {
-        modalIsOpened = !modalIsOpened;
-        if(modalIsOpened) {
-          $modal?.classList.remove("hidden");
-        } else {
-          $modal?.classList.add("hidden");
-        }
+<script>
+  import { gsap } from "gsap";
+  document.addEventListener("astro:page-load", () => {
+    // Selectors
+    const $modalMenuBtn = document.getElementById("modalMenuButton");
+    const $modalCloseBtn = document.getElementById("modalClose");
+    const $modal = document.getElementById("modalMenu");
+    let modalIsOpened = false;
+
+    function toggleModal() {
+      modalIsOpened = !modalIsOpened;
+      if (modalIsOpened) {
+        tl.play();
+      } else {
+        tl.reverse();
       }
-  
-      $modalMenuBtn?.addEventListener("click", toggleModal);
-      $modalCloseBtn?.addEventListener("click", toggleModal);
-    })
-  </script>
+    }
+
+    $modalMenuBtn?.addEventListener("click", toggleModal);
+    $modalCloseBtn?.addEventListener("click", toggleModal);
+
+    // Gsap Set initial state of the modal
+    gsap.set($modal, {
+      display: "block", // Ensures it's not display:none if set by CSS
+      opacity: 0, // Start fully transparent
+      visibility: "hidden", // Start hidden and non-interactive
+    });
+
+    // Gsap Timeline
+    const tl = gsap.timeline({
+      paused: true,
+      onStart: () => {
+        // When the open animation begins, make the modal visible
+        gsap.set($modal, {
+          visibility: "visible",
+          // No need to set opacity here; the tl.to() will animate it
+        });
+      },
+      onReverseComplete: () => {
+        // After the close animation (reverse) is complete, hide it again
+        gsap.set($modal, {
+          // opacity: 0, // The reverse animation already takes it to opacity 0
+          visibility: "hidden",
+        });
+      },
+    });
+
+    // Modal animation: fade in
+    tl.to($modal, {
+      duration: 0.5, // Adjusted for a typical modal fade, change as needed
+      opacity: 1,
+      ease: "power2.inOut",
+    });
+  });
+</script>
