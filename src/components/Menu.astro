@@ -14,10 +14,15 @@
     const $modalMenuBtn = document.getElementById("modalMenuButton");
     const $modalCloseBtn = document.getElementById("modalClose");
     const $modal = document.getElementById("modalMenu");
-
+    let modalIsOpened = false;
 
     function toggleModal() {
-      $modal?.classList.toggle("hidden");
+      modalIsOpened = !modalIsOpened;
+      if(modalIsOpened) {
+        $modal?.classList.remove("hidden");
+      } else {
+        $modal?.classList.add("hidden");
+      }
     }
 
     $modalMenuBtn?.addEventListener("click", toggleModal);
