@@ -2,7 +2,7 @@
 ---
   <button id="modalMenuButton" class="nav-button menu transition-all duration-200">Menu</button>
   <div id="modalMenu" class="z-20 min-w-full h-dvh bg-white fixed top-0 right-0 left-0 bottom-0 hidden">
-    <span class="flex flex-col px-6 py-5">
+    <span class="flex flex-col px-6 py-5 cursor-pointer">
       <button id="modalClose" class="nav-button menu transition-all duration-200 self-end">Cerrar</button>
       <p>Testing</p>
     </span>
@@ -10,21 +10,23 @@
   </div>
 
   <script>
-    // Selectors
-    const $modalMenuBtn = document.getElementById("modalMenuButton");
-    const $modalCloseBtn = document.getElementById("modalClose");
-    const $modal = document.getElementById("modalMenu");
-    let modalIsOpened = false;
-
-    function toggleModal() {
-      modalIsOpened = !modalIsOpened;
-      if(modalIsOpened) {
-        $modal?.classList.remove("hidden");
-      } else {
-        $modal?.classList.add("hidden");
+    document.addEventListener("astro:page-load", () => {
+      // Selectors
+      const $modalMenuBtn = document.getElementById("modalMenuButton");
+      const $modalCloseBtn = document.getElementById("modalClose");
+      const $modal = document.getElementById("modalMenu");
+      let modalIsOpened = false;
+  
+      function toggleModal() {
+        modalIsOpened = !modalIsOpened;
+        if(modalIsOpened) {
+          $modal?.classList.remove("hidden");
+        } else {
+          $modal?.classList.add("hidden");
+        }
       }
-    }
-
-    $modalMenuBtn?.addEventListener("click", toggleModal);
-    $modalCloseBtn?.addEventListener("click", toggleModal);
+  
+      $modalMenuBtn?.addEventListener("click", toggleModal);
+      $modalCloseBtn?.addEventListener("click", toggleModal);
+    })
   </script>
