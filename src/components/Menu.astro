@@ -5,75 +5,63 @@
 <button id="modalMenuButton" class="nav-button menu transition-all duration-200"
   >Menu</button
 >
-<div
+<section
   id="modalMenu"
-  class="z-20 min-w-full h-dvh bg-gradient-to-b from-blue-50 to-blue-200 dark:from-slate-950 dark:to-slate-700 fixed top-0 right-0 left-0 bottom-0"
+  class="z-20 min-w-full flex h-dvh bg-gradient-to-b from-blue-50 to-blue-200 dark:from-slate-950 dark:to-slate-700 fixed top-0 right-0 left-0 bottom-0"
 >
-  <span class="flex flex-col px-10 py-5">
+  <article class="h-full max-sm:hidden bg-slate-200 dark:bg-slate-600 background-nav-image w-1/2">
+  </article>
+  <article class="flex flex-col px-10 py-5 w-full">
     <button
       id="modalClose"
       class="nav-button menu transition-all duration-200 self-end cursor-pointer dark:text-slate-200"
       >Cerrar</button
     >
-    <ul class="menu-list text-slate-900 dark:text-slate-300 flex flex-col">
+    <ul class="menu-list flex flex-col">
       <li><a href="/" referrerpolicy="no-referrer">Inicio</a></li>
       <li><a href="/iglesia" referrerpolicy="no-referrer">Nuestra Iglesia</a></li>
       <li><a href="/ministerios" referrerpolicy="no-referrer">Ministerios</a></li>
       <li><a href="/miembros" referrerpolicy="no-referrer">Miembros</a></li>
     </ul>
-  </span>
-</div>
+  </article>
+</section>
 
 <script>
   import { gsap } from "gsap";
+  import { createmenuAnim } from "@/utils/gsapAnimations";
+
   document.addEventListener("astro:page-load", () => {
     // Selectors
     const $modalMenuBtn = document.getElementById("modalMenuButton");
-    const $modalCloseBtn = document.getElementById("modalClose");
     const $modal = document.getElementById("modalMenu");
+    const $modalCloseBtn = document.getElementById("modalClose");
+    const $backgroundNav = document.querySelector(".background-nav-image");
     let modalIsOpened = false;
 
-    function toggleModal() {
+    if(!$modal) return;
+
+    // Inital Setup
+    gsap.set($modal, {x:"100%"});
+    gsap.set($backgroundNav, {width:"0%"});
+
+    const menuAnim = createmenuAnim($modal)
+
+    function toggleModal () {
+      if(!$modal) return;
       modalIsOpened = !modalIsOpened;
-      if (modalIsOpened) {
-        tl.play();
+
+      if(menuAnim.reversed() || menuAnim.progress() === 0) {
+        menuAnim.play();
       } else {
-        tl.reverse();
+        menuAnim.reverse();
       }
     }
-
+  
     $modalMenuBtn?.addEventListener("click", toggleModal);
     $modalCloseBtn?.addEventListener("click", toggleModal);
-
-    // Gsap Set initial state of the modal
-    gsap.set($modal, {
-      display: "block",
-      opacity: 0,
-      visibility: "hidden",
-    });
-
-    // Gsap Timeline
-    const tl = gsap.timeline({
-      paused: true,
-      onStart: () => {
-        gsap.set($modal, {
-          visibility: "visible",
-        });
-      },
-      onReverseComplete: () => {
-        gsap.set($modal, {
-          visibility: "hidden",
-        });
-      },
-    });
-
-    // Modal animation: fade in
-    tl.to($modal, {
-      duration: 0.5,
-      opacity: 1,
-      ease: "power2.inOut",
-    });
   });
+
+
 </script>
 
 <style scoped>
@@ -81,11 +69,8 @@
 
   .menu-list {
     li {
-      @apply text-4xl min-md:text-7xl font-bold py-10 border-b border-slate-400 dark:border-slate-500;
-      @apply hover:text-slate-500 dark:hover:text-slate-800 cursor-pointer;
-      &:last-child {
-        @apply border-b-0;
-      }
+      @apply flex uppercase flex-col text-slate-800 dark:text-slate-300 text-3xl min-md:text-7xl font-bold py-10;
+      @apply hover:text-slate-900 dark:hover:text-slate-400 cursor-pointer;
       a {
         @apply w-full h-full block;
       }
