@@ -7,10 +7,11 @@
 >
 <section
   id="modalMenu"
-  class="z-20 min-w-full flex h-dvh bg-gradient-to-b from-blue-50 to-blue-200 dark:from-slate-950 dark:to-slate-700 fixed top-0 right-0 left-0 bottom-0"
+  class="hidden z-20 min-w-full h-dvh bg-gradient-to-b from-blue-50 to-blue-200 dark:from-slate-950 dark:to-slate-700 fixed top-0 right-0 left-0 bottom-0"
 >
-  <article class="h-full max-sm:hidden bg-slate-200 dark:bg-slate-600 background-nav-image w-1/2">
-  </article>
+  <figure class="h-full max-lg:hidden bg-slate-200 dark:bg-slate-600 background-nav-image w-1/2 overflow-clip">
+    <img src="/nav-redil-laureles.jpg" class="w-full h-full object-cover" alt="" srcset="">
+  </figure>
   <article class="flex flex-col px-10 py-5 w-full">
     <button
       id="modalClose"
@@ -41,7 +42,7 @@
     if(!$modal) return;
 
     // Inital Setup
-    gsap.set($modal, {x:"100%"});
+    gsap.set($modal, {x:"100%", opacity:0, display:"none"});
     gsap.set($backgroundNav, {width:"0%"});
 
     const menuAnim = createmenuAnim($modal)
