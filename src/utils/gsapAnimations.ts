@@ -23,6 +23,7 @@ export const createmenuAnim = (modalMenu: HTMLElement) => {
       ease: "power2.inOut",
     }, "<0.1")
 
+
     .fromTo(menuItems, {
       opacity: 0,
       x: 50,
