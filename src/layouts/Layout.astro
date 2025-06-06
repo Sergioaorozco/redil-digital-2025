@@ -27,11 +27,17 @@ import Footer from '@/components/Footer.astro';
 </html>
 
 <style>
+  @font-face {
+    font-family: "FiraSans";
+    src: url("public\Fira_Sans_Condensed/FiraSansCondensed-Regular.ttf") format("truetype");
+  }
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-family: "FiraSans", sans-serif;
 	}
 
 	.max-inline-nav {
