@@ -14,6 +14,7 @@ export const createmenuAnim = (modalMenu: HTMLElement) => {
       x: 0,
       opacity: 1,
       display: "flex",
+      autoAlpha: 1,
       duration: 0.5,
       ease: "power2.inOut",
     }, 0)
