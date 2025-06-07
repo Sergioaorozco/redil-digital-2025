@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { SignedOut, SignIn } from "@clerk/astro/components";
 ---
-<Layout>
+<Layout pageTitle="Ingreso">
   <SignedOut>
     <section class="relative flex justify-center items-center lg:h-screen h-screen">
       <SignIn forceRedirectUrl={'/miembros'}/>
