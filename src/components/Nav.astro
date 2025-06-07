@@ -1,11 +1,12 @@
 ---
 import { SignedIn, UserButton, SignedOut } from "@clerk/astro/components";
 import ModalMenu from "@/components/Menu.astro";
+import LogoImage from "@/assets/LogoImage.astro";
 
 ---
 <nav class="mt-4 px-5 py-2 flex justify-between items-center max-inline-nav">
-  <a href="/">
-    <img width="150" src="/redil-blue.svg" alt="logo principal del Redil Laureles">
+  <a href="/" class="w-40 dark:text-white text-slate-900" >
+    <LogoImage></LogoImage>
   </a>
   <ul class="flex gap-x-3 items-center">
     <ModalMenu></ModalMenu>
