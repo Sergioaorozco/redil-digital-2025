@@ -27,6 +27,8 @@ import Footer from '@/components/Footer.astro';
 </html>
 
 <style>
+	@import "tailwindcss";
+
   @font-face {
     font-family: "Ubuntu";
     src: url("/Ubuntu/Ubuntu-Regular.ttf") format("truetype");
@@ -38,6 +40,7 @@ import Footer from '@/components/Footer.astro';
 		width: 100%;
 		height: 100%;
 		font-family: "Ubuntu", sans-serif;
+		@apply text-slate-800 dark:text-white;
 	}
 
 	.max-inline-nav {
