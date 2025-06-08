@@ -4,7 +4,7 @@ import { SignedOut, SignIn } from "@clerk/astro/components";
 ---
 <Layout pageTitle="Ingreso">
   <SignedOut>
-    <section class="relative flex justify-center items-center lg:h-screen h-screen">
+    <section class="relative flex justify-center items-center">
       <SignIn forceRedirectUrl={'/miembros'}/>
     </section>
   </SignedOut>
