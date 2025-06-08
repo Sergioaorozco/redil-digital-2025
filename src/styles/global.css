@@ -11,7 +11,6 @@
   padding-inline: 1rem;
   padding-block: 0.5rem;
   &.menu {
-    border: 2px solid black;
     &:hover {
       background-color: black;
       color: white;

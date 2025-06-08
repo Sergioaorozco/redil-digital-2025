@@ -8,9 +8,12 @@ import Footer from '@/components/Footer.astro';
 
 interface Props {
 	pageTitle? : string;
+	pageImage? : string
 }
 
-const {pageTitle} = Astro.props as Props;
+
+const {pageTitle, pageImage} = Astro.props as Props;
+console.log(pageImage);
 ---
 
 <!doctype html>
@@ -24,12 +27,12 @@ const {pageTitle} = Astro.props as Props;
 		<ClientRouter />
 	</head>
 	<body class="bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200">
-		<div class:list={['px-6 flex flex-col justify-between ', pageTitle && 'relative pb-7 mb-3 min-h-52 min-lg:min-h-80 bg-slate-200 dark:bg-slate-800 overflow-clip']}>
+		<div class:list={['px-6 flex flex-col justify-between ', pageTitle && 'relative pb-7 mb-3 min-h-52 min-lg:min-h-96 bg-slate-200 dark:bg-slate-800 overflow-clip']}>
 			<Nav></Nav>
 			{ pageTitle &&
 			<figure class="w-full h-full top-0 left-0">
 				<h1 class="text-3xl font-bold">{pageTitle}</h1>
-				<img src="/miembros-2024.webp" alt="Miembros 2024" class="mask-b-from-0 absolute top-0 left-0 opacity-25 w-full h-full object-cover object-center" />
+				{pageImage && <img src={pageImage} alt={pageImage ? 'Imagen de Section' + pageTitle : ''} class="mask-b-from-0 absolute top-0 left-0 opacity-25 w-full h-full object-cover object-center bg-blend-soft-light" />}
 			</figure>
 			}
 		</div>
