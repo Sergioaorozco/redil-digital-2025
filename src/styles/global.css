@@ -17,3 +17,7 @@
     }
   }
 }
+
+.r-well {
+  @apply p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg;
+}

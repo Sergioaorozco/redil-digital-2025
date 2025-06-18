@@ -8,10 +8,10 @@ import Footer from '@/components/Footer.astro';
 
 interface Props {
 	pageTitle? : string,
-	pageColor? : string
+	pageDescription? : string
 }
 
-const { pageTitle } = Astro.props as Props;
+const { pageTitle, pageDescription } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -25,15 +25,16 @@ const { pageTitle } = Astro.props as Props;
 		<ClientRouter />
 	</head>
 	<body class="bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200">
-		<div class:list={['px-5 mb-5 flex flex-col justify-between ', pageTitle && 'relative pb-7 mb-3 min-h-52 bg-slate-50 dark:bg-slate-800/50 overflow-clip']}>
+		<div class:list={['px-5 mb-5 flex flex-col justify-between ', pageTitle && 'relative pb-7 mb-3 min-h-52 bg-gradient-to-b from-slate-200 dark:from-slate-950 to-transparent overflow-clip']}>
 			<Nav></Nav>
 			{ pageTitle &&
-			<div class="w-full h-full top-0 left-0">
-				<h1 class="tracking-wide text-xl font-extrabold">{pageTitle}</h1>
+			<div class:list={["wrapper w-full h-full top-0 left-0", pageDescription && "flex flex-col justify-between min-lg:flex-row items-center"]}>
+				<h1 class="tracking-wide text-5xl text-center text-blue-800 dark:text-blue-300 font-extrabold">{pageTitle}</h1>
+				<p class:list={["min-md:w-1/2", "max-md:text-center max-md:mt-5"]}>{pageDescription}</p>
 			</div>
 			}
 		</div>
-		<main class="px-5">
+		<main>
 			<slot />
 		</main>
 		<Footer />
