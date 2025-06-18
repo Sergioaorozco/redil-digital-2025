@@ -7,13 +7,11 @@ import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 
 interface Props {
-	pageTitle? : string;
-	pageImage? : string
+	pageTitle? : string,
+	pageColor? : string
 }
 
-
-const {pageTitle, pageImage} = Astro.props as Props;
-console.log(pageImage);
+const { pageTitle } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -23,20 +21,19 @@ console.log(pageImage);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>El Redil Laureles - Iglesia Bautista</title>
+		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
 		<ClientRouter />
 	</head>
 	<body class="bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200">
-		<div class:list={['px-6 flex flex-col justify-between ', pageTitle && 'relative pb-7 mb-3 min-h-52 min-lg:min-h-96 bg-slate-200 dark:bg-slate-800 overflow-clip']}>
+		<div class:list={['px-5 mb-5 flex flex-col justify-between ', pageTitle && 'relative pb-7 mb-3 min-h-52 bg-slate-50 dark:bg-slate-800/50 overflow-clip']}>
 			<Nav></Nav>
 			{ pageTitle &&
-			<figure class="w-full h-full top-0 left-0">
-				<h1 class="text-3xl font-bold">{pageTitle}</h1>
-				{pageImage && <img src={pageImage} alt={pageImage ? 'Imagen de Section' + pageTitle : ''} class="mask-b-from-0 absolute top-0 left-0 opacity-25 w-full h-full object-cover object-center bg-blend-soft-light" />}
-			</figure>
+			<div class="w-full h-full top-0 left-0">
+				<h1 class="tracking-wide text-xl font-extrabold">{pageTitle}</h1>
+			</div>
 			}
 		</div>
-		<main>
+		<main class="px-5">
 			<slot />
 		</main>
 		<Footer />

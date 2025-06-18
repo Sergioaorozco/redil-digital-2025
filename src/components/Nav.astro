@@ -9,11 +9,11 @@ import LogoImage from "@/assets/LogoImage.astro";
     <LogoImage></LogoImage>
   </a>
   <ul class="flex gap-x-3 items-center">
-    <ModalMenu></ModalMenu>
     <!-- User button profile when signed -->
     <SignedIn>
       <UserButton/>
     </SignedIn>
+    <ModalMenu></ModalMenu>
     <!-- Member portal link when there is no user -->
     <SignedOut>
       <li class="font-medium max-sm:hidden lg:block">
