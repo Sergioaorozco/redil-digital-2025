@@ -19,5 +19,9 @@
 }
 
 .r-well {
-  @apply p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg;
+  @apply p-5 bg-slate-200 dark:bg-slate-800/50 rounded-lg;
+}
+
+.cursor-behavior {
+  @apply duration-300 transition-all cursor-pointer;
 }

@@ -1,9 +1,20 @@
 ---
+import PlayIcon from "@/assets/PlayIcon.astro";
+import ChatIcon from "@/assets/ChatIcon.astro";
 ---
 
 <footer class="w-full fixed bottom-5 px-5 lg:px-8">
-    <span class="w-full flex px-5 py-5 bg-slate-200 dark:bg-slate-800 rounded-lg justify-between">
-       <p class="uppercase tracking-wide font-semibold text-xs lg:text-sm">Celebraciones Dominicales: 9AM | 11AM</p>
-       <p class="uppercase font-bold text-xs lg:text-sm">Chat</p>
-    </span>
+    <section class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3">
+        <article class="flex flex-col items-center min-md:items-start gap-1">
+            <button class="text-blue-600 hover:text-blue-900 cursor-behavior
+             uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all">
+                <PlayIcon></PlayIcon>
+                <p>Última celebracion</p>
+            </button>
+            <p class="tracking-wide font-semibold text-xs lg:text-sm">Celebraciones Dominicales: 9AM | 11AM</p>
+        </article>
+        <button class="hidden min-md:block w-12 text-blue-700 hover:text-blue-800 cursor-behavior">
+            <ChatIcon></ChatIcon>
+        </button>
+    </section>
 </footer>

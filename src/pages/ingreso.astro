@@ -1,11 +1,21 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { SignedOut, SignIn } from "@clerk/astro/components";
+import { SignedOut, SignedIn, SignIn, SignInButton } from "@clerk/astro/components";
+const { userId} = Astro.locals.auth();
+
+console.log("User ID:", userId);
 ---
-<Layout pageTitle="Ingreso" pageColor="/miembros-2024.webp">
+<Layout pageTitle="Ingreso">
+
+  {userId == null && (
+    <div id="clerk-loading-indicator" class="loading overlay">
+      <p>Loading...</p>
+      <span class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></span>
+    </div>
+  )}
   <SignedOut>
     <section class="relative flex justify-center items-center">
-      <SignIn forceRedirectUrl={'/miembros'}/>
+      <SignIn oauthFlow="auto" forceRedirectUrl={'/miembros'}/>
     </section>
   </SignedOut>
 </Layout>
