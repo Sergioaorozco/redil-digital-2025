@@ -1,0 +1,33 @@
+---
+import InfoIcon from "@/assets/InfoIcon.astro";
+import CloseIcon from "@/assets/CloseIcon.astro";
+---
+<section class="notification-container mb-2 transition-all duration-300 ease-in-out">
+     <div class="flex items-center gap-x-2">
+         <InfoIcon />
+         <slot />
+     </div>
+    <button type="button" class="cursor-behavior">
+        <CloseIcon />
+    </button>
+</section>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+      const $notification = document.querySelector(".notification-container");
+      const $closeButton = $notification?.querySelector("button");
+      $closeButton?.addEventListener("click",() => {
+          $notification?.remove();
+      })
+  })
+</script>
+
+<style scoped>
+    @import "tailwindcss";
+
+    .notification-container {
+        @apply flex items-center justify-between rounded-md p-4;
+        @apply bg-blue-200 border border-blue-300 text-blue-900;
+    }
+
+</style>

@@ -30,7 +30,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 			{ pageTitle &&
 			<div class:list={["wrapper w-full h-full top-0 left-0", pageDescription && "flex flex-col justify-between min-lg:flex-row items-center"]}>
 				<h1 class="tracking-wide text-5xl text-center text-blue-800 dark:text-blue-300 font-extrabold">{pageTitle}</h1>
-				<p class:list={["min-md:w-1/2 text-blue-950 text-lg", "max-md:text-center max-md:mt-5"]}>{pageDescription}</p>
+				<p class:list={["min-md:w-1/2 text-blue-950 dark:text-blue-50 text-lg", "max-md:text-center max-md:mt-5"]}>{pageDescription}</p>
 			</div>
 			}
 		</div>

@@ -1,19 +1,23 @@
 ---
 import PlayIcon from "@/assets/PlayIcon.astro";
 import ChatIcon from "@/assets/ChatIcon.astro";
+import Notification from "@/components/Notification.astro";
 ---
 
 <footer class="w-full fixed bottom-5 px-5 lg:px-8">
+    <Notification>
+        <p class="font-semibold text-xs">Domingo 6 de Julio: Única celebración a las 10:00 am</p>
+    </Notification>
     <section class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3">
         <article class="flex flex-col items-center min-md:items-start gap-1">
-            <button class="text-blue-600 hover:text-blue-900 cursor-behavior
+            <button type="button" class="link-schema cursor-behavior
              uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all">
                 <PlayIcon></PlayIcon>
-                <p>Última celebracion</p>
+                <p>Última celebración</p>
             </button>
             <p class="tracking-wide font-semibold text-xs lg:text-sm">Celebraciones Dominicales: 9AM | 11AM</p>
         </article>
-        <button class="hidden min-md:block w-12 text-blue-700 hover:text-blue-800 cursor-behavior">
+        <button type="button" class="hidden min-md:block w-12 link-schema cursor-behavior">
             <ChatIcon></ChatIcon>
         </button>
     </section>

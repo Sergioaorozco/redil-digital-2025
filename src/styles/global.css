@@ -3,6 +3,7 @@
 .wrapper {
   margin: 0 auto;
   max-inline-size: 1125px;
+  padding-inline: 1rem;
 }
 
 .nav-button {
@@ -19,9 +20,13 @@
 }
 
 .r-well {
-  @apply p-5 bg-slate-200 dark:bg-slate-800/50 rounded-lg;
+  @apply p-5 bg-slate-200 dark:bg-[#2b3649] rounded-lg;
 }
 
 .cursor-behavior {
   @apply duration-300 transition-all cursor-pointer;
+}
+
+.link-schema {
+  @apply text-blue-600 hover:text-blue-900 dark:text-blue-300 hover:dark:text-blue-50;
 }
