@@ -13,13 +13,26 @@ import CloseIcon from "@/assets/CloseIcon.astro";
 </section>
 
 <script is:inline>
-  document.addEventListener("astro:page-load", () => {
-      const $notification = document.querySelector(".notification-container");
-      const $closeButton = $notification?.querySelector("button");
-      $closeButton?.addEventListener("click",() => {
-          $notification?.remove();
-      })
-  })
+  const handleNotification = () => {
+    const DISMISS_NOTIFICATION = `dismissNotification`;
+    const $notification = document.querySelector(".notification-container");
+    const $closeButton = $notification?.querySelector("button");
+
+    const isNotificationDismissed = sessionStorage.getItem(DISMISS_NOTIFICATION) === "true";
+    if(isNotificationDismissed) {
+      $notification?.remove();
+      return;
+    };
+
+    $closeButton?.addEventListener("click",() => {
+        $notification?.remove();
+        sessionStorage.setItem(DISMISS_NOTIFICATION, "true");
+    }, { once: true});
+  }
+
+  handleNotification();
+
+  document.addEventListener("astro:page-load", handleNotification)
 </script>
 
 <style scoped>
