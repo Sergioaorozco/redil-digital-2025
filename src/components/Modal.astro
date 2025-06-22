@@ -23,7 +23,7 @@ const { id } = Astro.props;
         <CloseIcon />
       </button>
     </div>
-    <div class="max-h-[500px] min-h-auto overflow-y-auto">
+    <div class="max-h-[500px] overflow-y-auto">
       <slot />
     </div>
     <div class="flex justify-end self-end w-full items-center bottom-0">
@@ -33,7 +33,7 @@ const { id } = Astro.props;
     </div>
   </article>
   <div
-    class="overlay absolute bg-slate-700/85 min-w-full min-h-full top-0 left-0 right-0 backdrop-blur-sm"
+    class="close-action absolute bg-slate-700/85 min-w-full min-h-full top-0 left-0 right-0 backdrop-blur-sm"
   >
   </div>
 </section>

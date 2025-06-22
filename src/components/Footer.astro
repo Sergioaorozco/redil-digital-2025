@@ -4,39 +4,68 @@ import ChatIcon from "@/assets/ChatIcon.astro";
 import Notification from "@/components/Notification.astro";
 import Modal from "@/components/Modal.astro";
 ---
+
 <Modal id="last-preech-modal">
-    <p slot="header">Última Celebración</p>
+  <p slot="header">Última Celebración</p>
+  <object height="250px">
+    <param
+      name="movie"
+      value="http://www.youtube.com/embed/yt-video-id?html5=1&rel=0&hl=en_US&version=3"
+    />
+    <param name="allowFullScreen" value="true" />
+    <embed
+      class="w-full h-full"
+      src="https://www.youtube.com/embed/RXzy_5GjV6o?si=Z1ix3UY-rxLVJVdH"
+      type="text/html"
+      allowFullScreen
+    />
+  </object>
 </Modal>
+
 <footer class="w-full fixed bottom-5 px-5 lg:px-8">
-    <Notification>
-        <p class="font-semibold text-xs">Domingo 6 de Julio: Única celebración a las 10:00 am</p>
-    </Notification>
-    <section class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3">
-        <article id="last-preech-link" class="flex flex-col items-center min-md:items-start gap-1">
-            <button type="button" class="link-schema cursor-behavior
-             uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all">
-                <PlayIcon></PlayIcon>
-                <p>Última celebración</p>
-            </button>
-            <p class="tracking-wide font-semibold text-xs lg:text-sm">Celebraciones Dominicales: 9AM | 11AM</p>
-        </article>
-        <button type="button" class="hidden min-md:block w-12 link-schema cursor-behavior">
-            <ChatIcon></ChatIcon>
-        </button>
-    </section>
+  <Notification>
+    <p class="font-semibold text-xs">
+      Domingo 6 de Julio: Única celebración a las 10:00 am
+    </p>
+  </Notification>
+  <section
+    class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3"
+  >
+    <article
+      id="last-preech-link"
+      class="flex flex-col items-center min-md:items-start gap-1"
+    >
+      <button
+        type="button"
+        class="link-schema cursor-behavior
+             uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all"
+      >
+        <PlayIcon />
+        <p>Última celebración</p>
+      </button>
+      <p class="tracking-wide font-semibold text-xs lg:text-sm">
+        Celebraciones Dominicales: 9AM | 11AM
+      </p>
+    </article>
+    <button
+      type="button"
+      class="hidden min-md:block w-12 link-schema cursor-behavior"
+    >
+      <ChatIcon />
+    </button>
+  </section>
 </footer>
 
 <script>
-    document.addEventListener("astro:page-load", () => {
-        const $modal = document.getElementById("last-preech-modal");
-        const $lastPreechLink = document.querySelector("#last-preech-link");
-        const $lastPreechLinkButton = $lastPreechLink?.querySelector("button");
+  document.addEventListener("astro:page-load", () => {
+    const $modal = document.getElementById("last-preech-modal");
+    const $lastPreechLink = document.querySelector("#last-preech-link");
+    const $lastPreechLinkButton = $lastPreechLink?.querySelector("button");
 
-        if( $modal && $lastPreechLinkButton) {
-            $lastPreechLinkButton?.addEventListener("click", () => {
-                $modal.dataset.visible = "true";
-            })
-        }
-    })
-
+    if ($modal && $lastPreechLinkButton) {
+      $lastPreechLinkButton?.addEventListener("click", () => {
+        $modal.dataset.visible = "true";
+      });
+    }
+  });
 </script>
