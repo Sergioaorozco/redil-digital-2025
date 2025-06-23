@@ -1,0 +1,59 @@
+---
+import CloseIcon from "@/assets/CloseIcon.astro";
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section
+  id={id}
+  data-modal-id={id}
+  data-visible="false"
+  class="px-5 text-white text-sm fixed top-0 min-w-full min-h-dvh z-10 flex justify-center items-center"
+>
+  <article
+    class="w-full min-md:w-1/2 h-96 p-5 rounded-md z-50 flex flex-col justify-between gap-8"
+  >
+    <div class="flex justify-between w-full items-center">
+      <slot name="header" />
+      <button class="close-action cursor-behavior">
+        <CloseIcon />
+      </button>
+    </div>
+    <div class="h-full">
+      <slot />
+    </div>
+  </article>
+  <div
+    class="close-action absolute bg-slate-700/85 min-w-full min-h-full top-0 left-0 right-0 backdrop-blur-sm"
+  >
+  </div>
+</section>
+
+<style scoped>
+  section[data-visible="false"] {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const $modal = document.querySelector("section[data-modal-id]");
+    const $closeButtons = $modal?.querySelectorAll(".close-action");
+    const $videoPlayer = $modal?.querySelector("iframe");
+
+    if( $modal && $closeButtons) {
+      for( const $closeButton of $closeButtons) {
+        $closeButton.addEventListener("click", () => {
+          ($modal as HTMLElement).dataset.visible = "false";
+          $videoPlayer? // Do something here to stop the video
+        })
+      }
+    }
+
+  })
+</script>
+ 
