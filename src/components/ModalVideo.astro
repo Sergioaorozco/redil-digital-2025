@@ -49,7 +49,7 @@ const { id } = Astro.props;
       for( const $closeButton of $closeButtons) {
         $closeButton.addEventListener("click", () => {
           ($modal as HTMLElement).dataset.visible = "false";
-          $videoPlayer? // Do something here to stop the video
+          ($videoPlayer as HTMLIFrameElement).src = "";
         })
       }
     }
