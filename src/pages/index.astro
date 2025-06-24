@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
 // import { importingUsers} from "@/utils/importingUsers";
 // import { redilUser2025 } from "@/utils/users";
 
@@ -11,17 +12,22 @@ import Layout from "@/layouts/Layout.astro";
     <figure class="slider h-[500px] rounded-2xl bg-slate-200 dark:bg-slate-800 overflow-clip">
     </figure>
   </section>
-  <video src="https://streamable.com/pp3s1l" muted loop></video>
+  <section class="mt-3">
+    <article class="wrapper flex-responsive gap-3 h-50">
+      <figure class="group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
+        <i class="bg-white/50 group-hover:bg-white group-hover:scale-125 transition-all duration-300 ease-in-out rounded-full p-3 absolute">
+          <PlayTriangleIcon />
+        </i>
+        <img class="group-hover:brightness-75 -z-10 transition-all w-full h-full object-cover" src="/koinonia-iglesia.webp" alt="">
+      </figure>
+      <figure class="rounded-md h-full w-full overflow-clip">
+        <img class="w-full h-full object-cover" src="/miembros-2024.webp" alt="">
+      </figure>
+    </article>
+  </section>
 </Layout>
 
 <script>
   import gsap from "gsap";
-
-  // gsap.to('.slider', {
-  //   duration: 1,
-  //   backgroundColor: "#000",
-  //   scale: 1.5,
-  //   ease: "power2.inOut",
-  // });
 
 </script>

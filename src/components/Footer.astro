@@ -100,7 +100,6 @@ import Spinner from "@/components/Spinner.astro";
       $lastPreechLinkButton?.addEventListener("click", async () => {
         const videoDetails = await fetchLastVideo();
 
-
         tl.fromTo(
           $modal,
           { autoAlpha: 0},

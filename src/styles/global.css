@@ -23,6 +23,10 @@
   @apply p-5 bg-slate-200 dark:bg-[#2b3649] rounded-lg;
 }
 
+.flex-responsive {
+  @apply flex flex-col min-md:flex-row;
+}
+
 .cursor-behavior {
   @apply duration-300 transition-all cursor-pointer;
 }
