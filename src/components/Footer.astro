@@ -56,14 +56,19 @@ import Spinner from "@/components/Spinner.astro";
 </footer>
 
 <script>
+  import gsap from "gsap";
 
   document.addEventListener("astro:page-load", () => {
     const $modal = document.getElementById("last-preech-modal") as HTMLElement;
+    const $modalContent = $modal?.querySelector("#modal-content") as HTMLElement;
+    const $modalOverlay = $modal?.querySelector("#modal-overlay") as HTMLElement;
     const $spinnerLoading = $modal?.querySelector("#redil-spinner-loading") as HTMLElement;
     const $innerVideo = $modal?.querySelector("#redil-video-player") as HTMLElement;
     const $innertitle = $modal?.querySelector("#redil-video-title") as HTMLElement;
     const $lastPreechLink = document.querySelector("#last-preech-link") as HTMLElement;
     const $lastPreechLinkButton = $lastPreechLink?.querySelector("button") as HTMLElement;
+
+    const tl = gsap.timeline({ defaults: { ease: "power2.inOut", duration: 0.1 } });
 
     const fetchLastVideo = async () => {
       const apikey = import.meta.env.PUBLIC_YT_API_KEY;
@@ -93,8 +98,29 @@ import Spinner from "@/components/Spinner.astro";
 
     if ($modal && $lastPreechLinkButton && $spinnerLoading) {
       $lastPreechLinkButton?.addEventListener("click", async () => {
-        $modal.dataset.visible = "true";
         const videoDetails = await fetchLastVideo();
+
+
+        tl.fromTo(
+          $modal,
+          { autoAlpha: 0},
+          { autoAlpha: 1}
+        )
+
+        tl.fromTo(
+          $modalOverlay,
+          { opacity: 0 },
+          { opacity: 1 },
+          "<"
+        )
+
+        tl.fromTo(
+          $modalContent,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0 },
+          "<0.1"
+        )
+        $modal.dataset.visible = "true";
 
         if (videoDetails && videoDetails.videoId && $innertitle) {
           $innertitle.innerHTML = videoDetails.title;
