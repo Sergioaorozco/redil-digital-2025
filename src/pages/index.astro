@@ -16,12 +16,9 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
   </section>
   <section class="mt-6">
     <article class="wrapper flex-responsive gap-5">
-      <figure class="group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
-        <i class="bg-white/50 group-hover:bg-white group-hover:scale-125 transition-all duration-300 ease-in-out rounded-full p-3 absolute">
-          <PlayTriangleIcon />
-        </i>
+      <figure class="rounded-md h-full w-full overflow-clip">
         <img
-          class="group-hover:brightness-75 -z-10 transition-all w-full h-full object-cover"
+          class="w-full h-full object-cover"
           src="/koinonia-iglesia.webp"
           alt=""
         />
@@ -42,11 +39,11 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
       </div>
     </article>
   </section>
-  <section>
+  <section class="my-6">
     <article class="last-preech-link wrapper h-52 flex-responsive gap-4">
       <figure class="bg-slate-800 group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
         <img
-          class="group-hover:brightness-50 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
+          class="group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
           src="/miembros-2024.webp"
           alt=""
         />
@@ -57,6 +54,16 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
           <p class="hidden group-hover:block ease-in-out transition-all duration-150 font-bold text-2xl">Ver Última Celebración</p>
         </div>
       </figure>
+      <a href="/iglesia" rel="prefetch" class="bg-slate-800 group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
+        <img
+          class="group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
+          src="/koinonia-iglesia.webp"
+          alt=""
+        />
+        <div class="absolute flex flex-col justify-between items-center gap-4">
+          <p class="group-hover:block ease-in-out transition-all duration-150 font-bold text-2xl">Nuestra Iglesia</p>
+        </div>
+      </a>
     </article>
   </section>
 </Layout>
@@ -65,9 +72,10 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
   import { openModalWithVideo } from "@/utils/youtubeMethods";
   const $lastPreechLink = document.querySelectorAll(".last-preech-link") as NodeListOf<HTMLElement>;
 
-  for ( const link of $lastPreechLink) {
-    link.addEventListener('click', openModalWithVideo)
-  }
-
+  document.addEventListener("astro:page-load", () => {
+    for ( const link of $lastPreechLink) {
+      link.addEventListener('click', openModalWithVideo);
+    }
+  })
 
 </script>

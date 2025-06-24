@@ -7,8 +7,6 @@
     const $spinnerLoading = document.querySelector("#redil-spinner-loading") as HTMLElement;
     const $innerVideo = document.querySelector("#redil-video-player") as HTMLElement;
     const $innertitle = document.querySelector("#redil-video-title") as HTMLElement;
-    const $lastPreechLink = document.querySelector("#last-preech-link") as HTMLElement;
-    const $lastPreechLinkButton = $lastPreechLink?.querySelector("button") as HTMLElement;
 
     export const fetchLastVideo = async () => {
       const apikey = import.meta.env.PUBLIC_YT_API_KEY;

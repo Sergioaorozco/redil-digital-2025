@@ -56,10 +56,8 @@ import ModalVideo from "@/components/ModalVideo.astro";
   import { openModalWithVideo } from "@/utils/youtubeMethods";
   const $lastPreechLink = document.querySelectorAll(".last-preech-link") as NodeListOf<HTMLElement>;
   document.addEventListener("astro:page-load", () => {
-
-  for ( const link of $lastPreechLink) {
-    link.addEventListener('click', openModalWithVideo)
-  }
-
+    for ( const link of $lastPreechLink) {
+      link.addEventListener('click', openModalWithVideo);
+    }
   });
 </script>
