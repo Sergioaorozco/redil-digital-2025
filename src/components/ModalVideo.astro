@@ -17,7 +17,7 @@ const { id } = Astro.props;
   <article
     class="w-full min-md:w-1/2 h-96 p-5 rounded-md z-50 flex flex-col justify-between gap-8"
   >
-    <div class="flex justify-between w-full items-center">
+    <div class="flex justify-between w-full items-center gap-x-3">
       <slot name="header" />
       <button class="close-action cursor-behavior">
         <CloseIcon />
@@ -50,6 +50,7 @@ const { id } = Astro.props;
         $closeButton.addEventListener("click", () => {
           ($modal as HTMLElement).dataset.visible = "false";
           ($videoPlayer as HTMLIFrameElement).src = "";
+
         })
       }
     }
