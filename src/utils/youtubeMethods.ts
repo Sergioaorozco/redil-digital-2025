@@ -1,13 +1,5 @@
     import gsap from "gsap";
 
-  // Selectors
-    const $modal = document.querySelector(".last-preech-modal") as HTMLElement;
-    const $modalContent = document.querySelector("#modal-content") as HTMLElement;
-    const $modalOverlay = document.querySelector("#modal-overlay") as HTMLElement;
-    const $spinnerLoading = document.querySelector("#redil-spinner-loading") as HTMLElement;
-    const $innerVideo = document.querySelector("#redil-video-player") as HTMLElement;
-    const $innertitle = document.querySelector("#redil-video-title") as HTMLElement;
-
     export const fetchLastVideo = async () => {
       const apikey = import.meta.env.PUBLIC_YT_API_KEY;
       const channelId = import.meta.env.PUBLIC_YT_CHANNEL_ID;
@@ -35,6 +27,14 @@
     }
 
   export const openModalWithVideo = async () => {
+  // Selectors
+    const $modal = document.querySelector(".last-preech-modal") as HTMLElement;
+    const $modalContent = document.querySelector("#modal-content") as HTMLElement;
+    const $modalOverlay = document.querySelector("#modal-overlay") as HTMLElement;
+    const $spinnerLoading = document.querySelector("#redil-spinner-loading") as HTMLElement;
+    const $innerVideo = document.querySelector("#redil-video-player") as HTMLElement;
+    const $innertitle = document.querySelector("#redil-video-title") as HTMLElement;
+    
     try {
       $spinnerLoading.dataset.loadingState = "true";
       let videoDetails;

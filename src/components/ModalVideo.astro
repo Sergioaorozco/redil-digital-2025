@@ -43,10 +43,17 @@ const { id } = Astro.props;
 </style>
 
 <script>
+  import { openModalWithVideo } from "@/utils/youtubeMethods";
   document.addEventListener("astro:page-load", () => {
+
+    const $lastPreechLink = document.querySelectorAll(".last-preech-link") as NodeListOf<HTMLElement>;
     const $modal = document.querySelector("section[data-modal-id]");
     const $closeButtons = $modal?.querySelectorAll(".close-action");
     const $videoPlayer = $modal?.querySelector("iframe");
+
+    for ( const link of $lastPreechLink) {
+      link.addEventListener('click', openModalWithVideo);
+    }
 
     if( $modal && $closeButtons) {
       for( const $closeButton of $closeButtons) {
@@ -57,7 +64,6 @@ const { id } = Astro.props;
         })
       }
     }
-
   })
 </script>
  
