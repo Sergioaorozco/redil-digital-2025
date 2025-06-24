@@ -57,7 +57,6 @@ import Spinner from "@/components/Spinner.astro";
 
 <script>
   import gsap from "gsap";
-
   document.addEventListener("astro:page-load", () => {
     const $modal = document.getElementById("last-preech-modal") as HTMLElement;
     const $modalContent = $modal?.querySelector("#modal-content") as HTMLElement;
@@ -68,7 +67,7 @@ import Spinner from "@/components/Spinner.astro";
     const $lastPreechLink = document.querySelector("#last-preech-link") as HTMLElement;
     const $lastPreechLinkButton = $lastPreechLink?.querySelector("button") as HTMLElement;
 
-    const tl = gsap.timeline({ defaults: { ease: "power2.inOut", duration: 0.1 } });
+    const tl = gsap.timeline({ defaults: { ease: "power3.in", duration: 0.2 } });
 
     const fetchLastVideo = async () => {
       const apikey = import.meta.env.PUBLIC_YT_API_KEY;
@@ -98,27 +97,8 @@ import Spinner from "@/components/Spinner.astro";
 
     if ($modal && $lastPreechLinkButton && $spinnerLoading) {
       $lastPreechLinkButton?.addEventListener("click", async () => {
+
         const videoDetails = await fetchLastVideo();
-
-        tl.fromTo(
-          $modal,
-          { autoAlpha: 0},
-          { autoAlpha: 1}
-        )
-
-        tl.fromTo(
-          $modalOverlay,
-          { opacity: 0 },
-          { opacity: 1 },
-          "<"
-        )
-
-        tl.fromTo(
-          $modalContent,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0 },
-          "<0.1"
-        )
         $modal.dataset.visible = "true";
 
         if (videoDetails && videoDetails.videoId && $innertitle) {
