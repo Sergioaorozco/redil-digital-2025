@@ -44,23 +44,18 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
   </section>
   <section>
     <article class="wrapper h-52 flex-responsive gap-4">
-      <figure class="rounded-md h-full w-full overflow-clip">
+      <figure class="bg-slate-800 group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
         <img
-          class="w-full h-full object-cover"
+          class="group-hover:brightness-50 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
           src="/miembros-2024.webp"
           alt=""
         />
-      </figure>
-      <figure class="bg-slate-400 group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
-        <i class="bg-white/50 group-hover:bg-white group-hover:scale-125 transition-all duration-300 ease-in-out rounded-full p-3 absolute">
-          <PlayTriangleIcon />
-        </i>
-        <p class="font-bold text-2xl">Ver Última Celebración</p>
-        <img
-          class="w-full h-full object-cover mask-b-from-0"
-          src="/miembros-2024.webp"
-          alt=""
-        />
+        <div class="absolute flex flex-col justify-between items-center gap-4">
+          <i class="bg-white/50 text-slate-900 group-hover:bg-white group-hover:scale-125 transition-all duration-300 ease-in-out rounded-full p-3">
+            <PlayTriangleIcon />
+          </i>
+          <p class="hidden group-hover:block ease-in-out transition-all duration-150 font-bold text-2xl">Ver Última Celebración</p>
+        </div>
       </figure>
     </article>
   </section>
