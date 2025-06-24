@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
+import RightArrow from "@/assets/RightArrow.astro";
 // import { importingUsers} from "@/utils/importingUsers";
 // import { redilUser2025 } from "@/utils/users";
 
@@ -51,17 +52,18 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
           <i class="bg-white/50 text-slate-900 group-hover:bg-white group-hover:scale-125 transition-all duration-300 ease-in-out rounded-full p-3">
             <PlayTriangleIcon />
           </i>
-          <p class="hidden group-hover:block ease-in-out transition-all duration-150 font-bold text-2xl">Ver Última Celebración</p>
+          <p class="text-responsive hidden group-hover:block ease-in-out transition-all duration-150 font-bold text-2xl">Ver Última Celebración</p>
         </div>
       </figure>
-      <a href="/iglesia" rel="prefetch" class="bg-slate-800 group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
+      <a href="/iglesia" rel="prefetch" class="bg-slate-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative">
         <img
           class="group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
           src="/koinonia-iglesia.webp"
           alt=""
         />
-        <div class="absolute flex flex-col justify-between items-center gap-4">
-          <p class="group-hover:block ease-in-out transition-all duration-150 font-bold text-2xl">Nuestra Iglesia</p>
+        <div class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-white">
+          <p class="text-responsive group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-4xl text-2xl">Nuestra Iglesia</p>
+          <RightArrow/>
         </div>
       </a>
     </article>

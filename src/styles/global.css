@@ -27,6 +27,10 @@
   @apply flex flex-col min-md:flex-row;
 }
 
+.text-responsive {
+  @apply text-slate-50 dark:text-slate-900;
+}
+
 .cursor-behavior {
   @apply duration-300 transition-all cursor-pointer;
 }
