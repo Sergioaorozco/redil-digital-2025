@@ -19,35 +19,37 @@ import ModalVideo from "@/components/ModalVideo.astro";
     allowfullscreen></iframe>
 </ModalVideo>
 
-<footer class="w-full fixed bottom-5 px-5 lg:px-8">
-  <Notification>
-    <p class="font-semibold text-xs">
-      Domingo 6 de Julio: Única celebración a las 10:00 am
-    </p>
-  </Notification>
-  <section
-    class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3"
-  >
-    <article
-      class="flex flex-col items-center min-md:items-start gap-1 last-preech-link"
+<footer class="w-full fixed bottom-0 pointer-events-none pt-36 pb-5 bg-gradient-to-t from-white dark:from-slate-800 to-transparent">
+  <div class="px-5 lg:px-8">
+    <Notification>
+      <p class="font-semibold text-xs">
+        Domingo 6 de Julio: Única celebración a las 10:00 am
+      </p>
+    </Notification>
+    <section
+      class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3"
     >
+      <article
+        class="flex flex-col items-center min-md:items-start gap-1 last-preech-link"
+      >
+        <button
+          type="button"
+          class="link-schema cursor-behavior
+               uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all"
+        >
+          <PlayIcon />
+          <p>Última celebración</p>
+        </button>
+        <p class="tracking-wide font-semibold text-xs lg:text-sm">
+          Celebraciones Dominicales: 9AM | 11AM
+        </p>
+      </article>
       <button
         type="button"
-        class="link-schema cursor-behavior
-             uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all"
+        class="hidden min-md:block w-12 link-schema cursor-behavior"
       >
-        <PlayIcon />
-        <p>Última celebración</p>
+        <ChatIcon />
       </button>
-      <p class="tracking-wide font-semibold text-xs lg:text-sm">
-        Celebraciones Dominicales: 9AM | 11AM
-      </p>
-    </article>
-    <button
-      type="button"
-      class="hidden min-md:block w-12 link-schema cursor-behavior"
-    >
-      <ChatIcon />
-    </button>
-  </section>
+    </section>
+  </div>
 </footer>

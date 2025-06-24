@@ -20,7 +20,7 @@
 }
 
 .r-well {
-  @apply p-5 bg-slate-200 dark:bg-[#2b3649] rounded-lg;
+  @apply p-5 bg-slate-200 dark:bg-slate-900 rounded-lg;
 }
 
 .flex-responsive {
@@ -28,7 +28,7 @@
 }
 
 .text-responsive {
-  @apply text-slate-50 dark:text-slate-900;
+  @apply text-slate-50;
 }
 
 .cursor-behavior {
