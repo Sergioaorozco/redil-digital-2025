@@ -3,13 +3,11 @@ import PlayIcon from "@/assets/PlayIcon.astro";
 import ChatIcon from "@/assets/ChatIcon.astro";
 import Notification from "@/components/Notification.astro";
 import ModalVideo from "@/components/ModalVideo.astro";
-import Spinner from "@/components/Spinner.astro";
 
 ---
 
 <ModalVideo id="last-preech-modal">
   <p id="redil-video-title" data-video-title="Ultima Celebracion" slot="header">{}</p>
-  <Spinner />
   <iframe
     id="redil-video-player"
     data-video-id
@@ -31,8 +29,7 @@ import Spinner from "@/components/Spinner.astro";
     class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3"
   >
     <article
-      id="last-preech-link"
-      class="flex flex-col items-center min-md:items-start gap-1"
+      class="flex flex-col items-center min-md:items-start gap-1 last-preech-link"
     >
       <button
         type="button"
@@ -56,75 +53,13 @@ import Spinner from "@/components/Spinner.astro";
 </footer>
 
 <script>
-  import gsap from "gsap";
+  import { openModalWithVideo } from "@/utils/youtubeMethods";
+  const $lastPreechLink = document.querySelectorAll(".last-preech-link") as NodeListOf<HTMLElement>;
   document.addEventListener("astro:page-load", () => {
-    const $modal = document.getElementById("last-preech-modal") as HTMLElement;
-    const $modalContent = $modal?.querySelector("#modal-content") as HTMLElement;
-    const $modalOverlay = $modal?.querySelector("#modal-overlay") as HTMLElement;
-    const $spinnerLoading = $modal?.querySelector("#redil-spinner-loading") as HTMLElement;
-    const $innerVideo = $modal?.querySelector("#redil-video-player") as HTMLElement;
-    const $innertitle = $modal?.querySelector("#redil-video-title") as HTMLElement;
-    const $lastPreechLink = document.querySelector("#last-preech-link") as HTMLElement;
-    const $lastPreechLinkButton = $lastPreechLink?.querySelector("button") as HTMLElement;
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.in", duration: 0.2 } });
+  for ( const link of $lastPreechLink) {
+    link.addEventListener('click', openModalWithVideo)
+  }
 
-    const fetchLastVideo = async () => {
-      const apikey = import.meta.env.PUBLIC_YT_API_KEY;
-      const channelId = import.meta.env.PUBLIC_YT_CHANNEL_ID;
-
-      try {
-        $spinnerLoading.dataset.loadingState = "true";
-        const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?key=${apikey}&part=snippet&channelId=${channelId}&type=video&order=date&maxResults=1`
-        );
-
-        if(!response.ok) {
-          throw new Error("Error al descargar videos");
-        }
-        const data = await response.json();
-        const { id: {videoId}, snippet: {title}} = data.items[0];
-        const videoDetails = {
-          videoId: videoId,
-          title: title
-        }
-
-        sessionStorage.setItem('ultimaPredica', JSON.stringify(videoDetails))
-        return videoDetails;
-      } catch (error) {
-        console.error("Error fetching YouTube videos:", error);
-      } finally {
-        $spinnerLoading.dataset.loadingState = "false";
-      }
-    }
-
-    if ($modal && $lastPreechLinkButton && $spinnerLoading) {
-      $lastPreechLinkButton?.addEventListener("click", async () => {
-
-        tl.fromTo(
-          $modalOverlay,
-          {opacity:0},
-          {opacity:1},
-        )
-
-        tl.fromTo(
-          $modalContent,
-          {opacity: 0, y:50},
-          {opacity: 1, y:0},
-          "<0.1"
-        )
-
-        let videoDetails;
-        let checkSession = sessionStorage.getItem('ultimaPredica');
-        videoDetails = checkSession !== null ? JSON.parse(checkSession) : await fetchLastVideo();
-
-        $modal.dataset.visible = "true";
-
-        if (videoDetails && videoDetails.videoId && $innertitle) {
-          $innertitle.innerHTML = videoDetails.title;
-          $innerVideo?.setAttribute('src', `https://www.youtube.com/embed/${videoDetails.videoId}`);
-        }
-      });
-    }
   });
 </script>

@@ -1,5 +1,6 @@
 ---
 import CloseIcon from "@/assets/CloseIcon.astro";
+import Spinner from "@/components/Spinner.astro";
 
 interface Props {
   id?: string;
@@ -9,10 +10,9 @@ const { id } = Astro.props;
 ---
 
 <section
-  id={id}
   data-modal-id={id}
   data-visible="false"
-  class="px-5 text-white text-sm fixed top-0 min-w-full min-h-dvh z-50 flex justify-center items-center"
+  class:list={["px-5 text-white text-sm fixed top-0 min-w-full min-h-dvh z-50 flex justify-center items-center last-preech-modal"]}
 >
   <article
     id="modal-content"
@@ -25,6 +25,7 @@ const { id } = Astro.props;
       </button>
     </div>
     <div class="h-full">
+      <Spinner />
       <slot />
     </div>
   </article>

@@ -43,7 +43,7 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
     </article>
   </section>
   <section>
-    <article class="wrapper h-52 flex-responsive gap-4">
+    <article class="last-preech-link wrapper h-52 flex-responsive gap-4">
       <figure class="bg-slate-800 group cursor-behavior rounded-md h-full w-full flex items-center justify-center overflow-clip relative">
         <img
           class="group-hover:brightness-50 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
@@ -62,5 +62,12 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
 </Layout>
 
 <script>
-  import gsap from "gsap";
+  import { openModalWithVideo } from "@/utils/youtubeMethods";
+  const $lastPreechLink = document.querySelectorAll(".last-preech-link") as NodeListOf<HTMLElement>;
+
+  for ( const link of $lastPreechLink) {
+    link.addEventListener('click', openModalWithVideo)
+  }
+
+
 </script>
