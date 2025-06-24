@@ -80,14 +80,17 @@ import Spinner from "@/components/Spinner.astro";
         );
 
         if(!response.ok) {
-          throw new Error("Failed to fetch videos");
+          throw new Error("Error al descargar videos");
         }
         const data = await response.json();
         const { id: {videoId}, snippet: {title}} = data.items[0];
-        return {
+        const videoDetails = {
           videoId: videoId,
           title: title
         }
+
+        sessionStorage.setItem('ultimaPredica', JSON.stringify(videoDetails))
+        return videoDetails;
       } catch (error) {
         console.error("Error fetching YouTube videos:", error);
       } finally {
@@ -98,7 +101,10 @@ import Spinner from "@/components/Spinner.astro";
     if ($modal && $lastPreechLinkButton && $spinnerLoading) {
       $lastPreechLinkButton?.addEventListener("click", async () => {
 
-        const videoDetails = await fetchLastVideo();
+        let videoDetails;
+        let checkSession = sessionStorage.getItem('ultimaPredica');
+        videoDetails = checkSession !== null ? JSON.parse(checkSession) : await fetchLastVideo();
+
         $modal.dataset.visible = "true";
 
         if (videoDetails && videoDetails.videoId && $innertitle) {
