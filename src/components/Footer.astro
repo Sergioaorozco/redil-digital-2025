@@ -101,6 +101,19 @@ import Spinner from "@/components/Spinner.astro";
     if ($modal && $lastPreechLinkButton && $spinnerLoading) {
       $lastPreechLinkButton?.addEventListener("click", async () => {
 
+        tl.fromTo(
+          $modalOverlay,
+          {opacity:0},
+          {opacity:1},
+        )
+
+        tl.fromTo(
+          $modalContent,
+          {opacity: 0, y:50},
+          {opacity: 1, y:0},
+          "<0.1"
+        )
+
         let videoDetails;
         let checkSession = sessionStorage.getItem('ultimaPredica');
         videoDetails = checkSession !== null ? JSON.parse(checkSession) : await fetchLastVideo();
