@@ -7,21 +7,46 @@
 
       try {
         $spinnerLoading.dataset.loadingState = "true";
-        const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?key=${apikey}&part=snippet&channelId=${channelId}&type=video&order=date&maxResults=1`
-        );
 
-        if(!response.ok) {
-          const errorBody = await response.text(); // Try to get the raw error body
-          throw new Error(errorBody);
+        // 1. Fetching channelList
+        const channelList = await fetch(
+          `https://www.googleapis.com/youtube/v3/channels?key=${apikey}&id=${channelId}&part=contentDetails`
+        )
+
+        if( !channelList.ok) {
+          const errorBody = await channelList.text();
+          throw new Error(`Error Buscando informacion del canal: ${errorBody}`);
         }
 
-        const data = await response.json();
-        const { id: {videoId}, snippet: {title}} = data.items[0];
+        // 2. Getting the upload playlist id
+        const channelData = await channelList.json();
+        const uploadPlaylistId = channelData.items[0]?.contentDetails?.relatedPlaylists?.uploads;
+
+        if(!uploadPlaylistId) {
+          throw new Error('No fue posible encontrar un playlist ID');
+        }
+
+        // 3. Get the last video from Youtube using Playlist Items endpoint
+        const playlistItemsResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/playlistItems?key=${apikey}&playlistId=${uploadPlaylistId}&part=snippet&maxResults=1`
+        );
+
+        if(!playlistItemsResponse.ok) {
+          throw new Error('Error consultado informacion de la playlist');
+        }
+
+        const playlistItemsData = await playlistItemsResponse.json();
+
+        if (!playlistItemsData.items || playlistItemsData.items.length === 0) {
+          throw new Error("No se encontraron videos en la playlist seleccionada");
+        }
+
+        const { snippet: { resourceId: { videoId }, title } } = playlistItemsData.items[0];
+
         const videoDetails = {
           videoId: videoId,
           title: title
-        }
+        };
 
         sessionStorage.setItem('ultimaPredica', JSON.stringify(videoDetails))
         return videoDetails;
@@ -68,6 +93,7 @@
         $innerVideo?.setAttribute('src', `https://www.youtube.com/embed/${videoDetails.videoId}`);
       }
     } catch (error) {
+      console.error(error);
       $innertitle.innerHTML = 'Última Predicación'
       $modalBody.innerHTML = 'Un error ocurrio al cargar este video.'
     }
