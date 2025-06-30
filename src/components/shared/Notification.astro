@@ -4,10 +4,13 @@ import CloseIcon from "@/assets/CloseIcon.astro";
 
 interface Props {
   variant?: string
+  reference: string
 }
 
+const {reference} = Astro.props;
+
 ---
-<section class="notification-container mb-2 transition-all duration-300 ease-in-out">
+<section class="notification-container mb-2 transition-all duration-300 ease-in-out" data-notification-reference={reference}>
      <div class="flex items-center gap-x-2 font-semibold text-xs min-md:text-sm">
          <InfoIcon />
          <slot />
@@ -17,28 +20,30 @@ interface Props {
     </button>
 </section>
 
-<script is:inline>
-  const handleNotification = () => {
-    const DISMISS_NOTIFICATION = `dismissNotification`;
+<script>
+  (() => {
+    const DISMISS_PREFIX = `dismissNotification`;
     const $notifications = document.querySelectorAll(".notification-container");
 
-
-    for(const $notification of $notifications) {
+    for ( const $notification of $notifications) {
       const $closeButton = $notification?.querySelector("button");
-      const isNotificationDismissed = sessionStorage.getItem(DISMISS_NOTIFICATION) === "true";
+  
+      const notificationRef = $notification ? ( ($notification as HTMLElement).dataset.notificationReference ) : "";
+      const DISMISS_KEY = `${DISMISS_PREFIX}-${notificationRef}`;
+  
+      const isNotificationDismissed = sessionStorage.getItem(DISMISS_KEY) === "true";
+      
       if(isNotificationDismissed) {
         $notification?.remove();
-        return;
       };
-
+  
       $closeButton?.addEventListener("click",() => {
-          $notification?.remove();
-          sessionStorage.setItem(DISMISS_NOTIFICATION, "true");
+        console.log('test');
+        $notification?.remove();
+        sessionStorage.setItem(DISMISS_KEY, "true");
       }, { once: true});
     }
-  }
-
-  document.addEventListener("astro:page-load", handleNotification)
+  })();
 </script>
 
 <style scoped>
