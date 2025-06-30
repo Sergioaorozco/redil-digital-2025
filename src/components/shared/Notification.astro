@@ -8,7 +8,7 @@ interface Props {
 
 ---
 <section class="notification-container mb-2 transition-all duration-300 ease-in-out">
-     <div class="flex items-center gap-x-2 font-semibold text-xs min-lg:text-lg">
+     <div class="flex items-center gap-x-2 font-semibold text-xs min-md:text-sm">
          <InfoIcon />
          <slot />
      </div>
@@ -17,22 +17,25 @@ interface Props {
     </button>
 </section>
 
-<script>
+<script is:inline>
   const handleNotification = () => {
     const DISMISS_NOTIFICATION = `dismissNotification`;
-    const $notification = document.querySelector(".notification-container");
-    const $closeButton = $notification?.querySelector("button");
+    const $notifications = document.querySelectorAll(".notification-container");
 
-    const isNotificationDismissed = sessionStorage.getItem(DISMISS_NOTIFICATION) === "true";
-    if(isNotificationDismissed) {
-      $notification?.remove();
-      return;
-    };
 
-    $closeButton?.addEventListener("click",() => {
+    for(const $notification of $notifications) {
+      const $closeButton = $notification?.querySelector("button");
+      const isNotificationDismissed = sessionStorage.getItem(DISMISS_NOTIFICATION) === "true";
+      if(isNotificationDismissed) {
         $notification?.remove();
-        sessionStorage.setItem(DISMISS_NOTIFICATION, "true");
-    }, { once: true});
+        return;
+      };
+
+      $closeButton?.addEventListener("click",() => {
+          $notification?.remove();
+          sessionStorage.setItem(DISMISS_NOTIFICATION, "true");
+      }, { once: true});
+    }
   }
 
   document.addEventListener("astro:page-load", handleNotification)
