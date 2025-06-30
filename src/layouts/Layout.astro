@@ -24,7 +24,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
 		<ClientRouter />
 	</head>
-	<body class="bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200">
+	<body class="bg-white dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200">
 		<div class:list={['px-5 mb-5 flex flex-col justify-between layout-bg min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
 			<Nav></Nav>
 			{ pageTitle &&
@@ -55,7 +55,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		width: 100%;
 		height: 100%;
 		font-family: "Ubuntu", sans-serif;
-		@apply text-slate-800 dark:text-white;
+		@apply text-neutral-800 dark:text-white;
 	}
 
 	.max-inline-nav {
@@ -64,6 +64,6 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 	}
 
 	.layout-bg {
-		@apply bg-gradient-to-b from-slate-200 dark:from-slate-950 to-transparent;
+		@apply bg-gradient-to-b from-neutral-200 dark:from-neutral-950 to-transparent;
 	}
 </style>
