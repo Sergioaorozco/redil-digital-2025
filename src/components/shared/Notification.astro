@@ -17,7 +17,7 @@ interface Props {
     </button>
 </section>
 
-<script is:inline>
+<script>
   const handleNotification = () => {
     const DISMISS_NOTIFICATION = `dismissNotification`;
     const $notification = document.querySelector(".notification-container");
@@ -34,8 +34,6 @@ interface Props {
         sessionStorage.setItem(DISMISS_NOTIFICATION, "true");
     }, { once: true});
   }
-
-  handleNotification();
 
   document.addEventListener("astro:page-load", handleNotification)
 </script>
