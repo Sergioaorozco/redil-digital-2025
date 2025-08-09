@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { esES, esUY } from '@clerk/localizations';
+import { esES } from '@clerk/localizations';
 
 import tailwindcss from '@tailwindcss/vite';
 import clerk from "@clerk/astro"
