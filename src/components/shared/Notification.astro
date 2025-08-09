@@ -38,7 +38,6 @@ const {reference} = Astro.props;
       };
   
       $closeButton?.addEventListener("click",() => {
-        console.log('test');
         $notification?.remove();
         sessionStorage.setItem(DISMISS_KEY, "true");
       }, { once: true});
