@@ -2,17 +2,18 @@
 import { defineConfig } from 'astro/config';
 import { esES } from '@clerk/localizations';
 
-import tailwindcss from '@tailwindcss/vite';
 import clerk from "@clerk/astro"
-import vercel from '@astrojs/vercel';
+
+import vercel from "@astrojs/vercel";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [clerk({localization: esES})],
-  adapter: vercel(),
   output: "server",
+  adapter: vercel(),
 
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });
