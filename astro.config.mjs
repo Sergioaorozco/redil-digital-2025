@@ -6,10 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 import clerk from "@clerk/astro"
 import node from '@astrojs/node';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [clerk({localization: esES})],
-  adapter: node({ mode: "standalone" }),
+  adapter: vercel(),
   output: "server",
 
   vite: {
