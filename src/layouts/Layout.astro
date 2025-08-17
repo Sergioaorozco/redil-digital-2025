@@ -1,9 +1,6 @@
 ---
-import './src/styles/global.css';
 import '@/styles/global.css';
 
-import { app } from '@/utils/firebaseConfig';
-import {ClientRouter} from 'astro:transitions';
 import Nav from '@/components/shared/Nav.astro';
 import Footer from '@/components/shared/Footer.astro';
 
@@ -23,9 +20,8 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
-		<ClientRouter />
+		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
 	</head>
-	<body class="bg-white dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200">
 		<div class:list={['px-5 mb-5 flex flex-col justify-between layout-bg min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
 			<Nav></Nav>
 			{ pageTitle &&
