@@ -1,5 +1,4 @@
 ---
-import { SignedIn, UserButton, SignedOut } from "@clerk/astro/components";
 import ModalMenu from "@/components/Menu.astro";
 import LogoImage from "@/assets/LogoImage.astro";
 
@@ -10,16 +9,13 @@ import LogoImage from "@/assets/LogoImage.astro";
   </a>
   <ul class="flex gap-x-3 items-center">
     <!-- User button profile when signed -->
-    <SignedIn>
-      <UserButton/>
-    </SignedIn>
+    <!-- WIP Show profile when user signed in -->
     <ModalMenu></ModalMenu>
     <!-- Member portal link when there is no user -->
-    <SignedOut>
+    <!-- WIP Show when user signed out -->
       <li class="font-medium max-sm:hidden lg:block">
         <a href="/ingreso" class="nav-button bg-white dark:bg-white text-neutral-800 hover:bg-neutral-300 lg:transition-colors lg:duration-200 sm:animate-none"> Membresía</a>
       </li>
-    </SignedOut>
   </ul>
 </nav>
 

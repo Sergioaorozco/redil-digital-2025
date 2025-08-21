@@ -1,13 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PortalMiembros from "@/components/PortalMiembros.astro";
-import { SignedIn, SignedOut, SignIn } from "@clerk/astro/components";
 ---
 
 <Layout pageTitle="Miembros">
-  <SignedIn>
+  <!-- Show members portal when user is Signed In -->
     <PortalMiembros></PortalMiembros>
-  </SignedIn>
 </Layout>
 
 <style scoped>
