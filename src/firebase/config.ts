@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+auth.languageCode = 'es';
 
 // Export the initialized firebase app
 export const firebaseApp = {
