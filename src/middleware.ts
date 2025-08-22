@@ -1,4 +1,5 @@
 import { defineMiddleware } from "astro:middleware";
+
 const isProtectedRoute = ['/miembros(.*)'];
 
 export const onRequest = defineMiddleware(async ({url, locals, redirect}, next) => {

@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { navigate } from "astro:transitions/client";
 
 ---
 <Layout pageTitle="Ingreso">
@@ -33,6 +34,8 @@ import Layout from "@/layouts/Layout.astro";
 <script>
   import Swal from 'sweetalert2';
   import { actions } from 'astro:actions';
+import type { AuthError } from 'firebase/auth';
+import { navigate } from 'astro:transitions/client';
 
   // Selectors
   const $loginForm = document.querySelector('form') as HTMLFormElement;
@@ -43,19 +46,18 @@ import Layout from "@/layouts/Layout.astro";
     const formData = new FormData($loginForm);
 
     try {
-      const result = await actions.loginUser(formData);
+      const { error} = await actions.loginUser(formData);
+      if (error) throw error;
 
-      if(result.error) {
-        throw new Error('Error Ingreso');
-      }
-
-      console.log(result);
+      navigate('/miembros');
 
     } catch(error) {
+      const firebaseError = error as AuthError;
+
       Swal.fire({
         icon: 'error',
         title: 'Error al iniciar sesión',
-        text: 'Por favor, verifica tus credenciales e inténtalo de nuevo.',
+        text: firebaseError.message,
       })
     }
   }
