@@ -22,15 +22,14 @@ export const loginUser = defineAction({
         password
       )
 
-
       console.log('User logged in:', userCredential);
     } catch (error) {
       const firebaseError = error as AuthError;
 
-      if( firebaseError.code === '') {
+      if( firebaseError.code === 'auth/invalid-credential') {
         throw new Error('Verifica tus credenciales e intenta nuevamente.')
       }
-      throw new Error('Verifica tus credenciales e intenta nuevamente.')
+      throw new Error('Error en el Servidor, intentalo de nuevo')
     }
   }
 })
