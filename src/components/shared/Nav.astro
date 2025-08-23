@@ -10,15 +10,13 @@ const { isLoggedIn } = Astro.locals;
     <LogoImage></LogoImage>
   </a>
   <ul class="flex gap-x-3 items-center">
-    <!-- User button profile when signed -->
     <ModalMenu></ModalMenu>
-    <!-- Member portal link when there is no user -->
     <!-- WIP Show when user signed out -->
-      <li class="font-medium max-sm:hidden lg:block">
-        <a href="/ingreso" class="nav-button bg-white dark:bg-white text-neutral-800 hover:bg-neutral-300 lg:transition-colors lg:duration-200 sm:animate-none"> Membresía</a>
-      </li>
-      <!-- WIP Show profile when user signed in -->
-      { isLoggedIn && <li><CircleUserRound /></li> }
+    <li class="font-medium max-sm:hidden lg:block">
+      <a href="/ingreso" class="nav-button bg-white dark:bg-white text-neutral-800 hover:bg-neutral-300 lg:transition-colors lg:duration-200 sm:animate-none"> Membresía</a>
+    </li>
+    <!-- WIP Show profile when user signed in -->
+    { isLoggedIn && <li class="bg-blue-200 p-2 rounded-full text-blue-800"><CircleUserRound /></li> }
   </ul>
 </nav>
 
