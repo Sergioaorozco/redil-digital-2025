@@ -1,4 +1,5 @@
-import { loginUser } from '@/actions/auth';
+import { loginUser, signOutAction } from '@/actions/auth';
 export const server = {
-    loginUser
+    loginUser,
+    signOutAction,
 }
