@@ -15,7 +15,7 @@ const {isLoggedIn} = Astro.locals
         </button>
 
         {/* Menu Section */}
-        <ul id="profile-dropdown" class="profile-dropdown-container overflow-hidden bg-white dark:bg-neutral-600 text-neutral-800 dark:text-white text-xl rounded-lg absolute top-20 right-3">
+        <ul id="profile-dropdown" class="shadow-2xl shadow-neutral-500 dark:shadow-neutral-900 profile-dropdown-container overflow-hidden bg-white dark:bg-neutral-600 text-neutral-800 dark:text-white text-xl rounded-lg absolute top-20 right-3">
           <li class="menu-profile-item">Actualizar Perfil</li>
           <li id="logout-button" class="menu-profile-item">Cerrar Sesion</li>
         </ul>
@@ -49,9 +49,22 @@ const {isLoggedIn} = Astro.locals
         animation: "power2.out"
       })
 
-      $profileButton?.addEventListener('click', () => {
+      $profileButton?.addEventListener('click', (event) => {
+        event.stopPropagation();
         tl.reversed() ? tl.play() : tl.reverse();
       })
+
+      // Clicking outside the dropdown menu to close.
+      document.addEventListener('click', function(event){
+        if(!tl.reversed()){
+          const isClickInside = $profileDropdown?.contains(event.target as Node);
+          const isClickOnButton = $profileButton?.contains(event.target as Node);
+          if(!isClickInside && !isClickOnButton) {
+            tl.reverse();
+          }
+        }
+      })
+
       $logoutButton?.addEventListener('click', async () => {
         try {
           await actions.signOutAction();
@@ -70,5 +83,8 @@ const {isLoggedIn} = Astro.locals
 
   .menu-profile-item {
     @apply px-5 py-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-100;
+    &:not(:last-child) {
+      @apply border-b border-neutral-200 dark:border-neutral-700;
+    }
   }
 </style>
