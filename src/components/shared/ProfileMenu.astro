@@ -15,9 +15,9 @@ const {isLoggedIn} = Astro.locals
         </button>
 
         {/* Menu Section */}
-        <ul id="profile-dropdown" data-visible="false" class="profile-dropdown-container bg-white text-neutral-800 text-2xl px-5 py-3 rounded-lg absolute top-20 right-3">
-          <li>Actualizar Perfil</li>
-          <li id="logout-button">Cerrar Sesion</li>
+        <ul id="profile-dropdown" class="profile-dropdown-container overflow-hidden bg-white dark:bg-neutral-600 text-neutral-800 dark:text-white text-xl rounded-lg absolute top-20 right-3">
+          <li class="menu-profile-item">Actualizar Perfil</li>
+          <li id="logout-button" class="menu-profile-item">Cerrar Sesion</li>
         </ul>
       </profile-menu>
     )
@@ -26,6 +26,7 @@ const {isLoggedIn} = Astro.locals
 <script>
   // Adding signout action to profile button
   import { actions } from "astro:actions";
+  import gsap from "gsap";
 
   class profileMenu extends HTMLElement {
     constructor(){
@@ -33,11 +34,23 @@ const {isLoggedIn} = Astro.locals
       const $profileButton = document.querySelector('#profile-button');
       const $logoutButton = document.querySelector('#logout-button');
       const $profileDropdown = document.querySelector('#profile-dropdown');
-      let isProfileMenuVisible = false;
+
+      gsap.set($profileDropdown, { autoAlpha: 0, scale: 0.8, y: -20} );
+
+      // Creating a Gsap Timeline for the animation
+      const tl = gsap.timeline({ paused: true, reversed: true});
+
+      // Adding the animation in the profile dropdown
+      tl.to($profileDropdown, {
+        autoAlpha: 1,
+        scale: 1,
+        y:0,
+        duration: 0.2,
+        animation: "power2.out"
+      })
 
       $profileButton?.addEventListener('click', () => {
-        isProfileMenuVisible = !isProfileMenuVisible;
-        $profileDropdown?.setAttribute('data-visible', String(isProfileMenuVisible));
+        tl.reversed() ? tl.play() : tl.reverse();
       })
       $logoutButton?.addEventListener('click', async () => {
         try {
@@ -52,10 +65,10 @@ const {isLoggedIn} = Astro.locals
   customElements.define('profile-menu', profileMenu);
 </script>
 
-<style>
+<style scoped>
+  @import "tailwindcss";
 
-  .profile-dropdown-container[data-visible = "false"] {
-    display: none;
+  .menu-profile-item {
+    @apply px-5 py-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-100;
   }
-
 </style>
