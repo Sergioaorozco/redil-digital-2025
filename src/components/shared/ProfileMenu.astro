@@ -1,0 +1,61 @@
+---
+import CircleUserRound from "@lucide/astro/icons/circle-user-round";
+const {isLoggedIn} = Astro.locals
+---
+  <!-- WIP Show profile when user signed in -->
+  {
+    isLoggedIn && (
+      <profile-menu>
+        {/* Profile Icon */}
+        <button
+          id="profile-button"
+          class="bg-blue-200 p-2 rounded-full text-blue-800 hover:bg-blue-400 transition-colors duration-200 cursor-pointer"
+        >
+          <CircleUserRound />
+        </button>
+
+        {/* Menu Section */}
+        <ul id="profile-dropdown" data-visible="false" class="profile-dropdown-container bg-white text-neutral-800 text-2xl px-5 py-3 rounded-lg absolute top-20 right-3">
+          <li>Actualizar Perfil</li>
+          <li id="logout-button">Cerrar Sesion</li>
+        </ul>
+      </profile-menu>
+    )
+  }
+
+<script>
+  // Adding signout action to profile button
+  import { actions } from "astro:actions";
+
+  class profileMenu extends HTMLElement {
+    constructor(){
+      super();
+      const $profileButton = document.querySelector('#profile-button');
+      const $logoutButton = document.querySelector('#logout-button');
+      const $profileDropdown = document.querySelector('#profile-dropdown');
+      let isProfileMenuVisible = false;
+
+      $profileButton?.addEventListener('click', () => {
+        isProfileMenuVisible = !isProfileMenuVisible;
+        $profileDropdown?.setAttribute('data-visible', String(isProfileMenuVisible));
+      })
+      $logoutButton?.addEventListener('click', async () => {
+        try {
+          await actions.signOutAction();
+          window.location.replace('/');
+        } catch (error) {
+          console.error('Error signing out:', error);
+        }
+      });
+    }
+  }
+  customElements.define('profile-menu', profileMenu);
+</script>
+
+<style>
+
+  .profile-dropdown-container[data-visible = "false"] {
+    display: none;
+  }
+
+</style>

@@ -1,7 +1,7 @@
 ---
 import ModalMenu from "@/components/Menu.astro";
 import LogoImage from "@/assets/LogoImage.astro";
-import CircleUserRound from "@lucide/astro/icons/circle-user-round";
+import ProfileMenu from "./ProfileMenu.astro";
 
 const { isLoggedIn } = Astro.locals;
 ---
@@ -10,52 +10,22 @@ const { isLoggedIn } = Astro.locals;
   <a href="/" class="w-40 dark:text-white text-neutral-900">
     <LogoImage />
   </a>
-  <ul class="flex gap-x-3 items-center">
+  <section class="flex gap-x-3 items-center">
     <ModalMenu />
     <!-- WIP Show when user signed out -->
-    <li class="font-medium max-sm:hidden lg:block">
+    <div class="font-medium max-sm:hidden lg:block">
       <a
         href="/ingreso"
         class="nav-button bg-white dark:bg-white text-neutral-800 hover:bg-neutral-300 lg:transition-colors lg:duration-200 sm:animate-none"
       >
         Membresía</a
       >
-    </li>
-    <!-- WIP Show profile when user signed in -->
-    {
-      isLoggedIn && (
-        <logout-button>
-          <li
-            id="profile-button"
-            class="bg-blue-200 p-2 rounded-full text-blue-800 hover:bg-blue-400 transition-colors duration-200 cursor-pointer"
-          >
-            <CircleUserRound />
-          </li>
-        </logout-button>
-      )
-    }
-  </ul>
+    </div>
+    <div>
+      <ProfileMenu/>
+    </div>
+  </section>
 </nav>
-<script>
-  // Adding signout action to profile button
-  import { actions } from "astro:actions";
-
-  class LogoutButton extends HTMLElement {
-    constructor(){
-      super();
-      const $profileButton = document.querySelector('#profile-button');
-      $profileButton?.addEventListener('click', async () => {
-        try {
-          await actions.signOutAction();
-          window.location.replace('/');
-        } catch (error) {
-          console.error('Error signing out:', error);
-        }
-      });
-    }
-  }
-  customElements.define('logout-button', LogoutButton);
-</script>
 
 <style>
   .nav-button {
