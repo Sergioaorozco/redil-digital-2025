@@ -5,9 +5,15 @@ export const createmenuAnim = (modalMenu: HTMLElement) => {
   // Select the elements inside the modalMenu
   const bgImage = modalMenu.querySelector('.background-nav-image');
   const menuItems = modalMenu.querySelectorAll('.menu-list li');
+  const $modal = document.getElementById("modalMenu");
+  const $backgroundNav = document.querySelector(".background-nav-image");
+
+  // Inital Setup
+  gsap.set($modal, {x:"100%", autoAlpha:0});
+  gsap.set($backgroundNav, {width:"0%"});
 
   // Create the timeline, initially paused
-  const tl = gsap.timeline({ paused: true });
+  const tl = gsap.timeline({ paused: true, reversed: true });
 
   tl
     .to(modalMenu, {

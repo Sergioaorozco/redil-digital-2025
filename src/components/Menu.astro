@@ -40,41 +40,29 @@ import LogoImage from "@/assets/LogoImage.astro";
 </section>
 
 <script>
-  import { gsap } from "gsap";
   import { createmenuAnim } from "@/utils/gsapAnimations";
 
   document.addEventListener("astro:page-load", () => {
     // Selectors
     const $modalMenuBtn = document.getElementById("modalMenuButton");
-    const $modal = document.getElementById("modalMenu");
     const $modalCloseBtn = document.getElementById("modalClose");
+    const $modal = document.getElementById("modalMenu");
     const $backgroundNav = document.querySelector(".background-nav-image");
-    let modalIsOpened = false;
 
     if(!$modal) return;
 
-    // Inital Setup
-    gsap.set($modal, {x:"100%", autoAlpha:0});
-    gsap.set($backgroundNav, {width:"0%"});
+    const menuAnim = createmenuAnim($modal);
 
-    const menuAnim = createmenuAnim($modal)
+    $modalMenuBtn?.addEventListener('click', (event) => {
+      event?.stopPropagation();
+      menuAnim.reversed() ? menuAnim.play() : menuAnim.reverse();
+    })
 
-    function toggleModal () {
-      if(!$modal) return;
-      modalIsOpened = !modalIsOpened;
-
-      if(menuAnim.reversed() || menuAnim.progress() === 0) {
-        menuAnim.play();
-      } else {
-        menuAnim.reverse();
-      }
-    }
-  
-    $modalMenuBtn?.addEventListener("click", toggleModal);
-    $modalCloseBtn?.addEventListener("click", toggleModal);
+    $modalCloseBtn?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      menuAnim.reverse();
+    });
   });
-
-
 </script>
 
 <style scoped>
