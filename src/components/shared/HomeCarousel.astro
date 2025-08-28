@@ -5,6 +5,7 @@ import "swiper/css/bundle";
 // Interfaces
 interface Slide {
   img: string;
+  name: string;
 }
 interface Props {
   slides: Array<Slide>;
@@ -21,7 +22,7 @@ const { slides } = Astro.props;
     {
       slides.map((image: Slide) => (
         <div class="swiper-slide">
-          <img class="object-cover h-full w-full" src={image.img} alt="" />
+          <img class="object-cover h-full w-full" src={image.img} alt={`Image of ${image.name} in home carousel`} />
         </div>
       ))
     }
