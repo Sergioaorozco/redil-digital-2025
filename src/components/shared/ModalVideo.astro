@@ -1,7 +1,6 @@
 ---
 import CloseIcon from "@/assets/CloseIcon.astro";
 import Spinner from "@/components/shared/Spinner.astro";
-import Notification from "./Notification.astro";
 
 interface Props {
   id?: string;
@@ -26,9 +25,6 @@ const { id } = Astro.props;
     </div>
     <div id="modal-body" class="h-full">
       <Spinner />
-      <Notification reference="errorVideo">
-        <p>Testing</p>
-      </Notification>
       <slot />
     </div>
   </article>
