@@ -18,7 +18,6 @@ const { slides } = Astro.props;
   class="swiper !z-0 home-slider min-md:w-1/2 h-[500px] rounded-2xl bg-neutral-200 dark:bg-neutral-800 overflow-clip"
 >
   <figure class="swiper-wrapper">
-    <!-- Slides -->
     {
       slides.map((image: Slide) => (
         <div class="swiper-slide">
@@ -27,22 +26,18 @@ const { slides } = Astro.props;
       ))
     }
   </figure>
-  <!-- Pagination -->
   <div class="swiper-pagination"></div>
-  <!-- If we need navigation buttons -->
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </article>
 
-<script is:inline>
+<script>
   import Swiper from "swiper/bundle";
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const $homeSlider = document.querySelector(
-      ".home-slider",
-    );
+  document.addEventListener("astro:page-load", () => {
+    const $homeSlider = document.querySelector(".home-slider");
     if ($homeSlider) {
-      const swiper = new Swiper($homeSlider, {
+      const swiper = new Swiper($homeSlider as HTMLElement, {
         autoplay: {
           delay: 3000,
         },
