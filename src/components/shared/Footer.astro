@@ -1,7 +1,6 @@
 ---
 import PlayIcon from "@/assets/PlayIcon.astro";
 import ChatIcon from "@/assets/ChatIcon.astro";
-import Notification from "@/components/shared/Notification.astro";
 import ModalVideo from "@/components/shared/ModalVideo.astro";
 
 ---
@@ -19,13 +18,10 @@ import ModalVideo from "@/components/shared/ModalVideo.astro";
     allowfullscreen></iframe>
 </ModalVideo>
 
-<footer class="w-full fixed bottom-0 pointer-events-none pt-36 pb-5 bg-gradient-to-t from-white dark:from-neutral-800 to-transparent">
+<footer class="w-full fixed bottom-0 pointer-events-none pt-36 pb-5 bg-gradient-to-t from-white dark:from-neutral-800 to-transparent text-responsive">
   <div class="px-5 lg:px-8 pointer-events-auto">
-    <Notification reference="AnuncioGlobal">
-      <p>Domingo 6 de Julio: Única celebración a las 10:00 am</p>
-    </Notification>
     <section
-      class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3"
+      class="w-full flex flex-col min-md:flex-row r-well rounded-lg justify-center min-md:justify-between items-center gap-3 r-well"
     >
       <article
         class="flex flex-col items-center min-md:items-start gap-1 last-preech-link"
@@ -38,7 +34,7 @@ import ModalVideo from "@/components/shared/ModalVideo.astro";
           <PlayIcon />
           <p>Última celebración</p>
         </button>
-        <p class="tracking-wide font-semibold text-xs lg:text-sm">
+        <p class="tracking-wide font-semibold text-xs lg:text-sm text-resp">
           Celebraciones Dominicales: 9AM | 11AM
         </p>
       </article>
@@ -51,3 +47,7 @@ import ModalVideo from "@/components/shared/ModalVideo.astro";
     </section>
   </div>
 </footer>
+
+<style scoped>
+@import "tailwindcss";
+</style>
