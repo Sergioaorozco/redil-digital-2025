@@ -19,7 +19,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Sitio oficial del Redil Laureles">
 		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
 		<ClientRouter />
 	</head>
@@ -33,7 +33,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 			</div>
 			}
 		</div>
-		<main class="pb-30">
+		<main class="pb-32">
 			<slot />
 		</main>
 		<Footer />
