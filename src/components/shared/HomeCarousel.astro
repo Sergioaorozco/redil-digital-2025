@@ -15,57 +15,52 @@ const { slides } = Astro.props;
 ---
 
 <article
-  class="swiper home-slider min-md:w-1/2 h-[500px] rounded-2xl bg-neutral-200 dark:bg-neutral-800 overflow-clip"
+  class="swiper !z-0 home-slider min-md:w-1/2 h-[500px] rounded-2xl bg-neutral-200 dark:bg-neutral-800 overflow-clip"
 >
-  <carousel>
-    <figure class="swiper-wrapper">
-      <!-- Slides -->
-      {
-        slides.map((image: Slide) => (
-          <div class="swiper-slide">
-            <img class="object-cover h-full w-full" src={image.img} alt="" />
-          </div>
-        ))
-      }
-    </figure>
-    <!-- Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  </carousel>
+  <figure class="swiper-wrapper">
+    <!-- Slides -->
+    {
+      slides.map((image: Slide) => (
+        <div class="swiper-slide">
+          <img class="object-cover h-full w-full" src={image.img} alt="" />
+        </div>
+      ))
+    }
+  </figure>
+  <!-- Pagination -->
+  <div class="swiper-pagination"></div>
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </article>
 
-<script>
+<script is:inline>
   import Swiper from "swiper/bundle";
 
-  class carousel extends HTMLElement {
-    constructor() {
-      super();
+  document.addEventListener('DOMContentLoaded', () => {
+    const $homeSlider = document.querySelector(
+      ".home-slider",
+    );
+    if ($homeSlider) {
+      const swiper = new Swiper($homeSlider, {
+        autoplay: {
+          delay: 3000,
+        },
+        spaceBetween: 30,
+        loop: true,
+        effect: "fade",
 
-      const $homeSlider = document.querySelector(".home-slider");
-      if ($homeSlider) {
-        const swiper = new Swiper($homeSlider as HTMLElement, {
-          autoplay: true,
-          allowSlideNext: true,
-          spaceBetween: 30,
-          loop: true,
-          effect: "fade",
-
-          // If we need pagination
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-          // Navigation arrows
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        });
-      }
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
     }
-  }
-
-  customElements.define("image-carousel", carousel);
+  });
 </script>
