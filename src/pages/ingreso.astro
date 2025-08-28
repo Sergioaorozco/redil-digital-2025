@@ -1,14 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { navigate } from "astro:transitions/client";
-
 ---
 <Layout pageTitle="Ingreso">
   <!-- WIP Show when user signed out -->
   <!-- Show a Sign in section -->
 <section>
   <article class="flex items-center justify-between">
-    <div class="p-6 space-y-4 md:space-y-6 sm:p-8 bg-white rounded-lg mx-auto">
+    <div class="md:w-1/4 p-6 space-y-4 md:space-y-6 sm:p-8 r-well mx-auto">
       <form class="space-y-4 md:space-y-6" action="#">
         <div class="my-4">
           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo Electrónico</label>
@@ -68,3 +66,7 @@ import { navigate } from "astro:transitions/client";
   })
   
 </script>
+
+<style scoped>
+@import "tailwindcss";
+</style>
