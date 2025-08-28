@@ -4,6 +4,14 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
 import RightArrow from "@/assets/RightArrow.astro";
 // import styles bundle
 import 'swiper/css/bundle';
+
+const sliderImages = [
+  {img: 'https://images.pexels.com/photos/33511055/pexels-photo-33511055.jpeg'},
+  {img: 'https://images.pexels.com/photos/8646236/pexels-photo-8646236.jpeg'},
+  {img: 'https://images.pexels.com/photos/32846442/pexels-photo-32846442.jpeg'},
+  {img: 'https://images.pexels.com/photos/31621070/pexels-photo-31621070.jpeg'},
+  {img: 'https://images.pexels.com/photos/1559411/pexels-photo-1559411.jpeg'},
+]
 ---
 
 <Layout>
@@ -13,9 +21,13 @@ import 'swiper/css/bundle';
     >
       <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
+        {
+          sliderImages.map((image) => (
+            <div class="swiper-slide">
+              <img class="object-cover h-full w-full" src={image.img} alt="" />
+            </div>
+          ))
+        }
       </div>
         <!-- Pagination -->
       <div class="swiper-pagination"></div>
@@ -98,8 +110,9 @@ import 'swiper/css/bundle';
     const swiper = new Swiper($homeSlider, {
       autoplay: true,
       allowSlideNext: true,
-      spaceBetween: 4,
+      spaceBetween: 30,
       loop: true,
+      effect: 'fade',
 
       // If we need pagination
       pagination: {
