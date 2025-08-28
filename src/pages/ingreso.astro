@@ -17,7 +17,7 @@ import Layout from "@/layouts/Layout.astro";
           <input type="password" name="password" id="password" class="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="********" required="">
         </div>
         <button
-          class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="disabled:bg-neutral-400 disabled:hover:bg-neutral-400 w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           id="btnLoginSubmit"
           type="submit"
         >
@@ -44,6 +44,7 @@ import Layout from "@/layouts/Layout.astro";
     const formData = new FormData($loginForm);
 
     try {
+      $btnLoginSubmit.setAttribute('disabled', 'disabled');
       const { error} = await actions.loginUser(formData);
       if (error) throw error;
 
@@ -57,6 +58,8 @@ import Layout from "@/layouts/Layout.astro";
         title: 'Error al iniciar sesión',
         text: firebaseError.message,
       })
+    } finally {
+      $btnLoginSubmit.removeAttribute('disabled');
     }
   }
 
