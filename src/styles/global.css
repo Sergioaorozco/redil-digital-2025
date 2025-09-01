@@ -32,6 +32,18 @@
   @apply dark:text-neutral-50 text-neutral-800;
 }
 
+.bg-responsive {
+  &.hover-icon {
+    @apply text-zinc-800
+  }
+  &.action {
+    @apply group-hover:bg-zinc-300 dark:group-hover:bg-zinc-500/50 group-hover:text-zinc-800 dark:group-hover:text-white text-white transition-colors duration-200;
+  }
+  &.card {
+    @apply bg-zinc-200 dark:bg-zinc-800
+  }
+}
+
 .cursor-behavior {
   @apply duration-300 transition-all cursor-pointer;
 }
