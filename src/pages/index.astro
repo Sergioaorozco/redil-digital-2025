@@ -51,11 +51,9 @@ const sliderImages = [
     </section>
   </main>
   <section class="my-6 px-8">
-    <article class="last-preech-link h-96 min-md:h-72 flex-responsive gap-4">
+    <article class="h-96 min-md:h-72 flex-responsive gap-4">
       <a
-        href="/iglesia"
-        rel="prefetch"
-        class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+        class="last-preech-link bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
       >
         <img
           class="group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
@@ -63,14 +61,14 @@ const sliderImages = [
           alt=""
         />
         <div
-          class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-responsive bg-responsive action"
+          class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-responsive bg-responsive picture-background"
         >
           <p
             class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
           >
             Ver última predicación
           </p>
-          <span class="bg-zinc-400 dark:bg-zinc-700 bg-responsive hover-icon rounded-full p-2">
+          <span class="hover-icon rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 transition-all duration-200">
             <PlayTriangleIcon />
           </span>
         </div>
@@ -86,14 +84,16 @@ const sliderImages = [
           alt=""
         />
         <div
-          class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-responsive bg-responsive action"
+          class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-responsive bg-responsive picture-background"
         >
           <p
             class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
           >
             Nuestra Iglesia
           </p>
-          <RightArrow />
+          <span class="hover-icon">
+            <RightArrow />
+          </span>
         </div>
       </a>
       <a
@@ -115,5 +115,6 @@ const sliderImages = [
         </div>
       </a>
     </article>
+
   </section>
 </Layout>

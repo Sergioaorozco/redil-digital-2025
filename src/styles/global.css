@@ -33,14 +33,20 @@
 }
 
 .bg-responsive {
-  &.hover-icon {
-    @apply text-zinc-800
-  }
+  @apply transition-all duration-200;
   &.action {
-    @apply group-hover:bg-zinc-300 dark:group-hover:bg-zinc-500/50 group-hover:text-zinc-800 dark:group-hover:text-white text-white transition-colors duration-200;
+    &.hover-icon {
+    @apply text-zinc-800 dark:text-white group-hover:dark:text-white bg-transparent dark:bg-zinc-800 group-hover:dark:bg-zinc-900;
+    }
   }
   &.card {
     @apply bg-zinc-200 dark:bg-zinc-800
+  }
+  &.picture-background {
+    @apply bg-transparent dark:backdrop-blur-xl text-white;
+    &.hover-icon {
+      @apply text-white;
+    }
   }
 }
 
