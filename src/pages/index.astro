@@ -3,12 +3,11 @@ import Layout from "@/layouts/Layout.astro";
 import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
 import HomeCarousel from "@/components/shared/HomeCarousel.astro";
 import RightArrow from "@/assets/RightArrow.astro";
-import PlayIcon from "@/assets/PlayIcon.astro";
 
 const sliderImages = [
   {
     name: "image1",
-    img: "https://images.pexels.com/photos/33511055/pexels-photo-33511055.jpeg",
+    img: "/nav-redil-laureles.jpg",
   },
   {
     name: "image1",
@@ -80,7 +79,7 @@ const sliderImages = [
       >
         <img
           class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-          src="/koinonia-iglesia.webp"
+          src="/nav-redil-laureles.jpg"
           alt=""
         />
         <div
@@ -100,17 +99,23 @@ const sliderImages = [
       <a
         href="/iglesia"
         rel="prefetch"
-        class="bg-responsive card group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+        class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
       >
+        <img
+          class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
+          src="/nav-redil-donacion.jpg"
+          alt=""
+        />
         <div
-          class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-responsive bg-responsive action"
+          title="click aqui, nuestra iglesia"
+          class="w-full p-5 absolute flex flex-row justify-between items-start gap-4 text-responsive bg-responsive picture-background"
         >
           <p
-            class="text-responsive group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
+            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
           >
             Donaciones
           </p>
-          <span>
+          <span class="hover-icon">
             <RightArrow />
           </span>
         </div>
