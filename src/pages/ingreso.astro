@@ -31,10 +31,17 @@ import Layout from "@/layouts/Layout.astro";
 </Layout>
 
 <script>
-  import Swal from 'sweetalert2';
+  import { Report } from 'notiflix';
   import { actions } from 'astro:actions';
   import type { AuthError } from 'firebase/auth';
   import { navigate } from 'astro:transitions/client';
+
+  const modalOptions =  {
+    className: 'text-center',
+    titleFontSize: "18px",
+    messageFontSize: "14px",
+    svgSize: "50px"
+  }
 
   // Selectors
   const $loginForm = document.querySelector('form') as HTMLFormElement;
@@ -54,11 +61,12 @@ import Layout from "@/layouts/Layout.astro";
     } catch(error) {
       const firebaseError = error as AuthError;
 
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al iniciar sesión',
-        text: firebaseError.message,
-      })
+      Report.failure(
+        'Error al iniciar sesión',
+        `${firebaseError.message}`,
+        'Cerrar',
+        modalOptions
+      )
     } finally {
       $btnLoginSubmit.removeAttribute('disabled');
     }
