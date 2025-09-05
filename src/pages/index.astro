@@ -1,33 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
-import HomeCarousel from "@/components/shared/HomeCarousel.astro";
 import RightArrow from "@/assets/RightArrow.astro";
 
 import { Image } from "astro:assets";
-
-const sliderImages = [
-  {
-    name: "image1",
-    img: "/nav-redil-laureles.jpg",
-  },
-  {
-    name: "image1",
-    img: "https://images.pexels.com/photos/8646236/pexels-photo-8646236.jpeg",
-  },
-  {
-    name: "image1",
-    img: "https://images.pexels.com/photos/32846442/pexels-photo-32846442.jpeg",
-  },
-  {
-    name: "image1",
-    img: "https://images.pexels.com/photos/31621070/pexels-photo-31621070.jpeg",
-  },
-  {
-    name: "image1",
-    img: "https://images.pexels.com/photos/1559411/pexels-photo-1559411.jpeg",
-  },
-];
 ---
 
 <Layout>
@@ -53,7 +29,7 @@ const sliderImages = [
           class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
         >
           <p
-            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
+            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
           >
             Ver última predicación
           </p>
@@ -83,7 +59,7 @@ const sliderImages = [
           class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
         >
           <p
-            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
+            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
           >
             Nuestra Iglesia
           </p>
@@ -111,7 +87,7 @@ const sliderImages = [
           class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
         >
           <p
-            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-3xl text-xl"
+            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
           >
             Donaciones
           </p>

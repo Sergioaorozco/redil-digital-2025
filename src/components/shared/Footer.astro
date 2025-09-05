@@ -3,6 +3,8 @@ import PlayIcon from "@/assets/PlayIcon.astro";
 import ChatIcon from "@/assets/ChatIcon.astro";
 import ModalVideo from "@/components/shared/ModalVideo.astro";
 
+const encodedText = 'Dios los bendiga, tengo una pregunta'
+
 ---
 
 <ModalVideo id="last-preech-modal">
@@ -31,23 +33,22 @@ import ModalVideo from "@/components/shared/ModalVideo.astro";
           aria-label="last-preech-button"
           name="last-preech-button"
           class="link-schema cursor-behavior
-               uppercase tracking-wide font-semibold text-xs lg:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all"
+               uppercase tracking-wide font-semibold text-xs min-md:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all"
         >
           <PlayIcon />
           <p>Última celebración</p>
         </button>
-        <p class="tracking-wide font-semibold text-xs lg:text-sm text-resp">
+        <p class="tracking-wide font-semibold text-xs lg:text-lg text-responsive opacity-60">
           Celebraciones Dominicales: 9AM | 11AM
         </p>
       </article>
-      <button
-        type="button"
+      <a
+        href=`https://wa.me/573007869517?text=${encodedText}`
         aria-label="chat-with-us-button"
-        name="chat-with-us-button"
         class="hidden min-md:block w-12 link-schema cursor-behavior"
       >
         <ChatIcon />
-      </button>
+    </a>
     </section>
   </div>
 </footer>
