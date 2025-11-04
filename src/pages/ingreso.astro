@@ -32,7 +32,7 @@ import Layout from "@/layouts/Layout.astro";
 
 <script>
   import { Report, Notify } from 'notiflix';
-  import { actions } from 'astro:actions';
+  import { loginUser } from '@/actions/auth';
   import type { AuthError } from 'firebase/auth';
   import { navigate } from 'astro:transitions/client';
 
@@ -53,7 +53,7 @@ import Layout from "@/layouts/Layout.astro";
 
     try {
       $btnLoginSubmit.setAttribute('disabled', 'disabled');
-      const { error} = await actions.loginUser(formData);
+      const { error } = await loginUser(formData);
       if (error) throw error;
 
       navigate('/miembros');
