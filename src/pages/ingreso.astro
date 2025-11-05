@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { loginUser } from '@/actions/auth';
 ---
 <Layout pageTitle="Ingreso">
   <!-- WIP Show when user signed out -->
@@ -7,7 +8,7 @@ import Layout from "@/layouts/Layout.astro";
 <section>
   <article class="flex items-center justify-between">
     <div class="md:w-1/4 p-6 space-y-4 md:space-y-6 sm:p-8 r-well mx-auto">
-      <form class="space-y-4 md:space-y-6" action="#" method="post">
+      <form class="space-y-4 md:space-y-6" action={loginUser} method="POST">
         <div class="my-4">
           <label for="email" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Correo Electrónico</label>
           <input autocomplete="email" type="email" name="email" id="email" class="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@redillaureles.com" required="">
@@ -32,9 +33,9 @@ import Layout from "@/layouts/Layout.astro";
 
 <script>
   import { Report, Notify } from 'notiflix';
-  import { loginUser } from '@/actions/auth';
   import type { AuthError } from 'firebase/auth';
   import { navigate } from 'astro:transitions/client';
+  import { actions } from 'astro:actions';
 
   const modalOptions =  {
     className: 'text-center',
@@ -53,7 +54,7 @@ import Layout from "@/layouts/Layout.astro";
 
     try {
       $btnLoginSubmit.setAttribute('disabled', 'disabled');
-      const { error } = await loginUser(formData);
+      const { error } = await actions.loginUser(formData);
       if (error) throw error;
 
       navigate('/miembros');
