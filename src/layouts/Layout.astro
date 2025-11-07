@@ -24,7 +24,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<ClientRouter />
 	</head>
 	<body>
-		<div class:list={['px-5 mb-5 flex flex-col justify-between layout-bg min-md:min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
+		<div class:list={['px-5 mb-3 flex flex-col justify-between layout-bg min-md:min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
 			<Nav></Nav>
 			{ pageTitle &&
 			<div class:list={["wrapper w-full h-full top-0 left-0", pageDescription && "flex flex-col justify-between min-lg:flex-row items-center"]}>
@@ -38,6 +38,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		</main>
 		<Footer />
 	</body>
+	<script is:inline src="https://cdn.jsdelivr.net/npm/@mux/mux-player" defer></script>
 </html>
 
 <style scoped>
