@@ -101,6 +101,7 @@ export default function MinisteriosAccordion() {
                 <Carousel
                   className='relative aspect-video max-h-72 md:max-h-96 w-full rounded-lg overflow-hidden object-cover'
                   opts={{ loop: true, dragThreshold: 10 }}
+                  plugins={[Autoplay({ delay: 5000, stopOnMouseEnter: true})]}
                 >
                   <CarouselContent>
                     {ministerio.images.map((image, index) => (
