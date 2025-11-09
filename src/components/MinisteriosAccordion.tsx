@@ -28,55 +28,48 @@ const ministeriosData: Ministerio[] = [
     title: "Su Gracia en Mi",
     description: "Buscamos juntas la provisión de Cristo y un mayor entendimiento de la Verdad, y creemos que –como mujeres– podemos hacer la diferencia solo por Su gracia en Mí. Anhelamos con gratitud que este conocimiento nos lleve a reflejar la imagen de Cristo en nuestros diferentes entornos, en el amor, la compasión y la misericordia hacia otros.",
     images: [
-      '/koinonia-iglesia.webp',
-      '/miembros-2024.webp',
-      '/nav-redil-donacion.jpg',
+      '/mujeres/mujeres-2025-01.webp',
+      '/mujeres/mujeres-2025-02.webp',
+      '/mujeres/mujeres-2025-03.webp',
+      '/mujeres/mujeres-2025-04.webp',
+      '/mujeres/mujeres-2025-05.webp',
+      '/mujeres/paseo-mujeres-2025.webp',
     ]
   },
   {
     title: "Compañía T",
     description: "Queremos ser una familia que vive y disfruta el Evangelio de la Gracia de Cristo mientras reflejamos su Gloria y Belleza en nuestra ciudad.",
-    images: [
-      'http://googleusercontent.com/image_collection/image_retrieval/8491175655334606213_0',
-      'http://googleusercontent.com/image_collection/image_retrieval/8491175655334606213_1',
-      'http://googleusercontent.com/image_collection/image_retrieval/8491175655334606213_2',
-    ]
+    images: []
   },
   {
     title: "Redil Junior",
     description: "Creemos que los más pequeños serán los portavoces de la Palabra del Señor, y continuadores de su obra en la ciudad y en el mundo en general. Somos un equipo de servidores que acompañamos a niños y niñas a profundizar en el conocimiento de la Palabra de Dios, ayudándoles a entender las verdades del Evangelio de Jesucristo.",
-    images: [
-      'http://googleusercontent.com/image_collection/image_retrieval/12475490646886201213_0',
-      'http://googleusercontent.com/image_collection/image_retrieval/12475490646886201213_1',
-      'http://googleusercontent.com/image_collection/image_retrieval/12475490646886201213_2',
-    ]
+    images: []
   },
   {
     title: "Contra Corriente",
     description: "En este ministerio los jóvenes aprenden a vivir y a disfrutar la juventud centrada en Cristo y en el evangelio. Es un espacio diferente donde los jóvenes preguntan, abren su mente y la renuevan con el objetivo de aprender a nadar contra las corrientes que todos están siguiendo hoy.",
-    images: [
-      'http://googleusercontent.com/image_collection/image_retrieval/327954381563606384_0',
-      'http://googleusercontent.com/image_collection/image_retrieval/327954381563606384_1',
-      'http://googleusercontent.com/image_collection/image_retrieval/327954381563606384_2',
-    ]
+    images: []
   },
   {
     title: "Unidos",
     description: "Para que un matrimonio esté cimentado en la verdad deberá estar centrado en Cristo; y lo que “creemos acerca de Dios determina la calidad de nuestro matrimonio”. Buscamos desde el ministerio UNIDOS orientar a las parejas hacia un mayor entendimiento del Evangelio en su matrimonio.",
     images: [
-      'http://googleusercontent.com/image_collection/image_retrieval/17643770841961750369_0',
-      'http://googleusercontent.com/image_collection/image_retrieval/17643770841961750369_1',
-      'http://googleusercontent.com/image_retrieval/17643770841961750369_2',
+      '/unidos/cena-parejas-2.webp',
+      '/unidos/cena-parejas.webp',
+      '/unidos/evento-unidos-2.webp',
+      '/unidos/evento-unidos-3.webp',
+      '/unidos/evento-unidos.webp',
+      '/unidos/retiro-parejas-1.webp',
+      '/unidos/retiro-parejas-2.webp',
+      '/unidos/retiro-parejas-3.webp',
+      '/unidos/retiro-parejas-4.webp',
     ]
   },
   {
     title: "Misiones",
     description: "A través de la Misión Refugio en Granizal, cumplimos la misión de la iglesia en palabra y obra. Allí, compartimos el Evangelio y apoyamos el torneo femenino “Con el maltrato no trato”, un proyecto que protege a las niñas de riesgos sociales como el reclutamiento, la prostitución y las adicciones.",
-    images: [
-      'http://googleusercontent.com/image_collection/image_retrieval/15269895368612490927_0',
-      'http://googleusercontent.com/image_collection/image_retrieval/15269895368612490927_1',
-      'http://googleusercontent.com/image_collection/image_retrieval/15269895368612490927_2',
-    ]
+    images: []
   }
 ];
 
@@ -108,12 +101,11 @@ export default function MinisteriosAccordion() {
                 <Carousel
                   className='relative aspect-video max-h-72 md:max-h-96 w-full rounded-lg overflow-hidden object-cover'
                   opts={{ loop: true, dragThreshold: 10 }}
-                  plugins={[Autoplay({ delay: 5000 })]}
                 >
                   <CarouselContent>
                     {ministerio.images.map((image, index) => (
-                      <CarouselItem key={index}>
-                        <img src={image} alt="image for testing" className='h-full object-bottom object-cover' />
+                      <CarouselItem key={index} className='flex justify-center items-center'>
+                        <img src={image} alt="image for testing" className='h-full object-cover object-center' />
                       </CarouselItem>
                     ))}
                   </CarouselContent>
