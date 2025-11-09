@@ -95,7 +95,7 @@ export default function MinisteriosAccordion() {
           </AccordionTrigger>
           <AccordionContent className='px-5 py-7 w-full'>
             <section className='flex flex-col justify-around md:flex-row gap-5'>
-              <p className='w-full md:w-1/2'>{ministerio.description}</p>
+              <p className='md:text-lg w-full md:w-1/2'>{ministerio.description}</p>
               <article className='relative w-full md:w-1/2'>
               {ministerio.images.length > 0 && (
                 <Carousel
@@ -105,7 +105,7 @@ export default function MinisteriosAccordion() {
                   <CarouselContent>
                     {ministerio.images.map((image, index) => (
                       <CarouselItem key={index} className='flex justify-center items-center'>
-                        <img src={image} alt="image for testing" className='h-full object-cover object-center' />
+                        <img src={image} alt={`Image for ${ministerio.title}`} className='h-full object-cover object-center' />
                       </CarouselItem>
                     ))}
                   </CarouselContent>
