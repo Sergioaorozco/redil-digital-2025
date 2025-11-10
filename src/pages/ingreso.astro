@@ -8,7 +8,7 @@ import Layout from "@/layouts/Layout.astro";
   <section>
     <article class="flex items-center justify-between">
       <div class="md:w-1/4 p-6 space-y-4 md:space-y-6 sm:p-8 r-well mx-auto">
-        <form class="space-y-4 md:space-y-6" method="POST">
+        <form class="space-y-4 md:space-y-6" method="POST" id="loginForm">
           <div class="my-4">
             <label
               for="email"
@@ -71,7 +71,7 @@ import Layout from "@/layouts/Layout.astro";
 
   document.addEventListener("DOMContentLoaded", () => {
     // Selectors
-    const $loginForm = document.querySelector("form") as HTMLFormElement;
+    const $loginForm = document.querySelector("#loginForm") as HTMLFormElement;
     const $btnLoginSubmit = document.querySelector(
       "#btnLoginSubmit",
     ) as HTMLButtonElement;
