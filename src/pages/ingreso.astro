@@ -22,7 +22,7 @@ import Layout from "@/layouts/Layout.astro";
               id="email"
               class="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="name@redillaureles.com"
-              required=""
+              required
             />
           </div>
           <div class="my-4">
@@ -38,7 +38,7 @@ import Layout from "@/layouts/Layout.astro";
               id="password"
               class="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="********"
-              required=""
+              required
             />
           </div>
           <button
@@ -69,15 +69,21 @@ import Layout from "@/layouts/Layout.astro";
     svgSize: "50px",
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // Selectors
+  document.addEventListener("astro:page-load", () => {
     const $loginForm = document.querySelector("#loginForm") as HTMLFormElement;
     const $btnLoginSubmit = document.querySelector(
       "#btnLoginSubmit",
     ) as HTMLButtonElement;
 
     if ($loginForm && $btnLoginSubmit) {
-      $btnLoginSubmit.removeAttribute("disabled");
+      // Ensure actions.loginUser is defined
+      if (actions?.loginUser) {
+        $btnLoginSubmit.removeAttribute("disabled");
+      } else {
+        console.error("actions.loginUser is not defined.");
+        return;
+      }
+
       const submitAction = async () => {
         const formData = new FormData($loginForm);
 
