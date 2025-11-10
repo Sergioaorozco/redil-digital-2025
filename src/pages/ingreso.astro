@@ -8,7 +8,7 @@ import Layout from "@/layouts/Layout.astro";
   <section>
     <article class="flex items-center justify-between">
       <div class="md:w-1/4 p-6 space-y-4 md:space-y-6 sm:p-8 r-well mx-auto">
-        <form class="space-y-4 md:space-y-6">
+        <form class="space-y-4 md:space-y-6" method="POST">
           <div class="my-4">
             <label
               for="email"
@@ -46,6 +46,7 @@ import Layout from "@/layouts/Layout.astro";
             id="btnLoginSubmit"
             aria-label="login-submit-button"
             type="submit"
+            disabled
           >
             Inicio
           </button>
@@ -76,6 +77,7 @@ import Layout from "@/layouts/Layout.astro";
     ) as HTMLButtonElement;
 
     if ($loginForm && $btnLoginSubmit) {
+      $btnLoginSubmit.removeAttribute("disabled");
       const submitAction = async () => {
         const formData = new FormData($loginForm);
 
