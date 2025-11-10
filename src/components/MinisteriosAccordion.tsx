@@ -21,7 +21,7 @@ import {
 const mujeresImages = import.meta.glob('@/images/mujeres/*.webp', { eager: true, import: 'default', query: '?url' });
 const unidosImages = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
 
-const getSortedImages = (globResult: Record<string, string>): string[] => {
+const getSortedImages = (globResult: Record<string, any>): string[] => {
   return Object.keys(globResult)
     .sort()
     .map(key => globResult[key]);
