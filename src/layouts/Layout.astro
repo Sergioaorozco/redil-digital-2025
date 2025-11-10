@@ -34,7 +34,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 			</div>
 			}
 		</div>
-		<main class:list={[isLoggedIn && 'pb-32']}>
+		<main class:list={[!isLoggedIn && 'pb-32']}>
 			<slot />
 		</main>
 		{!isLoggedIn && <Footer /> }
