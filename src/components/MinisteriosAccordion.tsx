@@ -28,12 +28,12 @@ const ministeriosData: Ministerio[] = [
     title: "Su Gracia en Mi",
     description: "Buscamos juntas la provisión de Cristo y un mayor entendimiento de la Verdad, y creemos que –como mujeres– podemos hacer la diferencia solo por Su gracia en Mí. Anhelamos con gratitud que este conocimiento nos lleve a reflejar la imagen de Cristo en nuestros diferentes entornos, en el amor, la compasión y la misericordia hacia otros.",
     images: [
-      '/mujeres/mujeres-2025-01.webp',
-      '/mujeres/mujeres-2025-02.webp',
-      '/mujeres/mujeres-2025-03.webp',
-      '/mujeres/mujeres-2025-04.webp',
-      '/mujeres/mujeres-2025-05.webp',
-      '/mujeres/paseo-mujeres-2025.webp',
+      '/src/images/mujeres/mujeres-2025-01.webp',
+      '/src/images/mujeres/mujeres-2025-02.webp',
+      '/src/images/mujeres/mujeres-2025-03.webp',
+      '/src/images/mujeres/mujeres-2025-04.webp',
+      '/src/images/mujeres/mujeres-2025-05.webp',
+      '/src/images/mujeres/paseo-mujeres-2025.webp',
     ]
   },
   {
@@ -55,15 +55,15 @@ const ministeriosData: Ministerio[] = [
     title: "Unidos",
     description: "Para que un matrimonio esté cimentado en la verdad deberá estar centrado en Cristo; y lo que “creemos acerca de Dios determina la calidad de nuestro matrimonio”. Buscamos desde el ministerio UNIDOS orientar a las parejas hacia un mayor entendimiento del Evangelio en su matrimonio.",
     images: [
-      '/unidos/cena-parejas-2.webp',
-      '/unidos/cena-parejas.webp',
-      '/unidos/evento-unidos-2.webp',
-      '/unidos/evento-unidos-3.webp',
-      '/unidos/evento-unidos.webp',
-      '/unidos/retiro-parejas-1.webp',
-      '/unidos/retiro-parejas-2.webp',
-      '/unidos/retiro-parejas-3.webp',
-      '/unidos/retiro-parejas-4.webp',
+      '/src/images/unidos/cena-parejas-2.webp',
+      '/src/images/unidos/cena-parejas.webp',
+      '/src/images/unidos/evento-unidos-2.webp',
+      '/src/images/unidos/evento-unidos-3.webp',
+      '/src/images/unidos/evento-unidos.webp',
+      '/src/images/unidos/retiro-parejas-1.webp',
+      '/src/images/unidos/retiro-parejas-2.webp',
+      '/src/images/unidos/retiro-parejas-3.webp',
+      '/src/images/unidos/retiro-parejas-4.webp',
     ]
   },
   {
@@ -106,7 +106,7 @@ export default function MinisteriosAccordion() {
                   <CarouselContent>
                     {ministerio.images.map((image, index) => (
                       <CarouselItem key={index} className='flex justify-center items-center'>
-                        <img src={image} alt={`Image for ${ministerio.title}`} className='h-full object-cover object-center' />
+                        <img width={738} height={384} src={image} alt={`Image for ${ministerio.title}`} className='h-full object-cover object-center' />
                       </CarouselItem>
                     ))}
                   </CarouselContent>
