@@ -17,6 +17,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
+
+const mujeresImages = import.meta.glob('@/images/mujeres/*.webp', { eager: true, import: 'default', query: '?url' });
+const unidosImages = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
+
+const getSortedImages = (globResult: Record<string, string>): string[] => {
+  return Object.keys(globResult)
+    .sort()
+    .map(key => globResult[key]);
+}
+
 type Ministerio = {
   title: string;
   description: string;
@@ -27,14 +37,7 @@ const ministeriosData: Ministerio[] = [
   {
     title: "Su Gracia en Mi",
     description: "Buscamos juntas la provisión de Cristo y un mayor entendimiento de la Verdad, y creemos que –como mujeres– podemos hacer la diferencia solo por Su gracia en Mí. Anhelamos con gratitud que este conocimiento nos lleve a reflejar la imagen de Cristo en nuestros diferentes entornos, en el amor, la compasión y la misericordia hacia otros.",
-    images: [
-      '/src/images/mujeres/mujeres-2025-01.webp',
-      '/src/images/mujeres/mujeres-2025-02.webp',
-      '/src/images/mujeres/mujeres-2025-03.webp',
-      '/src/images/mujeres/mujeres-2025-04.webp',
-      '/src/images/mujeres/mujeres-2025-05.webp',
-      '/src/images/mujeres/paseo-mujeres-2025.webp',
-    ]
+    images: getSortedImages(mujeresImages)
   },
   {
     title: "Compañía T",
@@ -54,17 +57,7 @@ const ministeriosData: Ministerio[] = [
   {
     title: "Unidos",
     description: "Para que un matrimonio esté cimentado en la verdad deberá estar centrado en Cristo; y lo que “creemos acerca de Dios determina la calidad de nuestro matrimonio”. Buscamos desde el ministerio UNIDOS orientar a las parejas hacia un mayor entendimiento del Evangelio en su matrimonio.",
-    images: [
-      '../images/unidos/cena-parejas-2.webp',
-      '../images/unidos/cena-parejas.webp',
-      '../images/unidos/evento-unidos-2.webp',
-      '../images/unidos/evento-unidos-3.webp',
-      '../images/unidos/evento-unidos.webp',
-      '../images/unidos/retiro-parejas-1.webp',
-      '../images/unidos/retiro-parejas-2.webp',
-      '../images/unidos/retiro-parejas-3.webp',
-      '../images/unidos/retiro-parejas-4.webp',
-    ]
+    images: getSortedImages(unidosImages)
   },
   {
     title: "Misiones",
