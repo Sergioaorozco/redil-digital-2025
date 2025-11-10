@@ -56,15 +56,23 @@ import LogoImage from "@/assets/LogoImage.astro";
     const $modalMenuBtn = document.getElementById("modalMenuButton");
     const $modalCloseBtn = document.getElementById("modalClose");
     const $modal = document.getElementById("modalMenu");
+    const $muxPlayer = document.querySelector("mux-player");
 
-    if(!$modal) return;
+    if (!$modal) return;
+
+    // Disable autoplay for mobile devices but preserve animation
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    if (isMobile && $muxPlayer) {
+      $muxPlayer.removeAttribute("autoplay");
+      $muxPlayer.setAttribute("transition:persist", "");
+    }
 
     const menuAnim = createmenuAnim($modal);
 
-    $modalMenuBtn?.addEventListener('click', (event) => {
+    $modalMenuBtn?.addEventListener("click", (event) => {
       event?.stopPropagation();
       menuAnim.reversed() ? menuAnim.play() : menuAnim.reverse();
-    })
+    });
 
     $modalCloseBtn?.addEventListener("click", (event) => {
       event.stopPropagation();
