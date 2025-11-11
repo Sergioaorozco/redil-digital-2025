@@ -27,8 +27,7 @@ mux-player {
 }
 
 .r-well {
-  background: var(--card-foreground);
-  @apply px-6 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700;
+  @apply bg-neutral-200 dark:bg-neutral-800/25 px-6 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700;
 }
 
 .flex-responsive {
@@ -36,7 +35,7 @@ mux-player {
 }
 
 .text-responsive {
-  color: var(--primary-foreground)
+  @apply dark:text-white text-neutral-800;
 }
 
 .bg-responsive {
