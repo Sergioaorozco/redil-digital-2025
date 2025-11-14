@@ -78,7 +78,7 @@ const {isLoggedIn} = Astro.locals
 
       $logoutButton?.addEventListener('click', async () => {
         try {
-          await actions.server.signOutAction();
+          await actions.signOutAction();
           window.location.replace('/');
         } catch (error) {
           console.error('Error signing out:', error);

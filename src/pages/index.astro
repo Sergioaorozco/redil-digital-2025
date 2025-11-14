@@ -25,7 +25,7 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
       loop
     ></mux-player>
     <article class="text-center flex flex-col justify-center items-center">
-      <p class="text 4xl md:text-5xl font-bold mb-3 text-blue-700">Bienvenido al Redil Laureles</p>
+      <p class="text 4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300">Bienvenido al Redil Laureles</p>
       <p class="text-lg md:text-xl">
         Damos gracias a Dios por tu visita. Esperamos que este espacio sea
         de mucha bendición para tu vida.
@@ -68,7 +68,7 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
             Ver última predicación
           </p>
           <span
-            class="hover-icon rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 transition-all duration-200"
+            class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200"
           >
             <PlayTriangleIcon />
           </span>
@@ -90,10 +90,8 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
           decoding="async"
           loading="lazy"
           alt="Asistentes a la iglesia redil laureles al exterior de la sede"
-          alt=""
         />
         <div
-          title="click aqui, nuestra iglesia"
           class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
         >
           <p
@@ -111,6 +109,7 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
       <a
         href="/iglesia"
         rel="prefetch"
+        aria-label="Learn more about donations"
         class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
       >
         <Image
@@ -123,7 +122,6 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
           alt="Imagen alusiva a donaciones"
         />
         <div
-          title="click aqui, nuestra iglesia"
           class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
         >
           <p
