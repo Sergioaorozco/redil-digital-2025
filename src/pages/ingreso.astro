@@ -76,6 +76,7 @@ import Layout from "@/layouts/Layout.astro";
     ) as HTMLButtonElement;
 
     if ($loginForm && $btnLoginSubmit) {
+      $btnLoginSubmit.removeAttribute("disabled");
 
       const submitAction = async () => {
         const formData = new FormData($loginForm);
