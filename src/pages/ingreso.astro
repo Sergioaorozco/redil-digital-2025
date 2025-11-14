@@ -76,13 +76,6 @@ import Layout from "@/layouts/Layout.astro";
     ) as HTMLButtonElement;
 
     if ($loginForm && $btnLoginSubmit) {
-      // Ensure actions.loginUser is defined
-      if (actions?.loginUser) {
-        $btnLoginSubmit.removeAttribute("disabled");
-      } else {
-        console.error("actions.loginUser is not defined.");
-        return;
-      }
 
       const submitAction = async () => {
         const formData = new FormData($loginForm);
