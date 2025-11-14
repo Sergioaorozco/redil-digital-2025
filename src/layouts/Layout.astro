@@ -24,7 +24,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
 		<ClientRouter />
 	</head>
-	<body class="dark">
+	<body>
 		<div class:list={['px-5 mb-3 flex flex-col justify-between layout-bg min-md:min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
 			<Nav></Nav>
 			{ pageTitle &&
