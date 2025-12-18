@@ -2,7 +2,7 @@
 
     export const fetchLastVideo = async () => {
       const $spinnerLoading = document.querySelector(".redil-spinner-loading") as HTMLElement;
-      const apikey = import.meta.env.PUBLIC_YT_API_KEY;
+      const apikey = import.meta.env.PRIVATE_YT_API_KEY;
       const channelId = import.meta.env.PUBLIC_YT_CHANNEL_ID;
 
       try {
