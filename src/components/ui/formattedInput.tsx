@@ -35,7 +35,7 @@ const formattedInput = ({type = 'text', placeholder, autoComplete, name, id, req
               type="button"
               onClick={() => setIsEyeVisible(prevState => !prevState)}
             >
-              {isEyeVisible ? <EyeOffIcon /> : <EyeIcon />}
+              {isEyeVisible ? <EyeIcon /> : <EyeOffIcon />}
             </Button>
             <span className='sr-only'>{isEyeVisible ? 'Hide password' : 'Show password'}</span>
           </>
