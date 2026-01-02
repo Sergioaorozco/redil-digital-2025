@@ -8,8 +8,8 @@ export const lastVideo = defineAction({
   handler: async () => {
     // 1. SECURITY FIX: Use private environment variables
     // Remove "PUBLIC_" so these are not exposed to the client browser.
-    const apikey = import.meta.env.PRIVATE_YT_API_KEY; 
-    const channelId = import.meta.env.PUBLIC_YT_CHANNEL_ID; // Channel ID is usually public safe
+    const apikey = import.meta.env.YT_API_KEY; 
+    const channelId = import.meta.env.YT_CHANNEL_ID; // Channel ID is usually public safe
 
     if (!apikey || !channelId) {
       throw new ActionError({
