@@ -39,10 +39,13 @@ const encodedText = 'Dios los bendiga, tengo una pregunta'
 
 <script>
   import { isModalOpened } from "@/store";
+  document.addEventListener("astro:page-load", () => {
+    const modalButton = document.getElementById('modal-footer');
 
-  const modalButton = document.getElementById('modal-footer');
+    modalButton?.addEventListener("click", () => {
+      isModalOpened.set(true);
+    });
+  })
 
-  modalButton?.addEventListener("click", () => {
-    isModalOpened.set(true);
-  });
+
 </script>

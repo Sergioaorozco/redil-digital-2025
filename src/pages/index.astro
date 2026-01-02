@@ -143,9 +143,11 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
 <script>
   import { isModalOpened } from "@/store";
 
-  const modalButton = document.getElementById('modal-index');
-
-  modalButton?.addEventListener("click", () => {
-    isModalOpened.set(true);
-  });
+  document.addEventListener("astro:page-load", () => {
+    const modalButton = document.getElementById('modal-index');
+  
+    modalButton?.addEventListener("click", () => {
+      isModalOpened.set(true);
+    });
+  })
 </script>
