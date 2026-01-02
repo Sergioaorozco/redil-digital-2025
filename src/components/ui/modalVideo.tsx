@@ -4,10 +4,18 @@ import { useStore } from '@nanostores/react';
 import { actions } from 'astro:actions';
 import { isModalOpened } from '@/store';
 
+interface videoDetails {
+  videoId?: string | null;
+  title?: string | null;
+}
 
 export const UIModalVideo: React.FC = () => {
   const isMounted = useStore(isModalOpened);
   const closeModal = () => isModalOpened.set(false);
+  const [videoInfo, setVideoInfo] = React.useState<videoDetails>({
+    videoId: null,
+    title: null
+  });
 
   const closeBtnRef = React.useRef<HTMLButtonElement | null>(null);
 
@@ -33,8 +41,28 @@ export const UIModalVideo: React.FC = () => {
 
   React.useEffect(() => {
     if(!isMounted) return;
-    const actionResult = actions.lastVideo();
-    console.log(actionResult);
+
+    const fetchVideo = async () => {
+      try {
+        const { data, error } = await actions.lastVideo();
+        if(error) {
+          throw new Error(`Error fetching video: ${error.message}`);
+        }
+
+        setVideoInfo({
+          videoId: data?.videoId,
+          title: data?.title
+        })
+
+      } catch (error) {
+
+      } finally {
+
+      }
+    }
+
+    fetchVideo();
+
   }, [isMounted])
 
   return (
@@ -49,15 +77,29 @@ export const UIModalVideo: React.FC = () => {
             id="modal-content"
             className="w-full min-md:w-1/2 p-5 rounded-md z-50 flex flex-col justify-between gap-8"
           >
+            {/* Modal Header */}
             <div className="flex justify-between w-full items-center gap-x-3">
               <button ref={closeBtnRef} onClick={closeModal} className="close-action cursor-behavior" aria-label="close-modal">
                 <XIcon />
               </button>
+              <h2 className="text-lg font-semibold">{videoInfo.title ?? 'Ultima Predicación'}</h2>
             </div>
 
             <div id="modal-body" className="h-full">
-              {/* keep default video UI so helpers have elements to work with */}
               <h3 id="redil-video-title" className="sr-only">Última Predicación</h3>
+              {videoInfo.videoId ? (
+                <iframe
+                  width="100%"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${videoInfo.videoId}`}
+                  title={videoInfo.title ?? 'Última Predicación'}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <p>No se pudo cargar el video en este momento. Por favor, inténtelo de nuevo más tarde.</p>
+              )}
             </div>
           </article>
 
