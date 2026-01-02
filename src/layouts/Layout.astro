@@ -2,7 +2,8 @@
 import '@/styles/global.css';
 import Nav from '@/components/shared/Nav.astro';
 import Footer from '@/components/shared/Footer.astro';
-import { ClientRouter } from "astro:transitions";
+import UIModalVideo from '@/components/ui/modalVideo';
+import { ClientRouter } from "astro:transitions"; 
 
 const { isLoggedIn } = Astro.locals;
 
@@ -25,6 +26,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<ClientRouter />
 	</head>
 	<body>
+		<UIModalVideo client:load />
 		<div class:list={['px-5 mb-3 flex flex-col justify-between layout-bg min-md:min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
 			<Nav></Nav>
 			{ pageTitle &&
@@ -38,10 +40,10 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 			<slot />
 		</main>
 		{!isLoggedIn && <Footer /> }
+    <script is:inline src="https://cdn.jsdelivr.net/npm/@mux/mux-player" defer></script>
 	</body>
-	<script is:inline src="https://cdn.jsdelivr.net/npm/@mux/mux-player" defer></script>
 </html>
-
+	
 <style scoped>
   @import "tailwindcss";
 

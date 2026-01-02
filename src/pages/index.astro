@@ -48,6 +48,7 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
     <article class="w-full h-40 min-md:h-60">
       <a
         aria-label="see last preech video"
+        id="modal-index"
         class="last-preech-link bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
       >
         <Image
@@ -137,3 +138,14 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
     </article>
   </section>
 </Layout>
+
+
+<script>
+  import { isModalOpened } from "@/store";
+
+  const modalButton = document.getElementById('modal-index');
+
+  modalButton?.addEventListener("click", () => {
+    isModalOpened.set(true);
+  });
+</script>

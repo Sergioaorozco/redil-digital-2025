@@ -2,66 +2,93 @@ import { defineAction, ActionError } from 'astro:actions';
 
 type VideoDetails = { videoId: string; title: string };
 
-let cache: { data: VideoDetails | null; expires: number } = { data: null, expires: 0 };
+const API_ERROR_SUGGESTION = 'Check your Google Cloud API key restrictions: Server-side requests must NOT be blocked by HTTP referrer restrictions. Use IP restrictions or leave them empty for testing.';
 
 export const lastVideo = defineAction({
   handler: async () => {
+    // 1. SECURITY FIX: Use private environment variables
+    // Remove "PUBLIC_" so these are not exposed to the client browser.
+    const apikey = import.meta.env.PRIVATE_YT_API_KEY; 
+    const channelId = import.meta.env.PUBLIC_YT_CHANNEL_ID; // Channel ID is usually public safe
+
+    if (!apikey || !channelId) {
+      throw new ActionError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Missing YouTube API Key or Channel ID in environment variables."
+      });
+    }
+
     try {
-      const now = Date.now();
-      if (cache.data && cache.expires > now) {
-        return cache.data;
-      }
-
-      const apikey = import.meta.env.PRIVATE_YT_API_KEY;
-      const channelId = import.meta.env.PUBLIC_YT_CHANNEL_ID;
-
-      if (!apikey) {
-        throw new ActionError({ code: 'INTERNAL_SERVER_ERROR', message: 'YT_API_KEY not configured on server' });
-      }
-
-      // 1. Fetching channel list to get uploads playlist
-      const channelList = await fetch(
+      // --- Step 1: Fetch Channel Details to get Uploads Playlist ID ---
+      const channelResponse = await fetch(
         `https://www.googleapis.com/youtube/v3/channels?key=${apikey}&id=${channelId}&part=contentDetails`
       );
 
-      if (!channelList.ok) {
-        const body = await channelList.text();
-        throw new ActionError({ code: 'BAD_GATEWAY', message: `Failed fetching channel info: ${body}` });
+      if (!channelResponse.ok) {
+        await handleYouTubeError(channelResponse, 'Error fetching channel info');
       }
 
-      const channelData = await channelList.json();
+      const channelData = await channelResponse.json();
       const uploadPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
 
       if (!uploadPlaylistId) {
-        throw new ActionError({ code: 'NOT_FOUND', message: 'No upload playlist found' });
+        throw new Error('Could not find the "Uploads" playlist ID for this channel.');
       }
 
-      // 2. Get the last video from the uploads playlist
-      const playlistItemsResponse = await fetch(
+      // --- Step 2: Fetch the Last Video from that Playlist ---
+      const playlistResponse = await fetch(
         `https://www.googleapis.com/youtube/v3/playlistItems?key=${apikey}&playlistId=${uploadPlaylistId}&part=snippet&maxResults=1`
       );
 
-      if (!playlistItemsResponse.ok) {
-        const body = await playlistItemsResponse.text();
-        throw new ActionError({ code: 'BAD_GATEWAY', message: `Failed fetching playlist items: ${body}` });
+      if (!playlistResponse.ok) {
+        await handleYouTubeError(playlistResponse, 'Error fetching playlist items');
       }
 
-      const playlistItemsData = await playlistItemsResponse.json();
+      const playlistData = await playlistResponse.json();
 
-      if (!playlistItemsData.items || playlistItemsData.items.length === 0) {
-        throw new ActionError({ code: 'NOT_FOUND', message: 'No videos found' });
+      if (!playlistData.items || playlistData.items.length === 0) {
+        throw new Error("No videos found in the uploads playlist.");
       }
 
-      const { snippet: { resourceId: { videoId }, title } } = playlistItemsData.items[0];
-      const videoDetails = { videoId, title } as VideoDetails;
+      const { snippet: { resourceId: { videoId }, title } } = playlistData.items[0];
 
-      // Cache for 5 minutes
-      cache = { data: videoDetails, expires: Date.now() + 1000 * 60 * 5 };
+      const videoDetails: VideoDetails = {
+        videoId,
+        title
+      };
 
       return videoDetails;
-    } catch (err) {
-      if (err instanceof ActionError) throw err;
-      throw new ActionError({ code: 'INTERNAL_SERVER_ERROR', message: String(err) });
+
+    } catch (error) {
+      // Re-throw ActionErrors (like 403s) so the client can handle them specifically
+      if (error instanceof ActionError) throw error;
+      
+      console.error("YouTube Action Error:", error);
+      throw new ActionError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: error instanceof Error ? error.message : "Unknown error occurred"
+      });
     }
   }
 });
+
+// Helper to handle YouTube API errors consistently
+async function handleYouTubeError(response: Response, contextMessage: string) {
+  const errorText = await response.text();
+  let parsed;
+  try { parsed = JSON.parse(errorText); } catch (e) { /* ignore */ }
+
+  const isReferrerBlocked = 
+    response.status === 403 || 
+    parsed?.error?.status === 'PERMISSION_DENIED' || 
+    parsed?.error?.details?.some((d: any) => d?.reason === 'API_KEY_HTTP_REFERRER_BLOCKED');
+
+  if (isReferrerBlocked) {
+    throw new ActionError({
+      code: "FORBIDDEN",
+      message: `YouTube API 403 Forbidden. ${API_ERROR_SUGGESTION}`
+    });
+  }
+
+  throw new Error(`${contextMessage}: ${parsed?.error?.message || errorText}`);
+}
