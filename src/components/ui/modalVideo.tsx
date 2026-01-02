@@ -14,7 +14,7 @@ interface videoDetails {
 export const SkeletonCard: React.FC = () => {
   return (
     <div className="flex flex-col space-y-3">
-      <Skeleton className="h-[500px] w-full rounded-xl" />
+      <Skeleton className="h-[300px] md:h-[500px] w-full rounded-xl" />
       <div className="space-y-2">
         <Skeleton className="h-4 w-[250px]" />
         <Skeleton className="h-4 w-[200px]" />
@@ -100,7 +100,7 @@ export const UIModalVideo: React.FC = () => {
               <button ref={closeBtnRef} onClick={closeModal} className="close-action cursor-behavior" aria-label="close-modal">
                 <XIcon />
               </button>
-              <h2 className="text-lg font-semibold">{videoInfo.title ?? 'Ultima Predicación'}</h2>
+              <h2 className="text-xs md:text-lg font-semibold">{videoInfo.title ?? 'Ultima Predicación'}</h2>
             </div>
             <div id="modal-body" className="h-full">
               <h3 id="redil-video-title" className="sr-only">Última Predicación</h3>
@@ -114,12 +114,12 @@ export const UIModalVideo: React.FC = () => {
               {videoInfo.videoId && !isModalLoading.value && (
                 <iframe
                   width="100%"
-                  height="500"
                   src={`https://www.youtube.com/embed/${videoInfo.videoId}`}
                   title={videoInfo.title ?? 'Última Predicación'}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  className="aspect-video"
                 ></iframe>
               )}
 
