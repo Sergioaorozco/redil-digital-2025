@@ -2,15 +2,14 @@
 import ModalMenu from "@/components/Menu.astro";
 import LogoImage from "@/assets/LogoImage.astro";
 import ProfileMenu from "./ProfileMenu.astro";
-
 const { isLoggedIn } = Astro.locals;
 ---
 
-<nav class="py-5 flex justify-between items-center max-inline-nav z-10">
+<nav class="p-5 flex justify-between items-center z-10 mx-auto max-w-6xl w-full">
   <a aria-label="main-logo-nav" href="/" class="w-40 dark:text-white text-neutral-900">
     <LogoImage />
   </a>
-  <section class="flex gap-x-3 items-center">
+  <section class="flex gap-x-3 items-center justify-between">
     <ModalMenu />
     <!-- WIP Show when user signed out -->
     <div class="font-medium max-sm:hidden lg:block">
@@ -21,9 +20,9 @@ const { isLoggedIn } = Astro.locals;
         Membresía</a
       >
     </div>
-    <div>
+    {!isLoggedIn && (
       <ProfileMenu/>
-    </div>
+    )}
   </section>
 </nav>
 

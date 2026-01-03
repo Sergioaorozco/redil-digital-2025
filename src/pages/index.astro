@@ -1,5 +1,5 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import HomeLayout from "@/layouts/HomeLayout.astro";
 import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
 import RightArrow from "@/assets/RightArrow.astro";
 
@@ -11,40 +11,9 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
 
 ---
 
-<Layout>
+<HomeLayout>
   <!-- Main section -->
-  <section class="px-5 gap-5 flex flex-col h-full md:flex-row justify-between w-full text-center md:text-start text-balance">
-    <mux-player
-      class="w-full md:w-1/2 h-full aspect-video rounded-lg overflow-hidden"
-      transition:persist
-      playback-id="95z01EoGdAX016GT3Q2OOCU02laIR00pYu5Bg8ZGIVbGpdY"
-      metadata-video-id="gyHz5fiii9lXqFcCCTZ1dCdydp9R02TNf94BtPAjn01Hs"
-      metadata-video-title="video-iglesia-hero"
-      autoplay
-      muted
-      loop
-    ></mux-player>
-    <article class="text-center flex flex-col justify-center items-center">
-      <p class="text 4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300">Bienvenido al Redil Laureles</p>
-      <p class="text-lg md:text-xl">
-        Damos gracias a Dios por tu visita. Esperamos que este espacio sea
-        de mucha bendición para tu vida.
-      </p>
-      <p class="text-lg md:text-xl mt-4">
-        Te invitamos a conocer quiénes somos y a explorar los recursos que
-        tenemos para ti. ¡Siéntete bienvenido!
-      </p>
-      <span class="flex-responsive gap-3 mt-5">
-        <p class="r-well font-bold">
-          Domingo Celebraciones: 9AM | 11AM
-        </p>
-        <p class="r-well font-bold">
-          Miércoles - Rebaño: 7:00 PM
-        </p>
-      </span>
-    </article>
-  </section>
-  <section class="my-6 px-8 flex-responsive gap-4">
+  <section class="my-6 px-8 flex-responsive gap-4 mb-32">
     <article class="w-full h-40 min-md:h-60">
       <a
         aria-label="see last preech video"
@@ -137,7 +106,7 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
       </a>
     </article>
   </section>
-</Layout>
+</HomeLayout>
 
 
 <script>

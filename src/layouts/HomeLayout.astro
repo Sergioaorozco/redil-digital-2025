@@ -1,0 +1,62 @@
+---
+import "@/styles/global.css";
+import Footer from "@/components/shared/Footer.astro";
+import UIModalVideo from "@/components/ui/modalVideo";
+import { ClientRouter } from "astro:transitions";
+import Nav from "@/components/shared/Nav.astro";
+import { Image } from "astro:assets";
+import Iglesia2025 from "@/images/iglesia/miembros-2024.webp";
+const isLoggedIn = Astro.locals.isLoggedIn;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redil Laureles - Iglesia Bautista</title>
+    <meta name="description" content="Sitio oficial del Redil Laureles">
+		<ClientRouter />
+  </head>
+  <body>
+		<UIModalVideo client:load />
+    <main class="px-5 py-28 gap-5 min-h-lvh text-center relative">
+      <div class="absolute px-5 top-0 left-0 right-0">
+        <Nav />
+      </div>
+      <div
+        class="absolute -z-10 top-0 left-0 w-full h-full dark:bg-neutral-800 overflow-clip brightness-30 rounded-b-4xl"
+      >
+        <Image
+          alt="Imagen de la iglesia en sus 10 años"
+          class="w-full mask-b-from-0"
+          src={Iglesia2025}
+        />
+      </div>
+      <article
+        class="text-center flex flex-col justify-center items-center relative"
+      >
+        <p
+          class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
+        >
+          Bienvenido al Redil Laureles
+        </p>
+        <p class="text-lg md:text-xl">
+          Damos gracias a Dios por tu visita. Esperamos que este espacio sea de
+          mucha bendición para tu vida.
+        </p>
+        <p class="text-lg md:text-xl mt-4">
+          Te invitamos a conocer quiénes somos y a explorar los recursos que
+          tenemos para ti. ¡Siéntete bienvenido!
+        </p>
+        <span class="flex-responsive gap-3 mt-5">
+          <p class="r-well font-bold">Domingo Celebraciones: 9AM | 11AM</p>
+          <p class="r-well font-bold">Miércoles - Rebaño: 7:00 PM</p>
+        </span>
+      </article>
+    </main>
+    <slot />
+    {!isLoggedIn && <Footer /> }
+  </body>
+</html>
+
