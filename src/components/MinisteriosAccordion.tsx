@@ -81,7 +81,7 @@ export default function MinisteriosAccordion() {
         <AccordionItem key={ministerio.title} value={ministerio.title}>
           <AccordionTrigger 
             className={`px-5 text-2xl rounded-none  ${
-              selectedValue === ministerio.title ? 'bg-blue-100 hover:bg-blue-200 dark:bg-amber-200 dark:hover:bg-amber-300 text-responsive' : 'hover:bg-neutral-200 dark:hover:bg-neutral-700'
+              selectedValue === ministerio.title ? 'bg-blue-100 hover:bg-blue-200 dark:bg-neutral-300/40 dark:hover:bg-neutral-400 text-responsive' : 'hover:bg-neutral-200 dark:hover:bg-neutral-700'
             }`}
           >
             {ministerio.title}

@@ -5,7 +5,7 @@ import ProfileMenu from "./ProfileMenu.astro";
 const { isLoggedIn } = Astro.locals;
 ---
 
-<nav class="p-5 flex justify-between items-center z-10 mx-auto max-w-7xl w-full">
+<nav class="@max-xs:px-5 py-5 flex justify-between items-center z-10 mx-auto max-w-7xl w-full">
   <a aria-label="main-logo-nav" href="/" class="w-40 dark:text-white text-neutral-900">
     <LogoImage />
   </a>
@@ -20,8 +20,8 @@ const { isLoggedIn } = Astro.locals;
         Membresía</a
       >
     </div>
-    {!isLoggedIn && (
-      <ProfileMenu/>
+    {isLoggedIn && (
+      <ProfileMenu />
     )}
   </section>
 </nav>
