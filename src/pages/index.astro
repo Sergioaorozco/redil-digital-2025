@@ -4,19 +4,16 @@ import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
 import RightArrow from "@/assets/RightArrow.astro";
 import { Image } from "astro:assets";
 
-import NavRedilLaureles from '@/images/iglesia/nav-redil-laureles.webp';
-import RedilDonaciones from '@/images/iglesia/nav-redil-donacion.webp';
-import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
+import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
+import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
+import Iglesia2025 from "@/images/iglesia/miembros-2024.webp";
 import Nav from "@/components/shared/Nav.astro";
 import UIModalVideo from "@/components/ui/modalVideo";
-
 ---
 
 <HomeLayout>
   <UIModalVideo client:load />
-  <main
-    class="px-5 pt-28 gap-5 min-h-[calc(100vh-7rem)] text-center relative"
-  >
+  <main class="px-5 pt-28 gap-5 min-h-[calc(100vh-7rem)] text-center relative">
     <div class="absolute px-5 top-0 left-0 right-0">
       <Nav />
     </div>
@@ -28,17 +25,16 @@ import UIModalVideo from "@/components/ui/modalVideo";
       class="text-center flex flex-col justify-center items-center relative"
     >
       <!-- Bienvenidos -->
-        <div class="wrapper">
+      <div class="wrapper">
         <p
           class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
         >
           Bienvenido al Redil Laureles
         </p>
         <p class="text-lg md:text-xl">
-          Damos gracias a Dios por tu visita. Esperamos que este espacio sea
-          de mucha bendición para tu vida. Te invitamos a conocer quiénes
-          somos y a explorar los recursos que tenemos para ti. ¡Siéntete
-          bienvenido!
+          Damos gracias a Dios por tu visita. Esperamos que este espacio sea de
+          mucha bendición para tu vida. Te invitamos a conocer quiénes somos y a
+          explorar los recursos que tenemos para ti. ¡Siéntete bienvenido!
         </p>
         <span class="flex-responsive justify-center gap-3 mt-5">
           <p class="r-well font-bold text-balance">
@@ -50,118 +46,116 @@ import UIModalVideo from "@/components/ui/modalVideo";
         </span>
       </div>
       <!-- Video Redil -->
-      <div
-        class="w-full md:w-1/2 mt-10 overflow-clip rounded-2xl shadow-lg"
-      >
-        <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
-      </div>
+      <section class="grid grid-cols-1 md:grid-cols-3 w-full px-5 gap-3 mb-32 items-center mt-10">
+        <div class="col-span-2 overflow-clip rounded-2xl shadow-lg">
+          <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
+        </div>
+        <article class="w-full grid grid-rows-3 gap-4 h-full">
+          <div class="flex h-full min-h-32">
+            <a
+              aria-label="see last preech video"
+              id="modal-index"
+              class="last-preech-link bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+            >
+              <Image
+                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
+                src={Iglesia2025}
+                height="611"
+                decoding="async"
+                loading="eager"
+                width="916"
+                alt="Miembros de la iglesia redil laureles en una asamblea"
+              />
+              <div
+                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
+              >
+                <p
+                  class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
+                >
+                  Ver última predicación
+                </p>
+                <span
+                  class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200"
+                >
+                  <PlayTriangleIcon />
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="flex h-full min-h-32">
+            <a
+              href="/iglesia"
+              rel="prefetch"
+              aria-label="read more about our community"
+              class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+            >
+              <Image
+                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
+                src={NavRedilLaureles}
+                height="611"
+                width="916"
+                decoding="async"
+                loading="eager"
+                alt="Asistentes a la iglesia redil laureles al exterior de la sede"
+              />
+              <div
+                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
+              >
+                <p
+                  class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
+                >
+                  Nuestra Iglesia
+                </p>
+                <span class="hover-icon">
+                  <RightArrow />
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="flex h-full min-h-32">
+            <a
+              href="/iglesia"
+              rel="prefetch"
+              aria-label="Learn more about donations"
+              class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+            >
+              <Image
+                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
+                src={RedilDonaciones}
+                height="611"
+                decoding="async"
+                loading="eager"
+                width="916"
+                alt="Imagen alusiva a donaciones"
+              />
+              <div
+                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
+              >
+                <p
+                  class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
+                >
+                  Donaciones
+                </p>
+                <span class="hover-icon">
+                  <RightArrow />
+                </span>
+              </div>
+            </a>
+          </div>
+        </section>
+      </section>
     </article>
   </main>
-  <!-- Main section -->
-  <section class="my-6 px-8 flex-responsive gap-4 mb-32">
-    <article class="w-full h-40 min-md:h-60">
-      <a
-        aria-label="see last preech video"
-        id="modal-index"
-        class="last-preech-link bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-      >
-        <Image
-          class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-          src={Iglesia2025}
-          height="611"
-          decoding="async"
-          loading="eager"
-          width="916"
-          alt="Miembros de la iglesia redil laureles en una asamblea"
-        />
-        <div
-          class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
-        >
-          <p
-            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
-          >
-            Ver última predicación
-          </p>
-          <span
-            class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200"
-          >
-            <PlayTriangleIcon />
-          </span>
-        </div>
-      </a>
-    </article>
-    <article class="w-full h-40 min-md:h-60">
-      <a
-        href="/iglesia"
-        rel="prefetch"
-        aria-label="read more about our community"
-        class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-      >
-        <Image
-          class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-          src={NavRedilLaureles}
-          height="611"
-          width="916"
-          decoding="async"
-          loading="eager"
-          alt="Asistentes a la iglesia redil laureles al exterior de la sede"
-        />
-        <div
-          class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
-        >
-          <p
-            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
-          >
-            Nuestra Iglesia
-          </p>
-          <span class="hover-icon">
-            <RightArrow />
-          </span>
-        </div>
-      </a>
-    </article>
-    <article class="w-full h-40 min-md:h-60">
-      <a
-        href="/iglesia"
-        rel="prefetch"
-        aria-label="Learn more about donations"
-        class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-      >
-        <Image
-          class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-          src={RedilDonaciones}
-          height="611"
-          decoding="async"
-          loading="eager"
-          width="916"
-          alt="Imagen alusiva a donaciones"
-        />
-        <div
-          class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
-        >
-          <p
-            class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
-          >
-            Donaciones
-          </p>
-          <span class="hover-icon">
-            <RightArrow />
-          </span>
-        </div>
-      </a>
-    </article>
-  </section>
 </HomeLayout>
-
 
 <script>
   import { isModalOpened } from "@/store";
 
   document.addEventListener("astro:page-load", () => {
-    const modalButton = document.getElementById('modal-index');
-  
+    const modalButton = document.getElementById("modal-index");
+
     modalButton?.addEventListener("click", () => {
       isModalOpened.set(true);
     });
-  })
+  });
 </script>
