@@ -1,7 +1,6 @@
 ---
 import HomeLayout from "@/layouts/HomeLayout.astro";
-import PlayTriangleIcon from "@/assets/PlayTriangleIcon.astro";
-import RightArrow from "@/assets/RightArrow.astro";
+import { PlayIcon, ArrowRight } from "lucide-react";
 import { Image } from "astro:assets";
 
 import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
@@ -26,19 +25,21 @@ const EasySection: EasySection[] = [
     id: "modal-index",
     alt: "Miembros de la iglesia redil laureles en una asamblea",
     link: "#",
-    icon: PlayTriangleIcon,
+    icon: PlayIcon,
   },
   {
     title: "Nuestra Iglesia",
     image: NavRedilLaureles,
     alt: "Asistentes a la iglesia redil laureles al exterior de la sede",
     link: "/iglesia",
+    icon: ArrowRight,
   },
   {
     title: "Donaciones",
     image: RedilDonaciones,
     alt: "Imagen alusiva a donaciones",
     link: "/iglesia",
+    icon: ArrowRight,
   },
 ];
 ---
@@ -55,14 +56,14 @@ const EasySection: EasySection[] = [
     </div>
     <!-- Video Redil -->
     <section
-      class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-10"
+      class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
     >
       <div class="col-span-2 overflow-clip rounded-2xl shadow-lg">
         <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
       </div>
       <!-- Bienvenidos -->
-      <div class="r-well flex flex-col justify-around gap-6 h-full">
-        <span>
+      <div class="r-well flex flex-col justify-around gap-6 h-full relative">
+        <span class="">
           <p
             class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
           >
@@ -75,7 +76,8 @@ const EasySection: EasySection[] = [
             bienvenido!
           </p>
         </span>
-        <span class="mt-5 md:text-lg">
+        <span class="mt-5 md:text-lg py-3 relative">
+          <hr class="absolute top-0 left-0 right-0 w-full">
           <p class="font-bold text-balance">
             Domingo Celebraciones: 9AM | 11AM
           </p>
@@ -87,8 +89,8 @@ const EasySection: EasySection[] = [
       class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mb-32 mx-auto"
     >
       {
-        EasySection.map(({ image, alt, id, title, icon, link }) => (
-          <div class="h-full min-h-40 md:min-h-52">
+        EasySection.map(({ image, alt, id, title, icon: Icon, link }) => (
+          <div class="h-full min-h-40 md:min-h-48">
             <a
               aria-label="see last preech video"
               id={id}
@@ -108,8 +110,8 @@ const EasySection: EasySection[] = [
                 <p class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg">
                   {title}
                 </p>
-                <span class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
-                  {icon ? <PlayTriangleIcon /> : <RightArrow />}
+                <span class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
+                  {Icon ? <Icon /> : <ArrowRight />}
                 </span>
               </div>
             </a>
