@@ -9,11 +9,43 @@ import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
 import Iglesia2025 from "@/images/iglesia/miembros-2024.webp";
 import Nav from "@/components/shared/Nav.astro";
 import UIModalVideo from "@/components/ui/modalVideo";
+
+interface EasySection {
+  title: string;
+  image: any;
+  alt: string;
+  link: string;
+  id?: string;
+  icon?: any;
+}
+
+const EasySection: EasySection[] = [
+  {
+    title: "Última Predicación",
+    image: Iglesia2025,
+    id: "modal-index",
+    alt: "Miembros de la iglesia redil laureles en una asamblea",
+    link: "#",
+    icon: PlayTriangleIcon,
+  },
+  {
+    title: "Nuestra Iglesia",
+    image: NavRedilLaureles,
+    alt: "Asistentes a la iglesia redil laureles al exterior de la sede",
+    link: "/iglesia",
+  },
+  {
+    title: "Donaciones",
+    image: RedilDonaciones,
+    alt: "Imagen alusiva a donaciones",
+    link: "/iglesia",
+  },
+];
 ---
 
 <HomeLayout>
   <UIModalVideo client:load />
-  <main class="px-5 pt-28 gap-5 min-h-[calc(100vh-7rem)] text-center relative">
+  <main class="px-5 pt-24 gap-5 min-h-[calc(100vh-7rem)] text-center relative">
     <div class="absolute top-0 left-0 right-0">
       <Nav />
     </div>
@@ -21,131 +53,70 @@ import UIModalVideo from "@/components/ui/modalVideo";
       class="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b dark:from-neutral-300 from-neutral-100 to-transparent overflow-clip brightness-30 rounded-b-4xl"
     >
     </div>
-    <article
-      class="text-center flex flex-col justify-center items-center relative"
+    <!-- Video Redil -->
+    <section
+      class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-10"
     >
+      <div class="col-span-2 overflow-clip rounded-2xl shadow-lg">
+        <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
+      </div>
       <!-- Bienvenidos -->
-      <div class="wrapper">
-        <p
-          class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
-        >
-          Bienvenido al Redil Laureles
-        </p>
-        <p class="text-lg md:text-xl">
-          Damos gracias a Dios por tu visita. Esperamos que este espacio sea de
-          mucha bendición para tu vida. Te invitamos a conocer quiénes somos y a
-          explorar los recursos que tenemos para ti. ¡Siéntete bienvenido!
-        </p>
-        <span class="flex-responsive justify-center gap-3 mt-5">
-          <p class="r-well font-bold text-balance">
-            Domingo Celebraciones: 9AM | 11AM
+      <div class="r-well flex flex-col justify-around gap-6 h-full">
+        <span>
+          <p
+            class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
+          >
+            Bienvenido al Redil Laureles
           </p>
-          <p class="r-well font-bold text-balance">
-            Miércoles - Rebaño: 7:00 PM
+          <p class="md:text-lg">
+            Damos gracias a Dios por tu visita. Esperamos que este espacio sea
+            de mucha bendición para tu vida. Te invitamos a conocer quiénes
+            somos y a explorar los recursos que tenemos para ti. ¡Siéntete
+            bienvenido!
           </p>
         </span>
+        <span class="mt-5 md:text-lg">
+          <p class="font-bold text-balance">
+            Domingo Celebraciones: 9AM | 11AM
+          </p>
+          <p class="font-bold text-balance">Miércoles - Rebaño: 7:00 PM</p>
+        </span>
       </div>
-      <!-- Video Redil -->
-      <section class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 mb-32 items-center mt-10">
-        <div class="col-span-2 overflow-clip rounded-2xl shadow-lg">
-          <p class="text-center md:text-left title-responsive">Última Predicación</p>
-          <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
-        </div>
-        <article class="w-full grid grid-rows-3 gap-4 h-full">
-          <div class="flex h-full min-h-32">
+    </section>
+    <section
+      class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mb-32 mx-auto"
+    >
+      {
+        EasySection.map(({ image, alt, id, title, icon, link }) => (
+          <div class="h-full min-h-40 md:min-h-52">
             <a
               aria-label="see last preech video"
-              id="modal-index"
+              id={id}
               class="last-preech-link bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+              href={link}
             >
               <Image
                 class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-                src={Iglesia2025}
+                src={image}
                 height="611"
                 decoding="async"
                 loading="eager"
                 width="916"
-                alt="Miembros de la iglesia redil laureles en una asamblea"
+                alt={alt}
               />
-              <div
-                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
-              >
-                <p
-                  class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
-                >
-                  Ver última predicación
+              <div class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background">
+                <p class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg">
+                  {title}
                 </p>
-                <span
-                  class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200"
-                >
-                  <PlayTriangleIcon />
+                <span class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
+                  {icon ? <PlayTriangleIcon /> : <RightArrow />}
                 </span>
               </div>
             </a>
           </div>
-          <div class="flex h-full min-h-32">
-            <a
-              href="/iglesia"
-              rel="prefetch"
-              aria-label="read more about our community"
-              class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-            >
-              <Image
-                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-                src={NavRedilLaureles}
-                height="611"
-                width="916"
-                decoding="async"
-                loading="eager"
-                alt="Asistentes a la iglesia redil laureles al exterior de la sede"
-              />
-              <div
-                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
-              >
-                <p
-                  class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
-                >
-                  Nuestra Iglesia
-                </p>
-                <span class="hover-icon">
-                  <RightArrow />
-                </span>
-              </div>
-            </a>
-          </div>
-          <div class="flex h-full min-h-32">
-            <a
-              href="/iglesia"
-              rel="prefetch"
-              aria-label="Learn more about donations"
-              class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-            >
-              <Image
-                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-                src={RedilDonaciones}
-                height="611"
-                decoding="async"
-                loading="eager"
-                width="916"
-                alt="Imagen alusiva a donaciones"
-              />
-              <div
-                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background"
-              >
-                <p
-                  class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg"
-                >
-                  Donaciones
-                </p>
-                <span class="hover-icon">
-                  <RightArrow />
-                </span>
-              </div>
-            </a>
-          </div>
-        </section>
-      </section>
-    </article>
+        ))
+      }
+    </section>
   </main>
 </HomeLayout>
 
