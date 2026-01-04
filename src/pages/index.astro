@@ -42,6 +42,19 @@ const EasySection: EasySection[] = [
     icon: ArrowRight,
   },
 ];
+
+import { actions } from "astro:actions";
+
+const { data, error } = await Astro.callAction(actions.lastVideo, {});
+
+// 2. Handle the error or provide fallbacks
+if (error) {
+  console.error("Action failed:", error.message);
+}
+
+const videoId = data?.videoId ?? "fallback-id";
+const title = data?.title ?? "Título no disponible";
+
 ---
 
 <HomeLayout>
@@ -58,9 +71,12 @@ const EasySection: EasySection[] = [
     <section
       class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
     >
-      <div class="col-span-2 overflow-clip rounded-2xl shadow-lg">
-        <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
-      </div>
+      <article class="col-span-2">
+        <p class="px-3 py-2 rounded-xl bg-neutral-300 w-fit mb-2 font-bold text-black">Última Predicación: {title}</p>
+        <div class="overflow-clip rounded-2xl shadow-lg">
+          <lite-youtube videoid={videoId}></lite-youtube>
+        </div>
+      </article>
       <!-- Bienvenidos -->
       <div class="r-well flex flex-col justify-around gap-6 h-full relative">
         <span class="">
