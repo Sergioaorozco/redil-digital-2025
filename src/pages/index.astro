@@ -7,10 +7,56 @@ import { Image } from "astro:assets";
 import NavRedilLaureles from '@/images/iglesia/nav-redil-laureles.webp';
 import RedilDonaciones from '@/images/iglesia/nav-redil-donacion.webp';
 import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
+import Nav from "@/components/shared/Nav.astro";
+import UIModalVideo from "@/components/ui/modalVideo";
 
 ---
 
 <HomeLayout>
+  <UIModalVideo client:load />
+  <main
+    class="px-5 pt-28 gap-5 min-h-[calc(100vh-7rem)] text-center relative"
+  >
+    <div class="absolute px-5 top-0 left-0 right-0">
+      <Nav />
+    </div>
+    <div
+      class="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b dark:from-neutral-300 from-neutral-100 to-transparent overflow-clip brightness-30 rounded-b-4xl"
+    >
+    </div>
+    <article
+      class="text-center flex flex-col justify-center items-center relative"
+    >
+      <!-- Bienvenidos -->
+        <div class="wrapper">
+        <p
+          class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
+        >
+          Bienvenido al Redil Laureles
+        </p>
+        <p class="text-lg md:text-xl">
+          Damos gracias a Dios por tu visita. Esperamos que este espacio sea
+          de mucha bendición para tu vida. Te invitamos a conocer quiénes
+          somos y a explorar los recursos que tenemos para ti. ¡Siéntete
+          bienvenido!
+        </p>
+        <span class="flex-responsive justify-center gap-3 mt-5">
+          <p class="r-well font-bold text-balance">
+            Domingo Celebraciones: 9AM | 11AM
+          </p>
+          <p class="r-well font-bold text-balance">
+            Miércoles - Rebaño: 7:00 PM
+          </p>
+        </span>
+      </div>
+      <!-- Video Redil -->
+      <div
+        class="w-full md:w-1/2 mt-10 overflow-clip rounded-2xl shadow-lg"
+      >
+        <lite-youtube videoid="d0HIs_vBf30"></lite-youtube>
+      </div>
+    </article>
+  </main>
   <!-- Main section -->
   <section class="my-6 px-8 flex-responsive gap-4 mb-32">
     <article class="w-full h-40 min-md:h-60">
@@ -110,6 +156,7 @@ import Iglesia2025 from '@/images/iglesia/miembros-2024.webp';
 
 <script>
   import { isModalOpened } from "@/store";
+  import '@justinribeiro/lite-youtube';
 
   document.addEventListener("astro:page-load", () => {
     const modalButton = document.getElementById('modal-index');
