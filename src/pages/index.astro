@@ -72,13 +72,13 @@ const title = data?.title ?? "Título no disponible";
       class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
     >
       <article class="col-span-2">
-        <p class="px-3 py-2 rounded-xl bg-neutral-300 w-fit mb-2 font-bold text-black">Última Predicación: {title}</p>
+        <p class="px-3 py-2 rounded-xl bg-neutral-300 w-fit mb-2 font-bold text-black text-xs md:text-sm">Última Predicación: {title}</p>
         <div class="overflow-clip rounded-2xl shadow-lg">
           <lite-youtube videoid={videoId}></lite-youtube>
         </div>
       </article>
       <!-- Bienvenidos -->
-      <div class="r-well flex flex-col justify-around gap-6 h-full relative">
+      <div class="r-well flex flex-col justify-around items-center gap-6 h-full relative">
         <span class="">
           <p
             class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
