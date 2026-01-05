@@ -26,7 +26,7 @@ body {
 }
 
 .layout-bg {
-  @apply bg-gradient-to-b from-blue-100 dark:from-neutral-950 to-transparent;
+  @apply bg-gradient-to-b from-blue-50 dark:from-neutral-950 to-transparent;
 }
 
 .wrapper {
@@ -40,12 +40,7 @@ body {
   border-radius: 5rem;
   padding-inline: 1rem;
   padding-block: 0.5rem;
-  &.menu {
-    &:hover {
-      background-color: black;
-      color: white;
-    }
-  }
+  @apply bg-card hover:bg-blue-200 dark:bg-accent/40
 }
 
 .r-well {

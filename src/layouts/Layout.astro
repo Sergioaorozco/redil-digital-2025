@@ -51,33 +51,3 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		{!isLoggedIn && <Footer /> }
 	</body>
 </html>
-	
-<style scoped>
-  @import "tailwindcss";
-
-  @font-face {
-    font-family: "Ubuntu";
-		font-display: swap;
-		font-weight: 400;
-		font-style: normal;
-    src: local("Ubuntu Regular"), url("/Ubuntu/Ubuntu-Regular.ttf") format("truetype");
-	}
-
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: "Ubuntu", sans-serif;
-		@apply text-neutral-800 dark:text-white bg-neutral-100 dark:bg-neutral-600;
-	}
-
-	.max-inline-nav {
-		max-inline-size: 1125px;
-		margin: 0 auto;
-	}
-
-	.layout-bg {
-		@apply bg-gradient-to-b from-neutral-200 dark:from-neutral-950 to-transparent;
-	}
-</style>
