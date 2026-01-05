@@ -21,11 +21,10 @@ interface EasySection {
 
 const EasySection: EasySection[] = [
   {
-    title: "Última Predicación",
+    title: "¿Cómo llegar?",
     image: Iglesia2025,
-    id: "modal-index",
-    alt: "Miembros de la iglesia redil laureles en una asamblea",
-    link: "#",
+    alt: "Imagen Panorámica del barrio laureles",
+    link: "/preguntas",
     icon: PlayIcon,
   },
   {
@@ -69,12 +68,12 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
         class="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b dark:from-neutral-600 from-blue-100 to-transparent overflow-clip rounded-b-4xl"
       >
       </div>
-      <!-- Video Redil -->
+      <!-- Video y Bienvenida -->
       <article
         class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
       >
         <article class="md:col-span-2">
-          <p class="px-3 py-2 flex gap-2 items-center rounded-md bg-amber-50 shadow border-l-4 inset-0 border border-amber-300 w-fit mb-2 font-bold text-black text-xs md:text-sm text-balance text-start">
+          <p class="px-3 py-2 flex gap-2 items-center rounded-md bg-amber-50 shadow border-l-4 inset-0 border border-amber-300 mb-2 font-bold text-black text-xs md:text-sm text-balance text-start">
             <i class="inline-block rounded-full p-1 bg-amber-300"><PlayVideoIcon /></i> Última Predicación: {title}</p>
           <div class="overflow-clip rounded-2xl shadow-lg">
             <lite-youtube videoid={videoId} autoload posterquality="maxresdefault" params="rel=0&enablejsapi=1"></lite-youtube>

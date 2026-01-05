@@ -23,7 +23,7 @@ const isLoggedIn = Astro.locals.isLoggedIn;
   </head>
   <body>
     <slot></slot>
-    {!isLoggedIn && <Footer />}
+    <Footer />
   </body>
 </html>
 

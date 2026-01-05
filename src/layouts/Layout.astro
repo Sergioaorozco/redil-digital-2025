@@ -32,7 +32,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
     <meta property="og:url" content="https://www.elredillaureles.org">
     <ClientRouter />
     <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/pdfviewer@1.1.1/dist/index.min.js"></script>
 	</head>
 	<body>
 		<UIModalVideo client:load />
@@ -48,6 +48,6 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<main class:list={[!isLoggedIn && 'pb-32']}>
 			<slot />
 		</main>
-		{!isLoggedIn && <Footer /> }
+		<Footer />
 	</body>
 </html>
