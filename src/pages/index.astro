@@ -64,7 +64,7 @@ const title = data?.title ?? "Título no disponible";
       <Nav />
     </div>
     <div
-      class="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b dark:from-neutral-300 from-neutral-100 to-transparent overflow-clip brightness-30 rounded-b-4xl"
+      class="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b dark:from-neutral-600 from-blue-100 to-transparent overflow-clip rounded-b-4xl"
     >
     </div>
     <!-- Video Redil -->
@@ -72,7 +72,7 @@ const title = data?.title ?? "Título no disponible";
       class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
     >
       <article class="md:col-span-2">
-        <p class="px-3 py-2 rounded-xl bg-neutral-300 w-fit mb-2 font-bold text-black text-xs md:text-sm text-balance">Última Predicación: {title}</p>
+        <p class="px-3 py-2 rounded-md bg-amber-50 shadow border-l-4 inset-0 border border-amber-300 w-fit mb-2 font-bold text-black text-xs md:text-sm text-balance">Última Predicación: {title}</p>
         <div class="overflow-clip rounded-2xl shadow-lg">
           <lite-youtube videoid={videoId}></lite-youtube>
         </div>

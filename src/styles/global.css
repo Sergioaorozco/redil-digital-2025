@@ -27,7 +27,7 @@ mux-player {
 }
 
 .r-well {
-  @apply bg-neutral-800/30 dark:bg-neutral-300 px-6 py-4 rounded-lg border border-border;
+  @apply bg-accent px-6 py-4 rounded-lg border border-border;
 }
 
 .flex-responsive {
