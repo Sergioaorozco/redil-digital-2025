@@ -9,35 +9,16 @@ const { isLoggedIn } = Astro.locals;
   <a aria-label="main-logo-nav" href="/" class="w-40 dark:text-white text-neutral-900">
     <LogoImage />
   </a>
-  <section class="flex gap-x-3 items-center justify-between">
+  <section class="flex gap-x-3 items-center justify-between h-full">
     <ModalMenu />
     <!-- WIP Show when user signed out -->
-    <div class="font-medium max-sm:hidden lg:block">
-      <a
-        href="/ingreso"
-        class="nav-button bg-secondary text-secondary-foreground hover:bg-secondary/80 lg:transition-colors lg:duration-200 sm:animate-none"
-      >
-        Membresía</a
-      >
+    <div class="max-sm:hidden lg:block">
+      <a href="/ingreso" class="nav-button md:transition-colors md:duration-100 sm:animate-none">
+        Membresía
+      </a>
     </div>
     {isLoggedIn && (
       <ProfileMenu />
     )}
   </section>
 </nav>
-
-<style>
-  .nav-button {
-    font-weight: 600;
-    border-radius: 5rem;
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    &.menu {
-      border: 2px solid black;
-      &:hover {
-        background-color: black;
-        color: white;
-      }
-    }
-  }
-</style>

@@ -36,11 +36,18 @@ body {
 }
 
 .nav-button {
+  /* 1. Force both to behave like blocks */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 2. Standardize text height */
+  line-height: 1;
   font-weight: 600;
   border-radius: 5rem;
   padding-inline: 1rem;
-  padding-block: 0.5rem;
-  @apply bg-card hover:bg-accent;
+  padding-block: 0.8rem;
+  @apply bg-transparent hover:bg-card;
 }
 
 .r-well {
@@ -168,7 +175,7 @@ body {
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(32.109% 0.00004 271.152);
+    --accent: oklch(0% 0 0);
     --accent-foreground: oklch(0.985 0 0);
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 10%);
