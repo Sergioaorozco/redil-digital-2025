@@ -1,6 +1,6 @@
 ---
 import PlayIcon from "@/assets/PlayIcon.astro";
-import ChatIcon from "@/assets/ChatIcon.astro";
+import { MessageCircleQuestionIcon as ChatIcon } from 'lucide-react';
 
 const encodedText = 'Dios los bendiga, tengo una pregunta'
 
@@ -29,9 +29,9 @@ const encodedText = 'Dios los bendiga, tengo una pregunta'
       <a
         href=`https://wa.me/573007869517?text=${encodedText}`
         aria-label="chat-with-us-button"
-        class="hidden min-md:block w-12 dark:text-amber-300! link-schema cursor-behavior"
+        class="hidden min-md:block dark:text-amber-300! dark:hover:text-amber-200! link-schema cursor-behavior"
       >
-        <ChatIcon />
+        <ChatIcon size={36} />
     </a>
     </section>
   </div>
