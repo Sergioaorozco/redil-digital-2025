@@ -26,7 +26,7 @@ body {
 }
 
 .layout-bg {
-  @apply bg-gradient-to-b from-blue-50 dark:from-neutral-950 to-transparent;
+  @apply bg-gradient-to-b from-accent to-transparent;
 }
 
 .wrapper {
@@ -40,11 +40,11 @@ body {
   border-radius: 5rem;
   padding-inline: 1rem;
   padding-block: 0.5rem;
-  @apply bg-card hover:bg-blue-200 dark:bg-accent/40
+  @apply bg-card hover:bg-accent;
 }
 
 .r-well {
-  @apply bg-accent px-6 py-4 rounded-lg border border-border;
+  @apply bg-card px-6 py-4 rounded-lg border border-border;
 }
 
 .flex-responsive {
@@ -133,7 +133,7 @@ body {
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(97% 0.014 254.604);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -148,7 +148,7 @@ body {
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(97.441% 0.01349 241.193);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
@@ -168,7 +168,7 @@ body {
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
+    --accent: oklch(32.109% 0.00004 271.152);
     --accent-foreground: oklch(0.985 0 0);
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 10%);
