@@ -58,6 +58,12 @@ export default defineConfig({
         optional: false,
         default: 'INFORM_VALID_KEY'
       }),
+      FIREBASE_PROJECT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: false,
+        default: 'INFORM_VALID_KEY'
+      })
     }
   },
   integrations: [react()],
