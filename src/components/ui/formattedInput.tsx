@@ -37,7 +37,6 @@ const formattedInput = ({type = 'text', placeholder, autoComplete, name, id, req
             >
               {isEyeVisible ? <EyeIcon /> : <EyeOffIcon />}
             </Button>
-            <span className='sr-only'>{isEyeVisible ? 'Hide password' : 'Show password'}</span>
           </>
         )}
       </div>
