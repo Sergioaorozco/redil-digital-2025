@@ -1,24 +1,13 @@
 ---
 import ModalMenu from "@/components/shared/Menu.astro";
 import LogoImage from "@/assets/LogoImage.astro";
-import ProfileMenu from "./ProfileMenu.astro";
-const { isLoggedIn } = Astro.locals;
 ---
 
 <nav class="px-5 lg:px-0 py-5 flex justify-between items-center z-10 mx-auto max-w-7xl w-full">
   <a aria-label="main-logo-nav" href="/" class="w-40 dark:text-white text-neutral-900">
     <LogoImage />
   </a>
-  <section class="flex gap-x-3 items-center justify-between h-full">
+  <section class="flex gap-x-1 items-center justify-between h-full">
     <ModalMenu />
-    <!-- WIP Show when user signed out -->
-    <div class="max-sm:hidden lg:block">
-      <a href="/ingreso" class="special-nav-link nav-button md:transition-colors md:duration-100 sm:animate-none">
-        Membresía
-      </a>
-    </div>
-    {isLoggedIn && (
-      <ProfileMenu />
-    )}
   </section>
 </nav>

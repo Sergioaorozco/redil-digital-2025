@@ -43,12 +43,10 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  /* 2. Standardize text height */
   line-height: 1;
   font-weight: 600;
   border-radius: 5rem;
-  padding-inline: 1rem;
+  padding-inline: 0.5rem;
   padding-block: 0.8rem;
   @apply bg-transparent hover:bg-card;
 }

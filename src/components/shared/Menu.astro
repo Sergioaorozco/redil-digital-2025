@@ -2,11 +2,24 @@
 import LogoImage from "@/assets/LogoImage.astro";
 import { Image } from "astro:assets";
 import Iglesia2025 from "@/images/iglesia/iglesia-academia-2025-2.webp"
+import ProfileMenu from "./ProfileMenu.astro";
+const { isLoggedIn } = Astro.locals;
 ---
 
 <button id="modalMenuButton" class="nav-button transition-all duration-200 special-nav-link"
   >Menú</button
 >
+<!-- WIP Show when user signed out -->
+<div class="max-sm:hidden lg:block">
+  <a href="/ingreso" class="special-nav-link nav-button md:transition-colors md:duration-100 sm:animate-none">
+    Membresía
+  </a>
+</div>
+{isLoggedIn && (
+  <ProfileMenu />
+)}
+
+<!-- SideBar Menu Section -->
 <section
   id="modalMenu"
   class="hidden will-change-auto z-20 min-w-full h-dvh bg-gradient-to-b from-blue-50 to-blue-200 dark:from-neutral-950 dark:to-neutral-700 fixed top-0 right-0 left-0 bottom-0"
