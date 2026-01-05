@@ -34,11 +34,11 @@ const slugProfile = isLoggedIn ? getInitials(userInfo?.userName, userInfo?.userE
         </button>
         <ul id="profile-dropdown" class="absolute w-80 z-20 shadow-2xl shadow-neutral-500 dark:shadow-neutral-900 profile-dropdown-container overflow-hidden bg-white dark:bg-neutral-800 text-neutral-800 dark:text-white text-lg rounded-lg right-0 mt-2 text-left">
           <li class="menu-profile-title cursor-auto flex gap-x-2 items-center">
-            <span class="rounded-full p-1 aspect-square size-12 bg-card text-accent-foreground flex items-center justify-center">{slugProfile}</span>
-            { userInfo?.userName ?? userInfo?.userEmail }
+            <span class="rounded-full p-2 min-w-10 aspect-square bg-card text-accent-foreground flex items-center justify-center font-bold text-sm">{slugProfile}</span>
+            <span class="mb-1">{ userInfo?.userName ?? userInfo?.userEmail }</span>
           </li>
           <li class="menu-profile-item">Actualizar Perfil</li>
-          <li id="logout-button" class="menu-profile-item flex items-center gap-x-2"><LogOutIcon size={16} /> Cerrar Sesión</li>
+          <li id="logout-button" class="menu-profile-item">Cerrar Sesión</li>
         </ul>
 
         {/* Menu Section */}

@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import Iglesia2025 from "@/images/iglesia/iglesia-academia-2025-2.webp"
 ---
 
-<button id="modalMenuButton" class="nav-button transition-all duration-200"
+<button id="modalMenuButton" class="nav-button transition-all duration-200 special-nav-link"
   >Menú</button
 >
 <section
@@ -28,10 +28,10 @@ import Iglesia2025 from "@/images/iglesia/iglesia-academia-2025-2.webp"
         >Cerrar</button
       >
       <ul class="menu-list flex flex-col items-start">
-        <li><a href="/" referrerpolicy="no-referrer">Inicio</a></li>
-        <li><a href="/iglesia" referrerpolicy="no-referrer">Nuestra Iglesia</a></li>
-        <li><a href="/ministerios" referrerpolicy="no-referrer">Ministerios</a></li>
-        <li><a href="/miembros" referrerpolicy="no-referrer">Miembros</a></li>
+        <li class="special-nav-link"><a href="/" referrerpolicy="no-referrer">Inicio</a></li>
+        <li class="special-nav-link"><a href="/iglesia" referrerpolicy="no-referrer">Nuestra Iglesia</a></li>
+        <li class="special-nav-link"><a href="/ministerios" referrerpolicy="no-referrer">Ministerios</a></li>
+        <li class="special-nav-link"><a href="/miembros" referrerpolicy="no-referrer">Miembros</a></li>
       </ul>
     </div>
     <select class="absolute bottom-10 text-neutral-800 dark:text-white rounded-xl py-3 px-4 w-fit bg-blue-300 dark:bg-neutral-600" name="lang-select" id="lang-select">

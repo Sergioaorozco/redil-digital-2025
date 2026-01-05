@@ -73,8 +73,8 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
         class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
       >
         <article class="md:col-span-2">
-          <p class="px-3 py-2 flex gap-2 items-center rounded-md bg-amber-50 shadow border-l-4 inset-0 border border-amber-300 mb-2 font-bold text-black text-xs md:text-sm text-balance text-start">
-            <i class="inline-block rounded-full p-1 bg-amber-300"><PlayVideoIcon /></i> Última Predicación: {title}</p>
+          <p class="px-3 py-2 flex gap-2 items-center rounded-md bg-amber-50 shadow border-l-4 inset-0 border border-amber-300 mb-2 font-semibold text-black text-xs md:text-sm text-balance text-start">
+            <i class="inline-block rounded-full p-1 bg-amber-300 font-medium"><PlayVideoIcon /></i> Última Predicación: {title}</p>
           <div class="overflow-clip rounded-2xl shadow-lg">
             <lite-youtube videoid={videoId} autoload posterquality="maxresdefault" params="rel=0&enablejsapi=1"></lite-youtube>
           </div>
@@ -82,11 +82,11 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
         <!-- Bienvenidos -->
         <div class="r-well flex flex-col justify-center md:justify-around gap-6 h-full relative">
           <span class="">
-            <p
+            <h1
               class="text-4xl md:text-5xl font-bold mb-3 text-blue-700 dark:text-amber-300"
             >
               Bienvenido al Redil Laureles
-            </p>
+          </h1>
             <p class="md:text-lg">
               Damos gracias a Dios por tu visita. Esperamos que este espacio sea
               de mucha bendición para tu vida. Te invitamos a conocer quiénes

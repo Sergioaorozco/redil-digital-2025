@@ -1,5 +1,5 @@
 ---
-import ModalMenu from "@/components/Menu.astro";
+import ModalMenu from "@/components/shared/Menu.astro";
 import LogoImage from "@/assets/LogoImage.astro";
 import ProfileMenu from "./ProfileMenu.astro";
 const { isLoggedIn } = Astro.locals;
@@ -13,7 +13,7 @@ const { isLoggedIn } = Astro.locals;
     <ModalMenu />
     <!-- WIP Show when user signed out -->
     <div class="max-sm:hidden lg:block">
-      <a href="/ingreso" class="nav-button md:transition-colors md:duration-100 sm:animate-none">
+      <a href="/ingreso" class="special-nav-link nav-button md:transition-colors md:duration-100 sm:animate-none">
         Membresía
       </a>
     </div>
