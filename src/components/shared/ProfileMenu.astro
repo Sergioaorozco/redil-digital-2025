@@ -1,7 +1,6 @@
 ---
 import CircleUserRound from "@/assets/CircleUserRound.astro";
 const { userInfo, isLoggedIn } = Astro.locals;
-import { LogOutIcon } from "lucide-react";
 
 const getInitials = (name: UserData['userName'], email: UserData['userEmail'] = 'test@redil.com') => {
   if(name) {
@@ -28,7 +27,7 @@ const slugProfile = isLoggedIn ? getInitials(userInfo?.userName, userInfo?.userE
         <button
           id="profile-button"
           aria-label="profile-config-button"
-          class="bg-blue-200 p-2 rounded-full text-blue-800 hover:bg-blue-300 transition-colors duration-200 cursor-pointer"
+          class="md:ml-3 bg-blue-200 p-2 rounded-full text-blue-800 hover:bg-blue-300 transition-colors duration-200 cursor-pointer"
         >
           <CircleUserRound />
         </button>
