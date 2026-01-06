@@ -36,7 +36,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 	</head>
 	<body>
 		<UIModalVideo client:load />
-		<div class:list={['mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32', pageTitle && 'relative pb-7 mb-3 min-h-52']}>
+		<div class:list={['mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32', pageTitle && 'relative  mb-3 md:mb-7 min-h-32 md:min-h-52']}>
 			<Nav></Nav>
 			{ pageTitle &&
 			<div class:list={["wrapper w-full h-full top-0 left-0", pageDescription && "flex flex-col justify-between min-lg:flex-row items-center"]}>
