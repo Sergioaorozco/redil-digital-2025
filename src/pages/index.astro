@@ -1,11 +1,10 @@
 ---
 import HomeLayout from "@/layouts/HomeLayout.astro";
-import { PlayIcon, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Image } from "astro:assets";
 
 import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
 import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
-import Iglesia2025 from "@/images/iglesia/miembros-2024.webp";
 import Nav from "@/components/shared/Nav.astro";
 import UIModalVideo from "@/components/ui/modalVideo";
 import PlayVideoIcon from "@/assets/PlayIcon.astro";
@@ -20,13 +19,6 @@ interface EasySection {
 }
 
 const EasySection: EasySection[] = [
-  {
-    title: "¿Cómo llegar?",
-    image: Iglesia2025,
-    alt: "Imagen Panorámica del barrio laureles",
-    link: "/preguntas",
-    icon: PlayIcon,
-  },
   {
     title: "Nuestra Iglesia",
     image: NavRedilLaureles,
