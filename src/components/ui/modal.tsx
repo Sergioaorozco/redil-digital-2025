@@ -2,18 +2,61 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { XIcon } from 'lucide-react';
 
-interface ModalProps {
-  header?: string;
-  trigger?: React.ReactNode;
-  children?: React.ReactNode;
+// ============================================
+// Sub-components (Slots)
+// ============================================
+
+interface SlotProps {
+  children: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({ header, children, trigger }) => {
+const ModalTrigger: React.FC<SlotProps> = ({ children }) => {
+  return <>{children}</>;
+};
+
+const ModalHeader: React.FC<SlotProps> = ({ children }) => {
+  return <>{children}</>;
+};
+
+const ModalContent: React.FC<SlotProps> = ({ children }) => {
+  return <>{children}</>;
+};
+
+// ============================================
+// Main Modal Component
+// ============================================
+
+interface ModalRootProps {
+  children: React.ReactNode;
+}
+
+const ModalRoot: React.FC<ModalRootProps> = ({ children }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [isAnimating, setIsAnimating] = React.useState(false);
   const [isMounted, setIsMounted] = React.useState(false);
   const modalRef = React.useRef<HTMLElement>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
+
+  // Extract children by type (named slots)
+  const slots = React.useMemo(() => {
+    let trigger: React.ReactNode = null;
+    let header: React.ReactNode = null;
+    let content: React.ReactNode = null;
+
+    React.Children.forEach(children, (child) => {
+      if (React.isValidElement(child)) {
+        if (child.type === ModalTrigger) {
+          trigger = (child.props as SlotProps).children;
+        } else if (child.type === ModalHeader) {
+          header = (child.props as SlotProps).children;
+        } else if (child.type === ModalContent) {
+          content = (child.props as SlotProps).children;
+        }
+      }
+    });
+
+    return { trigger, header, content };
+  }, [children]);
 
   const openModal = () => {
     setIsMounted(true);
@@ -130,7 +173,7 @@ export const Modal: React.FC<ModalProps> = ({ header, children, trigger }) => {
         {/* Modal Header */}
         <div className="flex justify-between items-center w-full">
           <h2 id="modal-header" className="text-lg font-bold text-white">
-            {header}
+            {slots.header}
           </h2>
           <button
             onClick={closeModal}
@@ -143,7 +186,7 @@ export const Modal: React.FC<ModalProps> = ({ header, children, trigger }) => {
 
         {/* Modal Body */}
         <div id="modal-body" className="text-neutral-300">
-          {children}
+          {slots.content}
         </div>
       </article>
 
@@ -176,7 +219,7 @@ export const Modal: React.FC<ModalProps> = ({ header, children, trigger }) => {
         tabIndex={0}
         aria-haspopup="dialog"
       >
-        {trigger}
+        {slots.trigger}
       </div>
 
       {/* Portal rendering - modal will be rendered at document.body level */}
@@ -184,3 +227,13 @@ export const Modal: React.FC<ModalProps> = ({ header, children, trigger }) => {
     </>
   );
 };
+
+// ============================================
+// Attach sub-components to main component
+// ============================================
+
+export const Modal = Object.assign(ModalRoot, {
+  Trigger: ModalTrigger,
+  Header: ModalHeader,
+  Content: ModalContent,
+});

@@ -112,32 +112,37 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
       class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mb-32 mx-auto"
     >
       <div class="h-full min-h-40 md:min-h-48 shadow-2xs">
-        <Modal client:load header="¿Cómo llegar?">
-          <div
-            slot="trigger"
-            class="group cursor-pointer rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-          >
-            <Image
-              class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover absolute"
-              src={miembros2024}
-              alt="Nuestros miembros 2024"
-            />
+        <Modal client:load>
+          <Modal.Trigger>
             <div
-              class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 bg-black/40"
+              class="group cursor-pointer rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
             >
-              <p class="font-bold text-lg">¿Cómo llegar?</p>
-              <span class="rounded-full p-2 bg-blue-600">
-                <ArrowRight />
-              </span>
+              <Image
+                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover absolute"
+                src={miembros2024}
+                alt="Nuestros miembros 2024"
+              />
+              <div
+                class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 bg-black/40"
+              >
+                <p class="font-bold text-lg">¿Cómo llegar?</p>
+                <span class="rounded-full p-2 bg-blue-600">
+                  <ArrowRight />
+                </span>
+              </div>
             </div>
-          </div>
+          </Modal.Trigger>
 
-          <div class="text-white">
-            <p>
-              Aquí puedes incluir el mapa o la dirección detallada de la
-              iglesia.
-            </p>
-          </div>
+          <Modal.Header>¿Cómo llegar?</Modal.Header>
+
+          <Modal.Content>
+            <div class="text-white">
+              <p>
+                Aquí puedes incluir el mapa o la dirección detallada de la
+                iglesia.
+              </p>
+            </div>
+          </Modal.Content>
         </Modal>
       </div>
       {
