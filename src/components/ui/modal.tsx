@@ -210,10 +210,20 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
         aria-haspopup="dialog"
         aria-expanded={isVisible}
       >
-        {trigger}
+        {slots.trigger}
       </div>
 
       {typeof document !== 'undefined' && renderModal()}
     </>
   );
 };
+
+// ============================================
+// Attach sub-components to main component
+// ============================================
+
+export const Modal = Object.assign(ModalRoot, {
+  Trigger: ModalTrigger,
+  Header: ModalHeader,
+  Content: ModalContent,
+});
