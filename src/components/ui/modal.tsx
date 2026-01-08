@@ -40,7 +40,7 @@ const useScrollLock = (isLocked: boolean) => {
 /**
  * Traps focus within modal for accessibility
  */
-const useFocusTrap = (isActive: boolean, containerRef: React.RefObject<HTMLElement>) => {
+const useFocusTrap = (isActive: boolean, containerRef: React.RefObject<HTMLElement | null>) => {
   React.useEffect(() => {
     if (!isActive || !containerRef.current) return;
 
@@ -210,20 +210,10 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
         aria-haspopup="dialog"
         aria-expanded={isVisible}
       >
-        {slots.trigger}
+        {trigger}
       </div>
 
       {typeof document !== 'undefined' && renderModal()}
     </>
   );
 };
-
-// ============================================
-// Attach sub-components to main component
-// ============================================
-
-export const Modal = Object.assign(ModalRoot, {
-  Trigger: ModalTrigger,
-  Header: ModalHeader,
-  Content: ModalContent,
-});
