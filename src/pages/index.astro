@@ -8,6 +8,7 @@ import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
 import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
 import Nav from "@/components/shared/Nav.astro";
 import PlayVideoIcon from "@/assets/PlayIcon.astro";
+import ButtonCard from "@/components/shared/ButtonCard.astro";
 
 interface EasySection {
   title: string;
@@ -18,7 +19,7 @@ interface EasySection {
   icon?: any;
 }
 
-const EasySection: EasySection[] = [
+const sections: EasySection[] = [
   {
     title: "Nuestra Iglesia",
     image: NavRedilLaureles,
@@ -111,76 +112,41 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
     <article
       class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mb-32 mx-auto"
     >
-      <div class="h-full min-h-40 md:min-h-48 shadow-2xs">
-        <Modal client:load header="¿Cómo llegar?">
-          <div
-            slot="trigger"
-            class="group cursor-pointer rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-          >
-            <Image
-              class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover absolute"
-              src={miembros2024}
-              alt="Nuestros miembros 2024"
-            />
-            <div
-              class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 bg-black/40"
-            >
-              <p class="font-bold text-lg">¿Cómo llegar?</p>
-              <span class="rounded-full p-2 bg-blue-600">
-                <ArrowRight />
-              </span>
-            </div>
-          </div>
+      <Modal client:load header="¿Cómo llegar?">
+        <div
+          slot="trigger"
+          class="cursor-pointer rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+        >
+          <ButtonCard
+            title="¿Cómo llegar?"
+            image={miembros2024}
+            alt="Nuestros miembros 2024"
+          />
+        </div>
 
-          <div class="text-white">
-            <p>
-              Aquí puedes incluir el mapa o la dirección detallada de la
-              iglesia.
-            </p>
-          </div>
-        </Modal>
-      </div>
+        <div class="text-white">
+          <p>
+            Aquí puedes incluir el mapa o la dirección detallada de la iglesia.
+          </p>
+        </div>
+      </Modal>
       {
-        EasySection.map(({ image, alt, id, title, icon: Icon, link }) => (
-          <div class="h-full min-h-40 md:min-h-48 shadow-2xs">
-            <a
-              id={id}
-              class="bg-neutral-800 bg-gr group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
-              href={link}
-            >
-              <Image
-                class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover mask-b-from-0 absolute"
-                src={image}
-                height="611"
-                decoding="async"
-                loading="eager"
-                width="916"
-                alt={alt}
-              />
-              <div class="w-full p-5 absolute flex flex-row justify-between items-center gap-4 text-responsive bg-responsive picture-background">
-                <p class="group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg">
-                  {title}
-                </p>
-                <span class="hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
-                  {Icon ? <Icon /> : <ArrowRight />}
-                </span>
-              </div>
-            </a>
-          </div>
+        sections.map(({ image, alt, id, title, icon: Icon, link }) => (
+          <ButtonCard title={title} link={link} image={image} alt={alt} />
         ))
       }
     </article>
   </section>
-</HomeLayout>
 
-<script>
-  import { isModalOpened } from "@/store";
+  <script>
+    import { isModalOpened } from "@/store";
 
-  document.addEventListener("astro:page-load", () => {
-    const modalButton = document.getElementById("modal-index");
+    document.addEventListener("astro:page-load", () => {
+      const modalButton = document.getElementById("modal-index");
 
-    modalButton?.addEventListener("click", () => {
-      isModalOpened.set(true);
+      modalButton?.addEventListener("click", () => {
+        isModalOpened.set(true);
+      });
     });
-  });
-</script>
+  </script>
+</HomeLayout>
