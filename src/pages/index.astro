@@ -10,6 +10,7 @@ import qrBancolombia from "@/images/ui/QR_redil_laureles.webp";
 
 import { Modal } from "@/components/ui/modal";
 import { Image } from "astro:assets";
+import { ArrowRight } from "lucide-react";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -128,21 +129,25 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
               <p>El Redil Iglesia Bautista</p>
               <p>NIT: 901394090-1</p>
               <hr class="my-2" />
-              <p>Bancolombia Ahorros: 34400000319</p>
+              <p class="font-semibold">Bancolombia Ahorros: 34400000319</p>
             </div>
+            <button
+              class="flex items-center justify-between cursor-pointer px-2 py-3 w-full rounded-lg bg-amber-500 hover:bg-amber-300 text-black font-bold"
+            >
+              <span>Através de Wompi</span>
+              <i class="bg-white p-1 rounded-full">
+                <ArrowRight size={20} />
+              </i>
+            </button>
+          </article>
+          <article class="w-full">
+            <p class="mb-2 font-semibold">QR Bancolombia</p>
             <Image
               width={300}
               height={300}
               src={qrBancolombia}
               alt="QR Bancolombia"
             />
-          </article>
-          <article class="w-full">
-            <p class="mb-2">Wompi</p>
-            <button
-              class="cursor-pointer px-2 py-3 w-full rounded-lg bg-amber-500 hover:bg-amber-300 text-black font-semibold"
-              >Donar con Bancolombia
-            </button>
           </article>
         </section>
       </Modal>

@@ -167,7 +167,7 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
           }}
         >
           <header className="flex justify-between gap-x-3 items-center w-full">
-            <h2 id="modal-header" className="text-lg mr-5 font-bold text-neutral-200">
+            <h2 id="modal-header" className="md:text-lg mr-5 font-bold text-neutral-200">
               {header}
             </h2>
             <button
