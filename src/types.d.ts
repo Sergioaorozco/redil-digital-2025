@@ -12,3 +12,9 @@ declare namespace App {
     videoTitle?: string;
   }
 }
+
+declare namespace astroHTML.JSX {
+  interface IntrinsicElements {
+    "lite-youtube": any;
+  }
+}

@@ -1,3 +1,4 @@
+import type { HTMLAttributeAnchorTarget } from "react";
 import type React from "react";
 
 export interface cardProps {
@@ -6,4 +7,5 @@ export interface cardProps {
   alt: string;
   link?: string;
   icon?: React.ReactNode;
+  target?: HTMLAttributeAnchorTarget
 }

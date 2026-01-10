@@ -1,7 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import { ArrowRight } from "lucide-react";
-const { title, link, image, alt, icon } = Astro.props;
+import type { cardProps } from "@/components/types/card";
+const {
+  title,
+  link,
+  image,
+  alt,
+  icon,
+  target = "self",
+} = Astro.props as cardProps;
 ---
 
 <div class="h-full w-full min-h-40 md:min-h-48 shadow-2xs">
@@ -10,7 +18,8 @@ const { title, link, image, alt, icon } = Astro.props;
       <a
         class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
         href={link}
-        target="_blank"
+        target={target}
+        referrerpolicy="no-referrer"
       >
         <Image
           class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover absolute"

@@ -53,7 +53,13 @@ const utilLinks: cardProps[] = [
     >
       {
         utilLinks.map(({ image, alt, title, link }) => (
-          <ButtonCard title={title} image={image} alt={alt} link={link} />
+          <ButtonCard
+            target="_blank"
+            title={title}
+            image={image}
+            alt={alt}
+            link={link}
+          />
         ))
       }
     </section>
