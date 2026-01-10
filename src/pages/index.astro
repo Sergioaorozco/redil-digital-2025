@@ -6,24 +6,10 @@ import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
 import Nav from "@/components/shared/Nav.astro";
 import PlayVideoIcon from "@/assets/PlayIcon.astro";
 import ButtonCard from "@/components/shared/ButtonCard.astro";
-import type { cardProps } from "@/components/types/card";
-
-const utilLinks: cardProps[] = [
-  {
-    title: "Nuestra Iglesia",
-    image: NavRedilLaureles,
-    alt: "Asistentes a la iglesia redil laureles al exterior de la sede",
-    link: "/iglesia",
-  },
-  {
-    title: "Donaciones",
-    image: RedilDonaciones,
-    alt: "Imagen alusiva a donaciones",
-    link: "/iglesia",
-  },
-];
+import qrBancolombia from "@/images/ui/QR_redil_laureles.webp";
 
 import { Modal } from "@/components/ui/modal";
+import { Image } from "astro:assets";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -81,12 +67,14 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
               bienvenido!
             </p>
           </span>
-          <span class="mt-5 md:text-lg py-3 relative">
-            <hr class="absolute top-0 left-0 right-0 w-full" />
+          <span class="mt-5 md:text-md py-3 relative">
+            <p class="font-bold text-balance">
+              Diagonal 75# # 72-108, Medellín - Colombia
+            </p>
+            <hr class="my-3" />
             <p class="font-bold text-balance">
               Domingo Celebraciones: 9AM | 11AM
             </p>
-            <p class="font-bold text-balance">Miércoles - Rebaño: 7:00 PM</p>
           </span>
         </div>
       </article>
@@ -112,11 +100,52 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
           </p>
         </div>
       </Modal>
-      {
-        utilLinks.map(({ image, alt, title, link }) => (
-          <ButtonCard title={title} link={link} image={image} alt={alt} />
-        ))
-      }
+      <ButtonCard
+        title="Nuestra Iglesia"
+        link="/iglesia"
+        image={NavRedilLaureles}
+        alt="Nuestra Iglesia"
+      />
+      <!-- Modal Donaciones -->
+      <Modal
+        client:load
+        header="¿Cómo hacer una donación - El Redil Iglesia Bautista?"
+      >
+        <div
+          slot="trigger"
+          class="cursor-pointer rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
+        >
+          <ButtonCard
+            title="Donaciones"
+            image={RedilDonaciones}
+            alt="Imagen de uvas, como simbolo del fruto de la gracia"
+          />
+        </div>
+
+        <section class="text-white flex-responsive gap-4">
+          <article class="w-full">
+            <div class="mb-2">
+              <p>El Redil Iglesia Bautista</p>
+              <p>NIT: 901394090-1</p>
+              <hr class="my-2" />
+              <p>Bancolombia Ahorros: 34400000319</p>
+            </div>
+            <Image
+              width={300}
+              height={300}
+              src={qrBancolombia}
+              alt="QR Bancolombia"
+            />
+          </article>
+          <article class="w-full">
+            <p class="mb-2">Wompi</p>
+            <button
+              class="cursor-pointer px-2 py-3 w-full rounded-lg bg-amber-500 hover:bg-amber-300 text-black font-semibold"
+              >Donar con Bancolombia
+            </button>
+          </article>
+        </section>
+      </Modal>
     </article>
   </section>
 
