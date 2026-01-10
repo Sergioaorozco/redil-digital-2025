@@ -1,38 +1,25 @@
 ---
 import HomeLayout from "@/layouts/HomeLayout.astro";
-import { ArrowRight } from "lucide-react";
-import { Image } from "astro:assets";
-
 import miembros2024 from "@/images/iglesia/miembros-2024.webp";
 import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
 import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
 import Nav from "@/components/shared/Nav.astro";
 import PlayVideoIcon from "@/assets/PlayIcon.astro";
 import ButtonCard from "@/components/shared/ButtonCard.astro";
+import type { cardProps } from "@/components/types/card";
 
-interface EasySection {
-  title: string;
-  image: any;
-  alt: string;
-  link: string;
-  id?: string;
-  icon?: any;
-}
-
-const sections: EasySection[] = [
+const utilLinks: cardProps[] = [
   {
     title: "Nuestra Iglesia",
     image: NavRedilLaureles,
     alt: "Asistentes a la iglesia redil laureles al exterior de la sede",
     link: "/iglesia",
-    icon: ArrowRight,
   },
   {
     title: "Donaciones",
     image: RedilDonaciones,
     alt: "Imagen alusiva a donaciones",
     link: "/iglesia",
-    icon: ArrowRight,
   },
 ];
 
@@ -131,7 +118,7 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
         </div>
       </Modal>
       {
-        sections.map(({ image, alt, id, title, icon: Icon, link }) => (
+        utilLinks.map(({ image, alt, title, link }) => (
           <ButtonCard title={title} link={link} image={image} alt={alt} />
         ))
       }

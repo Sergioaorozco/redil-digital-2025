@@ -1,15 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { ArrowRight } from "lucide-react";
-
-interface Props {
-  title?: string;
-  link?: string;
-  image: any;
-  alt: string | null;
-}
-
-const { title, link, image, alt } = Astro.props;
+import type { cardProps } from "@/components/types/card";
+const { title, link, image, alt, icon } = Astro.props;
 ---
 
 <div class="h-full w-full min-h-40 md:min-h-48 shadow-2xs">
@@ -33,7 +26,20 @@ const { title, link, image, alt } = Astro.props;
             {title}
           </p>
           <span class="text-white hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
-            <ArrowRight size={24} />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
           </span>
         </div>
       </a>
@@ -53,7 +59,7 @@ const { title, link, image, alt } = Astro.props;
             {title}
           </p>
           <span class="text-white hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
-            <ArrowRight size={24} />
+            {icon ?? <ArrowRight size={24} />}
           </span>
         </div>
       </div>
