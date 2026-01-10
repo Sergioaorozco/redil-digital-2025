@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { XIcon } from 'lucide-react';
 import { useStore } from '@nanostores/react';
-import { actions } from 'astro:actions';
 import { isModalOpened, isModalLoading } from '@/store';
 import { Skeleton } from "@/components/ui/skeleton"
 
-
-interface videoDetails {
-  videoId?: string | null;
-  title?: string | null;
+interface ModalVideoProps {
+  videoId?: string;
+  title?: string;
 }
 
 export const SkeletonCard: React.FC = () => {
@@ -23,14 +21,12 @@ export const SkeletonCard: React.FC = () => {
   )
 }
 
-export const UIModalVideo: React.FC = () => {
+export const UIModalVideo: React.FC<ModalVideoProps> = ({ videoId, title }) => {
   const isMounted = useStore(isModalOpened);
   const isLoading = useStore(isModalLoading);
   const closeModal = () => isModalOpened.set(false);
-  const [videoInfo, setVideoInfo] = React.useState<videoDetails>({
-    videoId: null,
-    title: null
-  });
+
+  const videoTitle = title ?? 'Última Predicación';
 
   const closeBtnRef = React.useRef<HTMLButtonElement | null>(null);
 
@@ -53,34 +49,6 @@ export const UIModalVideo: React.FC = () => {
     };
   }, [isMounted]);
 
-
-  React.useEffect(() => {
-    if(!isMounted) return;
-
-    const fetchVideo = async () => {
-      try {
-        isModalLoading.set(true);
-        const { data, error } = await actions.lastVideo();
-        if(error) {
-          throw new Error(`Error fetching video: ${error.message}`);
-        }
-
-        setVideoInfo({
-          videoId: data?.videoId,
-          title: data?.title
-        })
-
-      } catch (error) {
-        console.error('Failed to fetch the last video:', error);
-      } finally {
-        isModalLoading.set(false);
-      }
-    }
-
-    fetchVideo();
-
-  }, [isMounted])
-
   return (
     <>
       {isMounted && (
@@ -100,7 +68,7 @@ export const UIModalVideo: React.FC = () => {
               <button ref={closeBtnRef} onClick={closeModal} className="close-action cursor-behavior" aria-label="close-modal">
                 <XIcon />
               </button>
-              <h2 className="text-xs md:text-lg font-semibold">{videoInfo.title ?? 'Ultima Predicación'}</h2>
+              <h2 className="text-xs md:text-lg font-semibold">{videoTitle}</h2>
             </div>
             <div id="modal-body" className="h-full">
               <h3 id="redil-video-title" className="sr-only">Última Predicación</h3>
@@ -111,27 +79,24 @@ export const UIModalVideo: React.FC = () => {
               )}
 
               {/* Video Info Ready */}
-              {videoInfo.videoId && !isModalLoading.value && (
+              {videoId ? (
                 <iframe
                   width="100%"
-                  src={`https://www.youtube.com/embed/${videoInfo.videoId}`}
-                  title={videoInfo.title ?? 'Última Predicación'}
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title={videoTitle}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="aspect-video"
                 ></iframe>
-              )}
-
-              {/* Error State */}
-              {!videoInfo.videoId && !isModalLoading.value && (
+              ) : (
                 <div className="text-center p-10 bg-neutral-900 rounded-lg">
                   <p>No se pudo cargar el video en este momento.</p>
                   <p className="text-xs text-neutral-400 mt-2">Por favor, inténtelo de nuevo más tarde.</p>
                 </div>
               )}
             </div>
-            </article>
+          </article>
 
           <div
             id="modal-overlay"

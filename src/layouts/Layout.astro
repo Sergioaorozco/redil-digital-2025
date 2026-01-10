@@ -1,15 +1,15 @@
 ---
-import '@/styles/global.css';
-import Nav from '@/components/shared/Nav.astro';
-import Footer from '@/components/shared/Footer.astro';
-import UIModalVideo from '@/components/ui/modalVideo';
-import { ClientRouter } from "astro:transitions"; 
+import "@/styles/global.css";
+import Nav from "@/components/shared/Nav.astro";
+import Footer from "@/components/shared/Footer.astro";
+import UIModalVideo from "@/components/ui/modalVideo";
+import { ClientRouter } from "astro:transitions";
 
 const { isLoggedIn } = Astro.locals;
 
 interface Props {
-	pageTitle? : string,
-	pageDescription? : string
+	pageTitle?: string;
+	pageDescription?: string;
 }
 
 const { pageTitle, pageDescription } = Astro.props as Props;
@@ -21,31 +21,64 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="description" content="Sitio oficial del Redil Laureles">
+		<meta name="description" content="Sitio oficial del Redil Laureles" />
 		<title>El Redil Laureles {pageTitle && `- ${pageTitle}`}</title>
 		<ClientRouter />
-		<link rel="shortcut icon" href="/favicon.svg" type="image/svg">
-    <!-- og meta properties -->
-    <meta property="og:image" content="/img_meta.jpg">
-    <meta property="og:title" content="Redil Laureles - Iglesia Bautista">
-    <meta property="og:description" content="Esperamos que este espacio sea de mucha bendición para tu vida. Te invitamos a conocer quiénes somos y a explorar los recursos que tenemos para ti. ¡Siéntete bienvenido!">
-    <meta property="og:url" content="https://www.elredillaureles.org">
-    <ClientRouter />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/pdfviewer@1.1.1/dist/index.min.js"></script>
+		<link rel="shortcut icon" href="/favicon.svg" type="image/svg" />
+		<!-- og meta properties -->
+		<meta property="og:image" content="/img_meta.jpg" />
+		<meta property="og:title" content="Redil Laureles - Iglesia Bautista" />
+		<meta
+			property="og:description"
+			content="Esperamos que este espacio sea de mucha bendición para tu vida. Te invitamos a conocer quiénes somos y a explorar los recursos que tenemos para ti. ¡Siéntete bienvenido!"
+		/>
+		<meta property="og:url" content="https://www.elredillaureles.org" />
+		<ClientRouter />
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
+		></script>
+		<script src="https://cdn.jsdelivr.net/npm/pdfviewer@1.1.1/dist/index.min.js"
+		></script>
 	</head>
 	<body>
-		<UIModalVideo client:load />
-		<div class:list={['mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32', pageTitle && 'relative  mb-3 md:mb-7 min-h-32 md:min-h-52']}>
-			<Nav></Nav>
-			{ pageTitle &&
-			<div class:list={["wrapper w-full h-full top-0 left-0", pageDescription && "flex flex-col justify-between min-lg:flex-row items-center"]}>
-				<h1 class="tracking-wide text-3xl md:text-5xl text-center text-blue-700 dark:text-amber-400 font-extrabold">{pageTitle}</h1>
-				<p class:list={["min-md:w-1/2 text-blue-950 dark:text-neutral-50 text-lg", "max-md:text-center max-md:mt-5"]}>{pageDescription}</p>
-			</div>
+		<UIModalVideo
+			videoId={Astro.locals.videoId}
+			title={Astro.locals.videoTitle}
+			client:load
+		/>
+		<div
+			class:list={[
+				"mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32",
+				pageTitle && "relative  mb-3 md:mb-7 min-h-32 md:min-h-52",
+			]}
+		>
+			<Nav />
+			{
+				pageTitle && (
+					<div
+						class:list={[
+							"wrapper w-full h-full top-0 left-0",
+							pageDescription &&
+								"flex flex-col justify-between min-lg:flex-row items-center",
+						]}
+					>
+						<h1 class="tracking-wide text-3xl md:text-5xl text-center text-blue-700 dark:text-amber-400 font-extrabold">
+							{pageTitle}
+						</h1>
+						<p
+							class:list={[
+								"min-md:w-1/2 text-blue-950 dark:text-neutral-50 text-lg",
+								"max-md:text-center max-md:mt-5",
+							]}
+						>
+							{pageDescription}
+						</p>
+					</div>
+				)
 			}
 		</div>
-		<main class:list={[!isLoggedIn && 'pb-32']}>
+		<main class:list={[!isLoggedIn && "pb-32"]}>
 			<slot />
 		</main>
 		<Footer />

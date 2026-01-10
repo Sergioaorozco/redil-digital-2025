@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { ArrowRight } from "lucide-react";
-import type { cardProps } from "@/components/types/card";
 const { title, link, image, alt, icon } = Astro.props;
 ---
 
@@ -11,6 +10,7 @@ const { title, link, image, alt, icon } = Astro.props;
       <a
         class="bg-neutral-800 group cursor-behavior rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
         href={link}
+        target="_blank"
       >
         <Image
           class="dark:group-hover:brightness-50 group-hover:scale-105 transition-all duration-300 w-full h-full object-cover absolute"
@@ -20,26 +20,13 @@ const { title, link, image, alt, icon } = Astro.props;
           alt={alt ?? ""}
         />
         {/* <!-- Gradient overlay for text readability --> */}
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
         <div class="w-full p-5 relative flex flex-row justify-between items-center gap-4">
           <p class="text-white group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg">
             {title}
           </p>
-          <span class="text-white hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
+          <span class="text-black hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-200 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-amber-300 transition-all duration-200">
+            {icon ?? <ArrowRight size={24} />}
           </span>
         </div>
       </a>
@@ -58,7 +45,7 @@ const { title, link, image, alt, icon } = Astro.props;
           <p class="text-white group-hover:block ease-in-out transition-all duration-150 font-bold min-md:text-2xl text-lg">
             {title}
           </p>
-          <span class="text-white hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-600 group-hover:bg-blue-600 dark:group-hover:bg-amber-300 transition-all duration-200">
+          <span class="text-black hover-icon dark:group-hover:text-neutral-800 rounded-full p-2 text-xl bg-zinc-200 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-amber-300 transition-all duration-200">
             {icon ?? <ArrowRight size={24} />}
           </span>
         </div>

@@ -1,14 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { ArrowRight } from "lucide-react";
 import ContractIcon from "@/assets/ContractIcon.astro";
 import CrossIcon from "@/assets/CrossIcon.astro";
 import { Image } from "astro:assets";
 
 // Images
-import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
-import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
-import Iglesia2025 from "@/images/iglesia/miembros-2024.webp";
+import ConfesionFe from "@/images/ui/linkButtons_fe.webp";
+import Principios from "@/images/ui/linkButtons_principios.webp";
+import Valoramos from "@/images/ui/linkButtons_valor.webp";
 
 import PastorEduardo from "@/images/iglesia/EDUARDO.webp";
 import PastorParmenio from "@/images/iglesia/PARME.webp";
@@ -20,19 +19,19 @@ import type { cardProps } from "@/components/types/card";
 const utilLinks: cardProps[] = [
   {
     title: "Confesión de Fe",
-    image: Iglesia2025,
+    image: ConfesionFe,
     alt: "Imagen del documento Confesión de Fe",
     link: "https://drive.google.com/file/d/1PsSIH1ixwti6Ix_zteCwB7WdPDf7ulqO/view?usp=sharing",
   },
   {
     title: "Nuestros Principios",
-    image: NavRedilLaureles,
+    image: Principios,
     alt: "Imagen del documento Nuestros Principios",
     link: "https://drive.google.com/file/d/1AJi0h21EzAMjXlxQhWsumSXP4cL2-TRt/view?usp=share_link",
   },
   {
     title: "¿Qué valoramos?",
-    image: RedilDonaciones,
+    image: Valoramos,
     alt: "Imagen del Documento ¿Qué valoramos?",
     link: "https://drive.google.com/file/d/1-l2aR8ls92op0SZWRsuxgc98--1Nca2C/view?usp=sharing",
   },

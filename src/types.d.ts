@@ -8,5 +8,7 @@ declare namespace App {
   interface Locals {
     isLoggedIn: boolean;
     userInfo?: UserData | null;
+    videoId?: string;
+    videoTitle?: string;
   }
 }

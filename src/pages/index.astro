@@ -23,18 +23,11 @@ const utilLinks: cardProps[] = [
   },
 ];
 
-import { actions } from "astro:actions";
 import { Modal } from "@/components/ui/modal";
 
-const { data, error } = await Astro.callAction(actions.lastVideo, {});
-
-// 2. Handle the error or provide fallbacks
-if (error) {
-  console.error("Action failed:", error.message);
-}
-
-const videoId = data?.videoId ?? "d0HIs_vBf30";
-const title = data?.title ?? "Bienvenidos al Redil Laureles";
+// Video data globally fetched in middleware
+const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
+const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
 ---
 
 <HomeLayout>
@@ -66,7 +59,9 @@ const title = data?.title ?? "Bienvenidos al Redil Laureles";
               videoid={videoId}
               autoload
               posterquality="maxresdefault"
-              params="rel=0&enablejsapi=1"></lite-youtube>
+              params="rel=0&enablejsapi=1"
+            >
+            </lite-youtube>
           </div>
         </article>
         <!-- Bienvenidos -->

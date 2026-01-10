@@ -5,12 +5,7 @@ import { XIcon } from 'lucide-react';
 // ============================================
 // Types
 // ============================================
-
-interface ModalProps {
-  header?: string;
-  trigger?: React.ReactNode;
-  children?: React.ReactNode;
-}
+import type { ModalProps } from '@/components/types/modal';
 
 // ============================================
 // Custom Hooks
@@ -164,7 +159,7 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
         {/* Modal Content */}
         <article
           id="modal-content"
-          className="relative w-full max-w-2xl bg-neutral-900 border border-neutral-800 p-6 rounded-xl z-[110] flex flex-col gap-6 shadow-2xl"
+          className="relative w-full max-w-2xl p-6 rounded-xl z-[110] flex flex-col gap-6 shadow-2xl"
           style={{
             transition: 'transform 200ms ease-out, opacity 200ms ease-out',
             transform: isAnimating ? 'scale(1)' : 'scale(0.95)',

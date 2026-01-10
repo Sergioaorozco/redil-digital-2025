@@ -1,12 +1,16 @@
 ---
 import PlayIcon from "@/assets/PlayIcon.astro";
-import { MessageCircleQuestionIcon as ChatIcon } from 'lucide-react';
+import { MessageCircleQuestionIcon as ChatIcon } from "lucide-react";
+import { Modal } from "../ui/modal";
 
-const encodedText = 'Dios los bendiga, tengo una pregunta'
+const encodedText = "Dios los bendiga, tengo una pregunta";
 
+const { videoId, videoTitle } = Astro.locals;
 ---
 
-<footer class="w-full fixed bottom-0 pointer-events-none pb-5 bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent text-responsive">
+<footer
+  class="w-full fixed bottom-0 pointer-events-none pb-5 bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent text-responsive"
+>
   <div class="px-5 pointer-events-auto">
     <section
       class="w-full flex flex-col min-md:flex-row r-well !bg-accent/30 backdrop-blur-md rounded-lg justify-center min-md:justify-between items-center gap-3 r-well"
@@ -14,15 +18,30 @@ const encodedText = 'Dios los bendiga, tengo una pregunta'
       <article
         class="flex flex-col items-center min-md:items-start gap-1 last-preech-link"
       >
-        <button
-          type="button"
-          id="modal-footer"
-          class="link-schema cursor-behavior uppercase tracking-wide font-semibold text-xs min-md:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all dark:text-amber-300!"
+        <Modal videoId={videoId} client:load header="Ultima celebración">
+          <div slot="trigger">
+            <button
+              type="button"
+              id="modal-footer"
+              class="link-schema cursor-behavior uppercase tracking-wide font-semibold text-xs min-md:text-sm text-pretty flex flex-row items-center gap-x-2 animate-pulse duration-300 transition-all dark:text-amber-300!"
+            >
+              <PlayIcon />
+              <span>Última celebración: {videoTitle ?? "Cargando..."}</span>
+            </button>
+          </div>
+          <div class="overflow-clip rounded-lg inset-1">
+            <lite-youtube
+              videoid={videoId}
+              autoload
+              posterquality="maxresdefault"
+              params="rel=0&enablejsapi=1"
+            >
+            </lite-youtube>
+          </div>
+        </Modal>
+        <p
+          class="tracking-wide font-semibold text-xs lg:text-lg text-neutral-800 dark:text-neutral-200"
         >
-          <PlayIcon />
-          <span>Última celebración</span>
-        </button>
-        <p class="tracking-wide font-semibold text-xs lg:text-lg text-neutral-800 dark:text-neutral-200">
           Celebraciones Dominicales: 9AM | 11AM
         </p>
       </article>
@@ -32,20 +51,7 @@ const encodedText = 'Dios los bendiga, tengo una pregunta'
         class="hidden min-md:block dark:text-amber-300! dark:hover:text-amber-200! link-schema cursor-behavior"
       >
         <ChatIcon size={36} />
-    </a>
+      </a>
     </section>
   </div>
 </footer>
-
-<script>
-  import { isModalOpened } from "@/store";
-  document.addEventListener("astro:page-load", () => {
-    const modalButton = document.getElementById('modal-footer');
-
-    modalButton?.addEventListener("click", () => {
-      isModalOpened.set(true);
-    });
-  })
-
-
-</script>
