@@ -109,8 +109,10 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
           <!-- Video Como llegar -->
           <div class="w-full flex flex-col gap-3">
             <p class="font-bold text-lg">Vídeo sobre cómo llegar</p>
-            
-            <div class="aspect-video w-full overflow-hidden rounded-lg shadow-sm">
+
+            <div
+              class="aspect-video w-full overflow-hidden rounded-lg shadow-sm"
+            >
               <lite-youtube
                 videoid="d0HIs_vBf30"
                 autoload
@@ -120,23 +122,27 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
               </lite-youtube>
             </div>
 
-            <div class="h-40 overflow-y-auto pr-2 custom-scrollbar">
+            <div
+              class="h-auto md:h-40 md:overflow-y-auto pr-2 custom-scrollbar"
+            >
               <p class="text-neutral-500 text-sm leading-relaxed text-pretty">
-                ¿Vas de camino al Redil Laureles? Llegar es muy sencillo. Nos encontramos en 
-                el corazón de una de las zonas más tradicionales de Medellín, muy cerca de 
-                la Avenida Nutibara y la Parroquia de Santa Teresita. 
+                ¿Vas de camino al Redil Laureles? Llegar es muy sencillo. Nos
+                encontramos en el corazón de una de las zonas más tradicionales
+                de Medellín, muy cerca de la Avenida Nutibara y la Parroquia de
+                Santa Teresita.
                 <br /><br />
-                Si te orientas por los parques, estamos a solo unas cuadras del Segundo Parque 
-                de Laureles. Si vienes en Metro, la estación más cercana es Estadio. Desde 
-                allí, puedes tomar un bus de la ruta 191 o 193, o un corto trayecto en taxi.
+                Si te orientas por los parques, estamos a solo unas cuadras del Segundo
+                Parque de Laureles. Si vienes en Metro, la estación más cercana es
+                Estadio. Desde allí, puedes tomar un bus de la ruta 191 o 193, o un
+                corto trayecto en taxi.
                 <br /><br />
-                Si prefieres el bus, cualquier ruta que transite por la Avenida Nutibara o 
-                la calle 33 te dejará a pocos minutos caminando. Para quienes vienen en 
-                vehículo particular, pueden subir por la Avenida 33 y girar hacia el sector 
-                de la carrera 76.
+                Si prefieres el bus, cualquier ruta que transite por la Avenida Nutibara
+                o la calle 33 te dejará a pocos minutos caminando. Para quienes vienen
+                en vehículo particular, pueden subir por la Avenida 33 y girar hacia
+                el sector de la carrera 76.
                 <br /><br />
-                ¡Es un sector muy central y fácil de encontrar! Te esperamos con los brazos 
-                abiertos en el Redil Laureles.
+                ¡Es un sector muy central y fácil de encontrar! Te esperamos con los
+                brazos abiertos en el Redil Laureles.
               </p>
             </div>
           </div>
@@ -144,10 +150,14 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
           <div class="w-full flex flex-col gap-3">
             <div class="flex flex-col">
               <p class="font-bold text-lg">Nuestra Ubicación</p>
-              <p class="text-sm text-neutral-500">Diagonal 75 # 72-108, Medellín - Colombia</p>
+              <p class="text-sm text-neutral-500">
+                Diagonal 75 # 72-108, Medellín - Colombia
+              </p>
             </div>
-            <div class="h-[300px] md:h-full w-full rounded-lg overflow-hidden relative shadow-sm border border-neutral-200 dark:border-neutral-800">
-               <RedilMap client:load />
+            <div
+              class="h-[300px] md:h-full w-full rounded-lg overflow-hidden relative shadow-sm border border-neutral-200 dark:border-neutral-800"
+            >
+              <RedilMap client:load />
             </div>
           </div>
         </div>
