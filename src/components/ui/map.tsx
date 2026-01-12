@@ -36,9 +36,47 @@ function useMap() {
   return context;
 }
 
-const defaultStyles = {
-  dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
-  light: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+const defaultStyles: { dark: MapLibreGL.StyleSpecification; light: MapLibreGL.StyleSpecification } = {
+  dark: {
+    version: 8,
+    sources: {
+      "carto-dark": {
+        type: "raster",
+        tiles: ["https://basemaps.cartocdn.com/raster/dark_all/{z}/{x}/{y}.png"],
+        tileSize: 256,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      },
+    },
+    layers: [
+      {
+        id: "carto-dark-layer",
+        type: "raster",
+        source: "carto-dark",
+        minzoom: 0,
+        maxzoom: 22,
+      },
+    ],
+  },
+  light: {
+    version: 8,
+    sources: {
+      "carto-light": {
+        type: "raster",
+        tiles: ["https://basemaps.cartocdn.com/raster/light_all/{z}/{x}/{y}.png"],
+        tileSize: 256,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      },
+    },
+    layers: [
+      {
+        id: "carto-light-layer",
+        type: "raster",
+        source: "carto-light",
+        minzoom: 0,
+        maxzoom: 22,
+      },
+    ],
+  },
 };
 
 type MapStyleOption = string | MapLibreGL.StyleSpecification;
