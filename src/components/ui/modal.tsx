@@ -159,7 +159,7 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
         {/* Modal Content */}
         <article
           id="modal-content"
-          className="relative w-full max-w-3xl bg-neutral-950 p-6 rounded-xl z-[110] flex flex-col gap-6 shadow-2xl"
+          className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar bg-neutral-950 p-6 rounded-xl z-[110] flex flex-col gap-6 shadow-2xl"
           style={{
             transition: 'transform 200ms ease-out, opacity 200ms ease-out',
             transform: isAnimating ? 'scale(1)' : 'scale(0.95)',

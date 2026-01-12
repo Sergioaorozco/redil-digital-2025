@@ -18,7 +18,7 @@ const locations = [
 
 export default function RedilMap() {
   return (
-    <div className="h-[450px] w-full rounded-lg overflow-hidden">
+    <div className="h-full w-full rounded-lg overflow-hidden">
       <Map center={[-75.5961691028774, 6.240277472394894]} zoom={17}>
         <MapControls
           position="bottom-right"
