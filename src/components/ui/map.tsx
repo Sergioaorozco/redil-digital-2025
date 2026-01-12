@@ -42,7 +42,12 @@ const defaultStyles: { dark: MapLibreGL.StyleSpecification; light: MapLibreGL.St
     sources: {
       "carto-dark": {
         type: "raster",
-        tiles: ["https://basemaps.cartocdn.com/raster/dark_all/{z}/{x}/{y}.png"],
+        tiles: [
+          "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+          "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+          "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+          "https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+        ],
         tileSize: 256,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
       },
@@ -53,7 +58,7 @@ const defaultStyles: { dark: MapLibreGL.StyleSpecification; light: MapLibreGL.St
         type: "raster",
         source: "carto-dark",
         minzoom: 0,
-        maxzoom: 22,
+        maxzoom: 20,
       },
     ],
   },
@@ -62,7 +67,12 @@ const defaultStyles: { dark: MapLibreGL.StyleSpecification; light: MapLibreGL.St
     sources: {
       "carto-light": {
         type: "raster",
-        tiles: ["https://basemaps.cartocdn.com/raster/light_all/{z}/{x}/{y}.png"],
+        tiles: [
+          "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+          "https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+          "https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+          "https://d.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+        ],
         tileSize: 256,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
       },
@@ -73,7 +83,7 @@ const defaultStyles: { dark: MapLibreGL.StyleSpecification; light: MapLibreGL.St
         type: "raster",
         source: "carto-light",
         minzoom: 0,
-        maxzoom: 22,
+        maxzoom: 20,
       },
     ],
   },

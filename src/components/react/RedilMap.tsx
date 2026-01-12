@@ -3,9 +3,9 @@ import { Map, MapControls, MapMarker, MapPopup } from "@/components/ui/map";
 const locations = [
   {
     id: 1,
-    name: "Bomba los Almendros",
-    lng: -75.59638152299985,
-    lat: 6.2387899130411215
+    name: "Redil Laureles",
+    lng: -75.5961691028774,
+    lat: 6.240277472394894
   },
   {
     id: 2,
