@@ -91,9 +91,7 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   --color-primary-title: var(--primary-title);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
-
   --color-sidebar: var(--sidebar);
-
 }
 
 :root {
@@ -119,8 +117,6 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(88.2% 0.059 254.128);
   --chart-2: oklch(27.557% 0.10544 258.737);
-
-
   --sidebar: oklch(0.985 0 0);
 
 }
