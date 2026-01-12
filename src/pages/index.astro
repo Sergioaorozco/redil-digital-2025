@@ -1,16 +1,20 @@
 ---
+// Astro
 import HomeLayout from "@/layouts/HomeLayout.astro";
+import { Image } from "astro:assets";
+// Images
 import miembros2024 from "@/images/iglesia/miembros-2024.webp";
 import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
 import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
+import qrBancolombia from "@/images/ui/QR_redil_laureles.webp";
+// Components
 import Nav from "@/components/shared/Nav.astro";
 import PlayVideoIcon from "@/assets/PlayIcon.astro";
 import ButtonCard from "@/components/shared/ButtonCard.astro";
-import qrBancolombia from "@/images/ui/QR_redil_laureles.webp";
-
 import { Modal } from "@/components/ui/modal";
-import { Image } from "astro:assets";
+
 import { ArrowRight } from "lucide-react";
+import RedilMap from "@/components/react/RedilMap";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -101,10 +105,8 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
           />
         </div>
 
-        <div class="text-white">
-          <p>
-            Aquí puedes incluir el mapa o la dirección detallada de la iglesia.
-          </p>
+        <div>
+          <RedilMap />
         </div>
       </Modal>
       <ButtonCard
