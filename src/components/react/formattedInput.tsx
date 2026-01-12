@@ -1,9 +1,7 @@
-'use-client';
-
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
-import { Button } from "./button";
-import { Input } from "./input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 interface PasswordInputProps {
@@ -15,11 +13,11 @@ interface PasswordInputProps {
   required?: boolean;
 }
 
-const formattedInput = ({type = 'text', placeholder, autoComplete, name, id, required = false}: PasswordInputProps) => {
+const formattedInput = ({ type = 'text', placeholder, autoComplete, name, id, required = false }: PasswordInputProps) => {
   const [isEyeVisible, setIsEyeVisible] = useState(false);
 
-  const inputType = type === 'password' 
-    ? (isEyeVisible ? 'text' : 'password') 
+  const inputType = type === 'password'
+    ? (isEyeVisible ? 'text' : 'password')
     : type;
 
   return (
