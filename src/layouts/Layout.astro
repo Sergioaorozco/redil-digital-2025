@@ -2,7 +2,6 @@
 import "@/styles/global.css";
 import Nav from "@/components/shared/Nav.astro";
 import Footer from "@/components/shared/Footer.astro";
-import UIModalVideo from "@/components/ui/modalVideo";
 import { ClientRouter } from "astro:transitions";
 
 const { isLoggedIn } = Astro.locals;
@@ -42,11 +41,6 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		></script>
 	</head>
 	<body>
-		<UIModalVideo
-			videoId={Astro.locals.videoId}
-			title={Astro.locals.videoTitle}
-			client:load
-		/>
 		<div
 			class:list={[
 				"mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32",
