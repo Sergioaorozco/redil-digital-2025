@@ -2,51 +2,65 @@
 import CircleUserRound from "@/assets/CircleUserRound.astro";
 const { userInfo, isLoggedIn } = Astro.locals;
 
-const getInitials = (name: UserData['userName'], email: UserData['userEmail'] = 'test@redil.com') => {
-  if(name) {
+const getInitials = (
+  name: UserData["userName"],
+  email: UserData["userEmail"] = "test@redil.com",
+) => {
+  if (name) {
     return name
-    .split(" ")
-    .map(n => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0,2)
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
   }
 
   // Fallback to email if name is missing
-  return email?.slice(0,2).toUpperCase();
-}
+  return email?.slice(0, 2).toUpperCase();
+};
 
-const slugProfile = isLoggedIn ? getInitials(userInfo?.userName, userInfo?.userEmail) : ""
-
+const slugProfile = isLoggedIn
+  ? getInitials(userInfo?.userName, userInfo?.userEmail)
+  : "";
 ---
-  <!-- WIP Show profile when user signed in -->
-  {
-    isLoggedIn && (
-      <profile-menu class="relative">
-        {/* Profile Icon */}
-        <button
-          id="profile-button"
-          aria-label="profile-config-button"
-          class="md:ml-3 bg-blue-200 p-2 rounded-full text-blue-800 hover:bg-blue-300 transition-colors duration-200 cursor-pointer"
-        >
-          <CircleUserRound />
-        </button>
-        <ul id="profile-dropdown" class="absolute w-80 z-20 shadow-2xl shadow-neutral-500 dark:shadow-neutral-900 profile-dropdown-container overflow-hidden bg-white dark:bg-neutral-800 text-neutral-800 dark:text-white text-lg rounded-lg right-0 mt-2 text-left">
-          <li class="menu-profile-title cursor-auto flex gap-x-2 items-center">
-            <span class="rounded-full p-2 min-w-10 aspect-square bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">{slugProfile}</span>
-            <span class="mb-1">{ userInfo?.userName ?? userInfo?.userEmail }</span>
-          </li>
-          <li class="menu-profile-item">Actualizar Perfil</li>
-          <li id="logout-button" class="menu-profile-item">Cerrar Sesión</li>
-        </ul>
 
-        {/* Menu Section */}
-        <section id="profile-mask" class="py-6 w-full min-h-screen fixed inset-0 px-4 top-20 right-0 bg-gradient-to-b from-transparent to-neutral-100/25 dark:to-neutral-800/20">
+<!-- WIP Show profile when user signed in -->{
+  isLoggedIn && (
+    <profile-menu class="relative">
+      {/* Profile Icon */}
+      <button
+        id="profile-button"
+        aria-label="profile-config-button"
+        class="md:ml-3 bg-chart-1 p-2 rounded-full text-chart-2 dark:text-black hover:brightness-90 transition-colors duration-200 cursor-pointer"
+      >
+        <CircleUserRound />
+      </button>
+      <ul
+        id="profile-dropdown"
+        class="absolute w-80 z-20 shadow-2xl shadow-blue-200 dark:shadow-neutral-950 border border-blue-200 dark:border-neutral-700 profile-dropdown-container overflow-hidden bg-white dark:bg-neutral-800 text-neutral-800 dark:text-white text-lg rounded-lg right-0 mt-2 text-left"
+      >
+        <li class="menu-profile-title cursor-auto flex gap-x-2 items-center bg-chart-1">
+          <span class="rounded-full bg-sidebar p-2 min-w-10 aspect-square text-accent-foreground flex items-center justify-center font-bold text-sm">
+            {slugProfile}
+          </span>
+          <span class="mb-1 text-chart-2">
+            {userInfo?.userName ?? userInfo?.userEmail}
+          </span>
+        </li>
+        <li class="menu-profile-item">Actualizar Perfil</li>
+        <li id="logout-button" class="menu-profile-item">
+          Cerrar Sesión
+        </li>
+      </ul>
 
-        </section>
-      </profile-menu>
-    )
-  }
+      {/* Menu Section */}
+      <section
+        id="profile-mask"
+        class="py-6 w-full min-h-screen fixed inset-0 px-4 top-20 right-0 bg-gradient-to-b from-transparent to-neutral-100/25 dark:to-neutral-800/20"
+      />
+    </profile-menu>
+  )
+}
 
 <script>
   // Adding signout action to profile button
@@ -54,61 +68,65 @@ const slugProfile = isLoggedIn ? getInitials(userInfo?.userName, userInfo?.userE
   import gsap from "gsap";
 
   class profileMenu extends HTMLElement {
-    constructor(){
+    constructor() {
       super();
-      const $profileButton = document.querySelector('#profile-button');
-      const $logoutButton = document.querySelector('#logout-button');
-      const $profileDropdown = document.querySelector('#profile-dropdown');
-      const $profileMask = document.querySelector('#profile-mask');
+      const $profileButton = document.querySelector("#profile-button");
+      const $logoutButton = document.querySelector("#logout-button");
+      const $profileDropdown = document.querySelector("#profile-dropdown");
+      const $profileMask = document.querySelector("#profile-mask");
 
-      gsap.set($profileDropdown, { autoAlpha: 0, scale: 0.8, y: -20} );
-      gsap.set($profileMask, { autoAlpha: 0});
+      gsap.set($profileDropdown, { autoAlpha: 0, scale: 0.8, y: -20 });
+      gsap.set($profileMask, { autoAlpha: 0 });
 
       // Creating a Gsap Timeline for the animation
-      const tl = gsap.timeline({ paused: true, reversed: true});
+      const tl = gsap.timeline({ paused: true, reversed: true });
 
       // Adding the animation in the profile dropdown
       tl.to($profileDropdown, {
         autoAlpha: 1,
         scale: 1,
-        y:0,
+        y: 0,
         duration: 0.2,
-        animation: "power2.out"
-      })
+        animation: "power2.out",
+      });
 
       tl.to($profileMask, {
         autoAlpha: 1,
         duration: 0.2,
-        animation: "power1.out"
-      })
+        animation: "power1.out",
+      });
 
-      $profileButton?.addEventListener('click', (event) => {
+      $profileButton?.addEventListener("click", (event) => {
         event.stopPropagation();
         tl.reversed() ? tl.play() : tl.reverse();
-      })
+      });
 
       // Clicking outside the dropdown menu to close.
-      document.addEventListener('click', function(event){
-        if(!tl.reversed()){
-          const isClickInside = $profileDropdown?.contains(event.target as Node);
-          const isClickOnButton = $profileButton?.contains(event.target as Node);
-          if(!isClickInside && !isClickOnButton) {
+      document.addEventListener("click", function (event) {
+        if (!tl.reversed()) {
+          const isClickInside = $profileDropdown?.contains(
+            event.target as Node,
+          );
+          const isClickOnButton = $profileButton?.contains(
+            event.target as Node,
+          );
+          if (!isClickInside && !isClickOnButton) {
             tl.reverse();
           }
         }
-      })
+      });
 
-      $logoutButton?.addEventListener('click', async () => {
+      $logoutButton?.addEventListener("click", async () => {
         try {
           await actions.signOutAction();
-          window.location.replace('/');
+          window.location.replace("/");
         } catch (error) {
-          console.error('Error signing out:', error);
+          console.error("Error signing out:", error);
         }
       });
     }
   }
-  customElements.define('profile-menu', profileMenu);
+  customElements.define("profile-menu", profileMenu);
 </script>
 
 <style scoped>
@@ -121,7 +139,7 @@ const slugProfile = isLoggedIn ? getInitials(userInfo?.userName, userInfo?.userE
   .menu-profile-item {
     @apply px-5 py-3 cursor-pointer dark:hover:bg-neutral-700 hover:bg-neutral-100;
     &:not(:last-child) {
-      @apply border-b border-gray-500 dark:border-gray-400;
+      @apply border-b border-blue-200 dark:border-neutral-600;
     }
   }
 </style>
