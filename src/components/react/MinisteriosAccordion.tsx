@@ -20,7 +20,7 @@ import {
 
 const mujeresImages = import.meta.glob('@/images/mujeres/*.webp', { eager: true, import: 'default', query: '?url' });
 const unidosImages = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
-const bienvenida = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
+const bienvenida = import.meta.glob('@/images/bienvenida/*.webp', { eager: true, import: 'default', query: '?url' });
 
 const getSortedImages = (globResult: Record<string, any>): string[] => {
   return Object.keys(globResult)
@@ -76,19 +76,18 @@ export default function MinisteriosAccordion() {
   const [selectedValue, setSelectedValue] = React.useState<string | undefined>(undefined);
 
   return (
-    <Accordion 
-      type="single" 
-      collapsible 
+    <Accordion
+      type="single"
+      collapsible
       className="w-full"
       value={selectedValue}
       onValueChange={setSelectedValue}
     >
       {ministeriosData.map((ministerio) => (
         <AccordionItem key={ministerio.title} value={ministerio.title}>
-          <AccordionTrigger 
-            className={`px-5 text-2xl rounded-none  ${
-              selectedValue === ministerio.title ? 'bg-blue-100 hover:bg-blue-200 dark:bg-neutral-300/40 dark:hover:bg-neutral-400 text-responsive' : 'hover:bg-neutral-200 dark:hover:bg-neutral-700'
-            }`}
+          <AccordionTrigger
+            className={`px-5 text-2xl rounded-none  ${selectedValue === ministerio.title ? 'bg-accent text-foreground' : 'hover:bg-muted-foreground'
+              }`}
           >
             {ministerio.title}
           </AccordionTrigger>
@@ -96,23 +95,23 @@ export default function MinisteriosAccordion() {
             <section className='flex flex-col justify-around md:flex-row gap-5'>
               <p className='md:text-lg w-full md:w-1/2'>{ministerio.description}</p>
               <article className='relative w-full md:w-1/2'>
-              {ministerio.images.length > 0 && (
-                <Carousel
-                  className='relative aspect-video max-h-72 md:max-h-96 w-full rounded-lg overflow-hidden object-cover'
-                  opts={{ loop: true, dragThreshold: 10 }}
-                  plugins={[Autoplay({ delay: 5000, stopOnInteraction: true})]}
-                >
-                  <CarouselContent>
-                    {ministerio.images.map((image, index) => (
-                      <CarouselItem key={index} className='flex justify-center items-center'>
-                        <img width={738} height={384} src={image} alt={`Image for ${ministerio.title}`} className='h-full object-cover object-center' />
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="absolute left-2 bg-neutral-950/55 text-white" />
-                  <CarouselNext className="absolute right-2 bg-neutral-950/55 text-white" />
-                </Carousel>
-              )}
+                {ministerio.images.length > 0 && (
+                  <Carousel
+                    className='relative aspect-video max-h-72 md:max-h-96 w-full rounded-lg overflow-hidden object-cover'
+                    opts={{ loop: true, dragThreshold: 10 }}
+                    plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+                  >
+                    <CarouselContent>
+                      {ministerio.images.map((image, index) => (
+                        <CarouselItem key={index} className='flex justify-center items-center'>
+                          <img width={738} height={384} src={image} alt={`Image for ${ministerio.title}`} className='h-full object-cover object-center' />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 bg-neutral-950/55 text-white" />
+                    <CarouselNext className="absolute right-2 bg-neutral-950/55 text-white" />
+                  </Carousel>
+                )}
               </article>
             </section>
           </AccordionContent>
