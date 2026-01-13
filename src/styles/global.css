@@ -61,10 +61,6 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   @apply duration-300 transition-all cursor-pointer;
 }
 
-.link-schema {
-  @apply text-blue-600 hover:text-blue-900 dark:text-blue-400 hover:dark:text-blue-50;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -77,6 +73,7 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-title-hover: var(--primary-title-hover);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -104,6 +101,7 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
   --primary-title: oklch(48.8% 0.243 264.376);
+  --primary-title-hover: oklch(43.5% 0.261 264.376);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -130,7 +128,8 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
     --popover: oklch(0.205 0 0);
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.922 0 0);
-    --primary-title:oklch(82.8% 0.189 84.429);
+    --primary-title: oklch(82.8% 0.189 84.429);
+    --primary-title-hover: oklch(82.8% 0.189 84.429);
     --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
