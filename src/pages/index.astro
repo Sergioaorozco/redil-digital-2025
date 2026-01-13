@@ -39,9 +39,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
       >
         <article class="md:col-span-2">
-          <Notification variant="info">
-            <p> Última Predicación: {title}</p>
-          </Notification>
+          <Notification variant="video"><p> Última Predicación: {title}</p></Notification>
           <div class="overflow-clip rounded-2xl shadow-lg">
             <lite-youtube
               videoid={videoId}
