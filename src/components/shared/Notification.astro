@@ -1,56 +1,60 @@
 ---
-import InfoIcon from "@/assets/InfoIcon.astro";
-import CloseIcon from "@/assets/CloseIcon.astro";
+import { Info, CheckCircle, AlertTriangle, XIcon } from "lucide-react";
+import PlayVideoIcon from "@/assets/PlayIcon.astro";
+
+// 1. Define strict types for better DX
+type Variant = 'info' | 'success' | 'warning' | 'error' | 'video';
 
 interface Props {
-  variant?: string
-  reference: string
+  variant?: Variant;
 }
 
-const {reference} = Astro.props;
+const { variant = 'info' } = Astro.props;
 
+// 2. Map styles - using a Record for type safety
+const styles: Record<Variant, string> = {
+  info: 'bg-blue-50 border-blue-300 text-blue-800',
+  success: 'bg-green-50 border-green-300 text-green-800',
+  warning: 'bg-amber-50 border-amber-300 text-amber-800',
+  error: 'bg-red-50 border-red-300 text-red-800',
+  video: 'bg-amber-50 border-amber-300 text-amber-800',
+};
+
+
+const iconStyles: Record<Variant, string> = {
+  info: 'bg-blue-100 text-blue-600',
+  success: 'bg-green-100 text-green-600',
+  warning: 'bg-amber-100 text-amber-600',
+  error: 'bg-red-500 text-red-950',
+  video: 'bg-amber-300 text-black',
+};
+
+// 3. Map icons
+const icons = {
+  info: Info,
+  success: CheckCircle,
+  warning: AlertTriangle,
+  error: XIcon,
+  video: PlayVideoIcon,
+};
+
+// 4. Important: Assign to a Capitalized variable for Astro to render it
+const IconComponent = icons[variant] || icons.info;
 ---
-<section class="notification-container mb-2 transition-all duration-300 ease-in-out" data-notification-reference={reference}>
-     <div class="flex items-center gap-x-2 font-semibold text-xs min-md:text-sm">
-         <InfoIcon />
-         <slot />
-     </div>
-    <button type="button" class="cursor-behavior">
-        <CloseIcon />
-    </button>
-</section>
 
-<script>
-  (() => {
-    const DISMISS_PREFIX = `dismissNotification`;
-    const $notifications = document.querySelectorAll(".notification-container");
-
-    for ( const $notification of $notifications) {
-      const $closeButton = $notification?.querySelector("button");
+<div
+  class:list={[
+    styles[variant],
+    "px-3 py-2 flex gap-2 items-center rounded-md shadow border-l-4 border mb-2",
+    "font-semibold text-black text-xs md:text-sm text-balance text-start"
+  ]}
+>
+  {/* Render the icon dynamically */}
+  <i class:list={[iconStyles[variant], "rounded-full p-1 font-medium"]}>
+    <IconComponent size={20} />
+  </i>
   
-      const notificationRef = $notification ? ( ($notification as HTMLElement).dataset.notificationReference ) : "";
-      const DISMISS_KEY = `${DISMISS_PREFIX}-${notificationRef}`;
-  
-      const isNotificationDismissed = sessionStorage.getItem(DISMISS_KEY) === "true";
-      
-      if(isNotificationDismissed) {
-        $notification?.remove();
-      };
-  
-      $closeButton?.addEventListener("click",() => {
-        $notification?.remove();
-        sessionStorage.setItem(DISMISS_KEY, "true");
-      }, { once: true});
-    }
-  })();
-</script>
-
-<style scoped>
-    @import "tailwindcss";
-
-    .notification-container {
-        @apply flex items-center justify-between rounded-md p-4;
-        @apply bg-blue-200 border border-blue-300 text-blue-900 border-l-6;
-    }
-
-</style>
+  <span>
+    <slot />
+  </span>
+</div>

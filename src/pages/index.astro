@@ -15,6 +15,7 @@ import { Modal } from "@/components/ui/modal";
 
 import { ArrowRight } from "lucide-react";
 import RedilMap from "@/components/react/RedilMap";
+import Notification from "@/components/shared/Notification.astro";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -38,13 +39,9 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
       >
         <article class="md:col-span-2">
-          <p
-            class="px-3 py-2 flex gap-2 items-center rounded-md bg-amber-50 shadow border-l-4 inset-0 border border-amber-300 mb-2 font-semibold text-black text-xs md:text-sm text-balance text-start"
-          >
-            <i class="inline-block rounded-full p-1 bg-amber-300 font-medium"
-              ><PlayVideoIcon /></i
-            > Última Predicación: {title}
-          </p>
+          <Notification variant="info">
+            <p> Última Predicación: {title}</p>
+          </Notification>
           <div class="overflow-clip rounded-2xl shadow-lg">
             <lite-youtube
               videoid={videoId}
