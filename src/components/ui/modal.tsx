@@ -159,7 +159,7 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
         {/* Modal Content */}
         <article
           id="modal-content"
-          className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar bg-neutral-950 p-6 rounded-xl z-[110] flex flex-col gap-6 shadow-2xl"
+          className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar bg-background p-6 rounded-xl z-[110] flex flex-col gap-6 shadow-2xl"
           style={{
             transition: 'transform 200ms ease-out, opacity 200ms ease-out',
             transform: isAnimating ? 'scale(1)' : 'scale(0.95)',
@@ -167,19 +167,20 @@ export const Modal: React.FC<ModalProps> = ({ header, trigger, children }) => {
           }}
         >
           <header className="flex justify-between gap-x-3 items-center w-full">
-            <h2 id="modal-header" className="md:text-lg mr-5 font-bold text-neutral-200">
+            <h2 id="modal-header" className="md:text-lg mr-5 font-bold text-foreground">
               {header}
             </h2>
             <button
               onClick={handleClose}
-              className="p-1 hover:bg-neutral-600 rounded-lg transition-colors"
+              className="p-1 hover:bg-accent cursor-pointer rounded-lg transition-colors"
+
               aria-label="Close modal"
             >
-              <XIcon className="text-white" size={24} />
+              <XIcon className="text-foreground" size={24} />
             </button>
           </header>
 
-          <div id="modal-body" className="text-neutral-300">
+          <div id="modal-body" className="text-foreground">
             {children}
           </div>
         </article>

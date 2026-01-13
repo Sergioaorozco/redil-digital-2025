@@ -39,7 +39,9 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 items-center max-w-7xl mx-auto mb-6"
       >
         <article class="md:col-span-2">
-          <Notification variant="video"><p> Última Predicación: {title}</p></Notification>
+          <Notification variant="video"
+            ><p>Última Predicación: {title}</p></Notification
+          >
           <div class="overflow-clip rounded-2xl shadow-lg">
             <lite-youtube
               videoid={videoId}
@@ -61,9 +63,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
           class="r-well flex flex-col justify-center md:justify-around gap-6 h-full relative"
         >
           <span class="">
-            <h1
-              class="text-4xl md:text-5xl font-bold mb-3 text-primary-title"
-            >
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-primary-title">
               Bienvenido al Redil Laureles
             </h1>
             <p class="md:text-lg">
@@ -77,7 +77,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
             <p class="font-bold text-balance">
               Diagonal 75# # 72-108, Medellín - Colombia
             </p>
-            <div class="my-3 border-b h-1 border-muted-foreground" />
+            <div class="my-3 border-b h-1 border-muted-foreground"></div>
             <p class="font-bold text-balance">
               Domingo Celebraciones: 9AM | 11AM
             </p>
@@ -120,7 +120,9 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
             <div
               class="h-auto md:h-40 md:overflow-y-auto pr-2 custom-scrollbar"
             >
-              <p class="text-muted-foregrounds text-sm leading-relaxed text-pretty">
+              <p
+                class="text-muted-foregrounds text-sm leading-relaxed text-pretty"
+              >
                 ¿Vas de camino al Redil Laureles? Llegar es muy sencillo. Nos
                 encontramos en el corazón de una de las zonas más tradicionales
                 de Medellín, muy cerca de la Avenida Nutibara y la Parroquia de
@@ -179,7 +181,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
           />
         </div>
 
-        <section class="text-white flex-responsive md:justify-between gap-4">
+        <section class="flex-responsive md:justify-between gap-4">
           <article class="w-full flex flex-col justify-between">
             <div>
               <span class="mb-3">
