@@ -49,7 +49,7 @@ export default function RedilMap() {
             ) : (
               <>
                 <MarkerContent>
-                  <div className="size-4 rounded-full bg-background border-2 border-white shadow-lg" />
+                  <div className="size-4 rounded-full bg-black border-2 border-white shadow-lg" />
                 </MarkerContent>
                 <MarkerTooltip>{location.name}</MarkerTooltip>
               </>
