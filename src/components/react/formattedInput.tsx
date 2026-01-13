@@ -33,7 +33,7 @@ const formattedInput = ({ type = 'text', placeholder, autoComplete, name, id, re
               type="button"
               onClick={() => setIsEyeVisible(prevState => !prevState)}
             >
-              {isEyeVisible ? <EyeIcon /> : <EyeOffIcon />}
+              {isEyeVisible ? <EyeOffIcon /> : <EyeIcon />}
             </Button>
           </>
         )}

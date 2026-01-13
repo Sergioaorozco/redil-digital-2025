@@ -72,9 +72,9 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 				)
 			}
 		</div>
-		<main class:list={[!isLoggedIn && "pb-32"]}>
+		<div class:list={"pb-32"}>
 			<slot />
-		</main>
+		</div>
 		<Footer />
 	</body>
 </html>
