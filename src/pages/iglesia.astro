@@ -16,6 +16,33 @@ import ButtonCard from "@/components/shared/ButtonCard.astro";
 // Types
 import type { cardProps } from "@/components/types/card";
 
+interface pastorProps {
+  image: ImageMetadata;
+  alt: string;
+  name: string;
+  title: string;
+  description: string;
+}
+
+const pastores: pastorProps[] = [
+  {
+    image: PastorEduardo,
+    alt: "Fotografía del Pastor Eduardo Vargas y su esposa Melissa",
+    name: "Eduardo Vargas",
+    title: "Pastor",
+    description:
+      "Teólogo y terapeuta respiratorio. Casado con Melissa desde el 2018. Papá de Esteban y David; disfruta practicar ciclomontañismo.",
+  },
+  {
+    image: PastorParmenio,
+    alt: "Fotografía del Pastor Parmenio Buitrago y su esposa Melissa",
+    name: "Parmenio Buitrago",
+    title: "Pastor",
+    description:
+      "Teólogo y productor de televisión. Casado con Claudia desde 1990; papá de Carolina y Sofía; dos pasiones me acompañan siempre: la lectura y la historia.",
+  },
+];
+
 const utilLinks: cardProps[] = [
   {
     title: "Confesión de Fe",
@@ -64,45 +91,31 @@ const utilLinks: cardProps[] = [
       }
     </section>
     <!-- Equipo Pastoral -->
-    <!-- Mision y Vision -->
     <section class="my-16">
-      <h3 class="text-2xl text-center my-5 w-full text-primary-title">
+      <h3
+        class="text-lg font-bold md:text-3xl text-center my-5 w-full text-primary-title"
+      >
         Equipo Pastoral
       </h3>
       <div class="flex gap-6 flex-col text-center md:flex-row md:text-left">
-        <article class="px-5 w-full flex flex-col items-center">
-          <Image
-            alt="Imagen del Pastor Eduardo Vargas. Ilustracion por Danny Ramos"
-            height={200}
-            width={200}
-            class="rounded-lg w-full mb-4"
-            src={PastorEduardo}
-          />
-          <h4 class="text-2xl mb-3 flex items-center gap-2">
-            Eduardo Vargas - Pastor
-          </h4>
-          <p class="text-balance text-center">
-            Teólogo y terapeuta respiratorio. Casado con Melissa desde el 2018.
-            Papá de Esteban y David; disfruta practicar ciclomontañismo.
-          </p>
-        </article>
-        <article class="px-5 w-full flex flex-col items-center">
-          <Image
-            alt="Imagen del Pastor Eduardo Vargas. Ilustracion por Danny Ramos"
-            height={200}
-            width={200}
-            class="rounded-lg w-full mb-4"
-            src={PastorParmenio}
-          />
-          <h4 class="text-2xl mb-3 flex items-center gap-2">
-            Parmenio Buitrago - Pastor
-          </h4>
-          <p class="text-balance text-center">
-            Teólogo y productor de televisión. Casado con Claudia desde 1990;
-            papá de Carolina y Sofía; dos pasiones me acompañan siempre: la
-            lectura y la historia.
-          </p>
-        </article>
+        {
+          pastores.map((pastor) => (
+            <article class="px-5 w-full flex flex-col items-center">
+              <Image
+                alt={pastor.alt}
+                height={200}
+                width={200}
+                class="rounded-lg w-full mb-4"
+                src={pastor.image}
+              />
+              <h4 class="text-2xl mb-3 flex items-center gap-2">
+                {pastor.name} -{" "}
+                <span class="text-muted-foreground">{pastor.title}</span>
+              </h4>
+              <p class="text-balance text-center">{pastor.description}</p>
+            </article>
+          ))
+        }
       </div>
     </section>
     <!-- Mision y Vision -->
