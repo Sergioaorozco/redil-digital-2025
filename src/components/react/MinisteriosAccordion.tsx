@@ -20,6 +20,7 @@ import {
 
 const mujeresImages = import.meta.glob('@/images/mujeres/*.webp', { eager: true, import: 'default', query: '?url' });
 const unidosImages = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
+const bienvenida = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
 
 const getSortedImages = (globResult: Record<string, any>): string[] => {
   return Object.keys(globResult)
@@ -34,6 +35,11 @@ type Ministerio = {
 };
 
 const ministeriosData: Ministerio[] = [
+  {
+    title: "Bienvenida",
+    description: "Buscamos juntas la provisión de Cristo y un mayor entendimiento de la Verdad, y creemos que –como mujeres– podemos hacer la diferencia solo por Su gracia en Mí. Anhelamos con gratitud que este conocimiento nos lleve a reflejar la imagen de Cristo en nuestros diferentes entornos, en el amor, la compasión y la misericordia hacia otros.",
+    images: getSortedImages(bienvenida)
+  },
   {
     title: "Su Gracia en Mi",
     description: "Buscamos juntas la provisión de Cristo y un mayor entendimiento de la Verdad, y creemos que –como mujeres– podemos hacer la diferencia solo por Su gracia en Mí. Anhelamos con gratitud que este conocimiento nos lleve a reflejar la imagen de Cristo en nuestros diferentes entornos, en el amor, la compasión y la misericordia hacia otros.",
@@ -50,7 +56,7 @@ const ministeriosData: Ministerio[] = [
     images: []
   },
   {
-    title: "Contra Corriente",
+    title: "Contra Corriente - Jóvenes",
     description: "En este ministerio los jóvenes aprenden a vivir y a disfrutar la juventud centrada en Cristo y en el evangelio. Es un espacio diferente donde los jóvenes preguntan, abren su mente y la renuevan con el objetivo de aprender a nadar contra las corrientes que todos están siguiendo hoy.",
     images: []
   },
