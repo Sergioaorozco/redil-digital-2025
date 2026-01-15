@@ -211,16 +211,4 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
       </Modal>
     </article>
   </section>
-
-  <script>
-    import { isModalOpened } from "@/store";
-
-    document.addEventListener("astro:page-load", () => {
-      const modalButton = document.getElementById("modal-index");
-
-      modalButton?.addEventListener("click", () => {
-        isModalOpened.set(true);
-      });
-    });
-  </script>
 </HomeLayout>
