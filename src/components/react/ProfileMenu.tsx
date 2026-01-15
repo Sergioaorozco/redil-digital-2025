@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { actions } from "astro:actions";
 import { UserRound } from 'lucide-react';
 
