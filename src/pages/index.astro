@@ -3,13 +3,12 @@
 import HomeLayout from "@/layouts/HomeLayout.astro";
 import { Image } from "astro:assets";
 // Images
-import miembros2024 from "@/images/iglesia/miembros-2024.webp";
+import miembros2025 from "@/images/iglesia/miembros_2025.webp";
 import NavRedilLaureles from "@/images/iglesia/nav-redil-laureles.webp";
 import RedilDonaciones from "@/images/iglesia/nav-redil-donacion.webp";
 import qrBancolombia from "@/images/ui/QR_redil_laureles.webp";
 // Components
 import Nav from "@/components/shared/Nav.astro";
-import PlayVideoIcon from "@/assets/PlayIcon.astro";
 import ButtonCard from "@/components/shared/ButtonCard.astro";
 import { Modal } from "@/components/ui/modal";
 
@@ -49,12 +48,6 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
               posterquality="maxresdefault"
               params="rel=0&enablejsapi=1"
             >
-              <Image
-                src={NavRedilLaureles}
-                alt="Nuestra Iglesia"
-                width={300}
-                height={300}
-              />
             </lite-youtube>
           </div>
         </article>
@@ -95,7 +88,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         >
           <ButtonCard
             title="¿Cómo llegar?"
-            image={miembros2024}
+            image={NavRedilLaureles}
             alt="Nuestros miembros 2024"
           />
         </div>
@@ -162,7 +155,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
       <ButtonCard
         title="Nuestra Iglesia"
         link="/iglesia"
-        image={NavRedilLaureles}
+        image={miembros2025}
         alt="Nuestra Iglesia"
       />
       <!-- Modal Donaciones -->

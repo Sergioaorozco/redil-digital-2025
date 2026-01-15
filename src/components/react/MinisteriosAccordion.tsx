@@ -22,7 +22,9 @@ const mujeresImages = import.meta.glob('@/images/mujeres/*.webp', { eager: true,
 const unidosImages = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
 const bienvenida = import.meta.glob('@/images/bienvenida/*.webp', { eager: true, import: 'default', query: '?url' });
 const refugio = import.meta.glob('@/images/refugio/*.webp', { eager: true, import: 'default', query: '?url' });
-const jovenes = import.meta.glob('@/images/jovenes/*.webp', { eager: true, import: 'default', query: '?url' })
+const jovenes = import.meta.glob('@/images/jovenes/*.webp', { eager: true, import: 'default', query: '?url' });
+const hombres = import.meta.glob('@/images/hombres/*.webp', { eager: true, import: 'default', query: '?url' });
+const junior = import.meta.glob('@/images/junior/*.webp', { eager: true, import: 'default', query: '?url' });
 
 const getSortedImages = (globResult: Record<string, any>): string[] => {
   return Object.keys(globResult)
@@ -50,12 +52,12 @@ const ministeriosData: Ministerio[] = [
   {
     title: "Compañía T",
     description: "Queremos ser una familia que vive y disfruta el Evangelio de la Gracia de Cristo mientras reflejamos su Gloria y Belleza en nuestra ciudad.",
-    images: []
+    images: getSortedImages(hombres)
   },
   {
     title: "Redil Junior",
     description: "Creemos que los más pequeños serán los portavoces de la Palabra del Señor, y continuadores de su obra en la ciudad y en el mundo en general. Somos un equipo de servidores que acompañamos a niños y niñas a profundizar en el conocimiento de la Palabra de Dios, ayudándoles a entender las verdades del Evangelio de Jesucristo.",
-    images: []
+    images: getSortedImages(junior)
   },
   {
     title: "Contra Corriente - Jóvenes",
