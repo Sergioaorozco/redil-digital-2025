@@ -1,0 +1,76 @@
+---
+import { ArrowUpRight } from "lucide-react";
+import type { iconCardProps } from "../types/card";
+const {
+  title,
+  href,
+  description,
+  icon: Icon,
+  target = "_self",
+  className,
+  ...rest
+} = Astro.props as iconCardProps;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  target={href ? target : undefined}
+  type={!href ? "button" : undefined}
+  class:list={[
+    "group relative flex flex-col p-6 h-56 rounded-3xl border border-muted/20 bg-card/60 backdrop-blur-md hover:bg-card hover:border-primary-title/40 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-sm hover:shadow-2xl hover:shadow-primary-title/10 hover:-translate-y-1.5 overflow-hidden text-left w-full",
+    className,
+  ]}
+  {...rest}
+>
+  {/* Background Accent Glow */}
+  <div
+    class="absolute -top-12 -left-12 w-24 h-24 bg-primary-title/10 rounded-full blur-2xl group-hover:bg-primary-title/20 transition-colors duration-500"
+  >
+  </div>
+
+  <div class="relative flex flex-col h-full z-10">
+    <div class="flex items-start justify-between mb-4">
+      <div
+        class="w-12 h-12 rounded-2xl bg-primary-title/10 flex items-center justify-center text-primary-title group-hover:bg-primary-title group-hover:text-background transition-all duration-500 shadow-sm"
+      >
+        <Icon size={24} strokeWidth={2} />
+      </div>
+      <div
+        class="p-2 rounded-full text-muted-foreground/40 group-hover:text-primary-title group-hover:bg-primary-title/10 transition-all duration-300"
+      >
+        <ArrowUpRight size={20} />
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <h3
+        class="text-xl text-foreground font-extrabold tracking-tight group-hover:text-primary-title transition-colors duration-300"
+      >
+        {title}
+      </h3>
+      <p
+        class="text-sm text-muted-foreground line-clamp-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+      >
+        {description}
+      </p>
+    </div>
+
+    <div
+      class="mt-auto pt-2 flex items-center gap-2 text-[10px] font-black tracking-[0.2em] uppercase text-muted-foreground/60 group-hover:text-primary-title transition-colors duration-300"
+    >
+      <span
+        class="w-4 h-[1px] bg-muted-foreground/30 group-hover:bg-primary-title transition-colors duration-300"
+      ></span>
+      Explorar
+    </div>
+  </div>
+
+  {/* Decorative Background Icon */}
+  <div
+    class="absolute -bottom-8 -right-8 text-foreground/[0.03] group-hover:text-primary-title/[0.08] transition-all duration-700 transform group-hover:scale-110 group-hover:-rotate-12 pointer-events-none"
+  >
+    <Icon size={180} strokeWidth={1} />
+  </div>
+</Tag>
