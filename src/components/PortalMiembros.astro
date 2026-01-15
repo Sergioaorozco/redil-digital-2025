@@ -1,23 +1,77 @@
 ---
 const { userInfo } = Astro.locals;
+import { GraduationCap, Scale, UserCheck, ArrowUpRight } from "lucide-react";
+
+const mainMemberLinks = [
+  {
+    title: "Mis Cursos",
+    href: "/miembros/cursos",
+    icon: GraduationCap,
+    description: "Accede a tus cursos y gestiona tus certificados.",
+  },
+  {
+    title: "Estatutos",
+    href: "/miembros/estatutos",
+    icon: Scale,
+    description: "Consulta los lineamientos y estatutos del Redil Laureles.",
+  },
+  {
+    title: "Carta de Representación",
+    href: "/miembros/carta-representacion",
+    icon: UserCheck,
+    description: "Genera y descarga tu carta de representación oficial.",
+  },
+];
 ---
 
-<main class="px-5 md:px-0 max-w-7xl mx-auto flex flex-col gap-5 mt-10">
-  <section class="flex flex-col min-lg:flex-row gap-x-3">
-    <h1 class="text-lg md:text-2xl text-center mx-auto">Bienvenido, {userInfo?.userName ?? userInfo?.userEmail}</h1>
+<main class="px-5 md:px-0 max-w-7xl mx-auto flex flex-col gap-8 mt-12 mb-20">
+  <section class="flex flex-col gap-3">
+    <span
+      class="text-primary-title font-semibold tracking-wider uppercase text-sm text-center md:text-left"
+      >Panel de Control</span
+    >
+    <h1 class="text-3xl md:text-5xl font-bold text-center md:text-left">
+      Bienvenido, <span class="text-primary-title"
+        >{userInfo?.userName ?? userInfo?.userEmail?.split("@")[0]}</span
+      >
+    </h1>
+    <p class="text-muted-foreground text-center md:text-left max-w-2xl">
+      Aquí puedes gestionar tu progreso, consultar documentos oficiales y estar
+      al tanto de tu actividad en la comunidad.
+    </p>
   </section>
 
-  <section class="w-full mt-5">
-    <ul class="flex flex-col gap-2 min-md:flex-row h-20 min-sm:h-56">
-      <li class="r-well w-full flex min-md:aspect-square">
-        <p>Mis Cursos</p>
-      </li>
-      <li class="r-well w-full flex min-md:aspect-square">
-        <p>Estatutos</p>
-      </li>
-      <li class="r-well w-full flex min-md:aspect-square">
-        <p>Carta de Representación</p>
-      </li>
-    </ul>
+  <section class="w-full">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        mainMemberLinks.map(({ title, icon: Icon, href, description }) => (
+          <a
+            href={href}
+            target="_self"
+            class="group relative flex flex-col justify-between p-8 h-72 rounded-2xl border-2 border-muted/30 bg-card hover:bg-primary-foreground hover:border-primary-title transition-all duration-500 ease-out overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary-title/20"
+          >
+            <div class="relative flex flex-col gap-4">
+              <div class="w-14 h-14 rounded-xl bg-foreground/10 flex items-center justify-center text-foreground group-hover:bg-primary-title/10 group-hover:text-primary-title transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-3">
+                <Icon size={32} strokeWidth={1.5} />
+              </div>
+
+              <div class="space-y-2">
+                <h3 class="text-2xl text-foreground font-bold group-hover:text-primary-title transition-colors duration-300">
+                  {title}
+                </h3>
+                <p class="text-muted-foreground leading-relaxed transition-colors duration-300">
+                  {description}
+                </p>
+              </div>
+            </div>
+
+            <div class="relative flex items-center gap-2 text-foreground group-hover:text-primary-title font-semibold transition-all duration-300 group-hover:translate-x-1">
+              <span>Explorar</span>
+              <ArrowUpRight size={18} />
+            </div>
+          </a>
+        ))
+      }
+    </div>
   </section>
 </main>
