@@ -21,6 +21,8 @@ import {
 const mujeresImages = import.meta.glob('@/images/mujeres/*.webp', { eager: true, import: 'default', query: '?url' });
 const unidosImages = import.meta.glob('@/images/unidos/*.webp', { eager: true, import: 'default', query: '?url' });
 const bienvenida = import.meta.glob('@/images/bienvenida/*.webp', { eager: true, import: 'default', query: '?url' });
+const refugio = import.meta.glob('@/images/refugio/*.webp', { eager: true, import: 'default', query: '?url' });
+const jovenes = import.meta.glob('@/images/jovenes/*.webp', { eager: true, import: 'default', query: '?url' })
 
 const getSortedImages = (globResult: Record<string, any>): string[] => {
   return Object.keys(globResult)
@@ -58,7 +60,7 @@ const ministeriosData: Ministerio[] = [
   {
     title: "Contra Corriente - Jóvenes",
     description: "En este ministerio los jóvenes aprenden a vivir y a disfrutar la juventud centrada en Cristo y en el evangelio. Es un espacio diferente donde los jóvenes preguntan, abren su mente y la renuevan con el objetivo de aprender a nadar contra las corrientes que todos están siguiendo hoy.",
-    images: []
+    images: getSortedImages(jovenes)
   },
   {
     title: "Unidos",
@@ -68,7 +70,7 @@ const ministeriosData: Ministerio[] = [
   {
     title: "Misiones",
     description: "A través de la Misión Refugio en Granizal, cumplimos la misión de la iglesia en palabra y obra. Allí, compartimos el Evangelio y apoyamos el torneo femenino “Con el maltrato no trato”, un proyecto que protege a las niñas de riesgos sociales como el reclutamiento, la prostitución y las adicciones.",
-    images: []
+    images: getSortedImages(refugio)
   }
 ];
 
@@ -86,8 +88,7 @@ export default function MinisteriosAccordion() {
       {ministeriosData.map((ministerio) => (
         <AccordionItem key={ministerio.title} value={ministerio.title}>
           <AccordionTrigger
-            className={`px-5 text-2xl rounded-none  ${selectedValue === ministerio.title ? 'bg-accent text-foreground' : 'hover:bg-muted-foreground'
-              }`}
+            className={`px-5 text-2xl rounded-none  ${selectedValue === ministerio.title && 'bg-accent text-foreground'}`}
           >
             {ministerio.title}
           </AccordionTrigger>
@@ -117,6 +118,6 @@ export default function MinisteriosAccordion() {
           </AccordionContent>
         </AccordionItem>
       ))}
-    </Accordion>
+    </Accordion >
   );
 }
