@@ -1,9 +1,10 @@
 ---
 const { userInfo } = Astro.locals;
-import { GraduationCap, Scale, UserCheck, ArrowUpRight } from "lucide-react";
+import { GraduationCap, Scale, UserCheck } from "lucide-react";
 import IconCard from "./shared/IconCard.astro";
+import { Modal } from "./ui/modal";
 
-const mainMemberLinks = [
+const memberLinks = [
   {
     title: "Mis Cursos",
     href: "/miembros/cursos",
@@ -44,16 +45,39 @@ const mainMemberLinks = [
 
   <section class="w-full relative">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {
-        mainMemberLinks.map(({ title, icon: Icon, href, description }) => (
+      <!-- Cursos -->
+      <IconCard
+        title={memberLinks[0].title}
+        icon={memberLinks[0].icon}
+        href={memberLinks[0].href}
+        description={memberLinks[0].description}
+      />
+
+      <!-- Estatutos -->
+      <Modal client:load header="Estatutos">
+        <div slot="trigger">
           <IconCard
-            title={title}
-            href={href}
-            description={description}
-            icon={Icon}
+            title={memberLinks[1].title}
+            icon={memberLinks[1].icon}
+            description={memberLinks[1].description}
           />
-        ))
-      }
+        </div>
+
+        <p>Test</p>
+      </Modal>
+
+      <!-- Asambleas -->
+      <Modal client:load header="Asambleas">
+        <div slot="trigger">
+          <IconCard
+            title={memberLinks[2].title}
+            icon={memberLinks[2].icon}
+            description={memberLinks[2].description}
+          />
+        </div>
+
+        <p>Test</p>
+      </Modal>
     </div>
   </section>
 </main>

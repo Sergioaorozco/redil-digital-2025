@@ -12,12 +12,11 @@ const {
 } = Astro.props as iconCardProps;
 
 const Tag = href ? "a" : "button";
+const elementProps = href ? { href, target } : { type: "button" as const };
 ---
 
 <Tag
-  href={href}
-  target={href ? target : undefined}
-  type={!href ? "button" : undefined}
+  {...elementProps}
   class:list={[
     "group relative flex flex-col p-6 h-56 rounded-3xl border border-muted/20 bg-card/60 backdrop-blur-md hover:bg-card hover:border-primary-title/40 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-sm hover:shadow-2xl hover:shadow-primary-title/10 hover:-translate-y-1.5 overflow-hidden text-left w-full",
     className,
