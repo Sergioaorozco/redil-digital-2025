@@ -48,7 +48,7 @@ export default function Menu({ isLoggedIn, userInfo, slugProfile, logoSvg, bgIma
 
   return (
     <>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-1">
         <button
           onClick={() => setIsOpen(true)}
           className="nav-button transition-all duration-200 special-nav-link"
