@@ -39,6 +39,34 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		></script>
 		<script src="https://cdn.jsdelivr.net/npm/pdfviewer@1.1.1/dist/index.min.js"
 		></script>
+		<script is:inline>
+			const theme = (() => {
+				if (
+					typeof localStorage !== "undefined" &&
+					localStorage.getItem("theme")
+				) {
+					return localStorage.getItem("theme");
+				}
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					return "dark";
+				}
+				return "light";
+			})();
+
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+
+			window.localStorage.setItem("theme", theme);
+
+			document.addEventListener("astro:after-swap", () => {
+				if (localStorage.getItem("theme") === "dark") {
+					document.documentElement.classList.add("dark");
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<div
