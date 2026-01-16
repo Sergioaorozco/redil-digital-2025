@@ -3,6 +3,8 @@
 // Icons
 import { User, Lock } from "lucide-react";
 
+// Actions
+import { updateProfileAction, updatePasswordAction } from "@/actions/auth";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -19,14 +21,20 @@ interface UpdateProfileTabsProps {
 
 export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: UpdateProfileTabsProps) {
   const [name, setName] = useState(initialName);
+  const [password, setPassword] = useState('');
+  const [password_confirmation, setPasswordConfirmation] = useState('');
 
 
-  const handleUpdateProfile = (e) => {
+  const handleUpdateProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const updateFormData = new FormData(e.currentTarget);
+    updateProfileAction(updateFormData);
   }
 
-  const handleUpdatePassword = (e) => {
+  const handleUpdatePassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const updatePasswordFormData = new FormData(e.currentTarget);
+    updatePasswordAction(updatePasswordFormData);
   }
 
   return (
@@ -36,7 +44,7 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
         <TabsTrigger className="w-full py-4" value="password"><Lock />Contraseña</TabsTrigger>
       </TabsList>
       <TabsContent value="account" className="w-full md:w-1/2 py-5">
-        <form action="" className="flex flex-col gap-4">
+        <form onSubmit={handleUpdateProfile} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input type="email" name="email" id="email" disabled readOnly value={initialEmail} />
@@ -50,26 +58,28 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
         </form>
       </TabsContent>
       <TabsContent value="password" className="w-full md:w-1/2 py-5">
-        <form action="" className="flex flex-col gap-4">
+        <form onSubmit={handleUpdatePassword} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Contraseña</Label>
-            <FormattedInput
+            <Input
               autoComplete="new-password"
               type="password"
               name="password"
               id="password"
               placeholder="Digita tu Contraseña"
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="password_confirmation">Confirmar Contraseña</Label>
-            <FormattedInput
+            <Input
               autoComplete="new-password"
               type="password"
               name="password_confirmation"
               id="password_confirmation"
               placeholder="Digita tu Contraseña"
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
               required
             />
           </div>
