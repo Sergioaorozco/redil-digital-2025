@@ -61,6 +61,10 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
   @apply duration-300 transition-all cursor-pointer;
 }
 
+.btn-primary {
+  @apply bg-primary-title hover:bg-primary-title-hover text-background rounded-lg p-3 font-semibold;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
