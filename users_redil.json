@@ -1,0 +1,73 @@
+[
+  {
+    "uid": "3LT0mmy",
+    "email": "thomasatlascorporation@gmail.com",
+    "password": "securePassword123!",
+    "displayName": "Tomás Escobar Ruiz",
+    "photoURL": "https://example.com/profiles/thomas.jpg",
+    "customData": {
+      "firstName": "Tomás",
+      "lastName": "Escobar Ruiz",
+      "role": "admin",
+      "phone": "+57 300 123 4567",
+      "address": "Calle 123 # 45-67",
+      "isActive": true
+    }
+  },
+  {
+    "uid": "aaguirrel",
+    "email": "alan.lanza7@gmail.com",
+    "password": "securePassword123!",
+    "displayName": "Alan Aguirre Lanza",
+    "photoURL": "",
+    "customData": {
+      "firstName": "Alan",
+      "lastName": "Aguirre Lanza",
+      "role": "member",
+      "phone": "+57 300 765 4321",
+      "isActive": true
+    }
+  },
+  {
+    "uid": "abarrientosr",
+    "email": "nanabarrientos@hotmail.com",
+    "password": "securePassword123!",
+    "displayName": "Adriana María Barrientos Restrepo",
+    "photoURL": "",
+    "customData": {
+      "firstName": "Adriana María",
+      "lastName": "Barrientos Restrepo",
+      "role": "member",
+      "ministry": "worship",
+      "isActive": true
+    }
+  },
+  {
+    "uid": "amejiam",
+    "email": "juridicayservicios@gmail.com",
+    "password": "securePassword123!",
+    "displayName": "Alexis Mejia Monsalve",
+    "photoURL": "",
+    "customData": {
+      "firstName": "Alexis",
+      "lastName": "Mejia Monsalve",
+      "role": "member",
+      "isActive": false,
+      "notes": "Pending verification"
+    }
+  },
+  {
+    "uid": "redildigital",
+    "email": "admin@elredillaureles.org",
+    "password": "securePassword123!",
+    "displayName": "Redil Laureles",
+    "photoURL": "https://elredillaureles.org/logo.png",
+    "customData": {
+      "firstName": "Redil",
+      "lastName": "Laureles",
+      "role": "system_admin",
+      "isOrganization": true,
+      "isActive": true
+    }
+  }
+]

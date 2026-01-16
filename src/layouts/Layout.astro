@@ -33,29 +33,6 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 			type="module"
 			src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
 		></script>
-
-		<script is:inline>
-			const theme = (() => {
-				if (
-					typeof localStorage !== "undefined" &&
-					localStorage.getItem("theme")
-				) {
-					return localStorage.getItem("theme");
-				}
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-					return "dark";
-				}
-				return "light";
-			})();
-
-			if (theme === "dark") {
-				document.documentElement.classList.add("dark");
-			} else {
-				document.documentElement.classList.remove("dark");
-			}
-
-			window.localStorage.setItem("theme", theme);
-		</script>
 	</head>
 	<body>
 		<Toaster client:only="react" />
