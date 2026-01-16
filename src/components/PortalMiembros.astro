@@ -1,8 +1,9 @@
 ---
 const { userInfo } = Astro.locals;
 import { GraduationCap, Scale, UserCheck } from "lucide-react";
-import IconCard from "./shared/IconCard.astro";
-import { Modal } from "./ui/modal";
+import { DocumentTabs } from "@/components/react/DocumentTabs";
+import IconCard from "@/components/shared/IconCard.astro";
+import { Modal } from "@/components/ui/modal";
 
 const memberLinks = [
   {
@@ -62,8 +63,7 @@ const memberLinks = [
             description={memberLinks[1].description}
           />
         </div>
-
-        <p>Test</p>
+        <DocumentTabs client:visible />
       </Modal>
 
       <!-- Asambleas -->
