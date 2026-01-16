@@ -3,8 +3,6 @@ import { updateProfile, type AuthError } from "firebase/auth";
 import { z } from "astro:schema";
 import { firebaseApp } from "@/firebase/config";
 
-const user = firebaseApp.auth.currentUser;
-
 export const updateProfileAction = defineAction({
   accept: 'form',
   input: z.object({
@@ -12,13 +10,29 @@ export const updateProfileAction = defineAction({
   }),
   handler: async ({ name }, { cookies }) => {
     try {
-      await updateProfile(user!, {
+      // Get the current user inside the handler, not at module level
+      const user = firebaseApp.auth.currentUser;
+
+      if (!user) {
+        throw new ActionError({
+          code: "UNAUTHORIZED",
+          message: 'Usuario no autenticado'
+        });
+      }
+
+      await updateProfile(user, {
         displayName: name,
       })
 
+      // Is it possible to re-authenticate the user?
+      await user.reload();
+
       return {
         success: true,
-        user
+        user: {
+          displayName: user.displayName,
+          email: user.email
+        }
       }
 
     } catch (error) {

@@ -1,7 +1,9 @@
 'use-client';
 
 // Icons
-import { User, Lock } from "lucide-react";
+import { User, Lock, LoaderCircleIcon } from "lucide-react";
+import pkg from 'notiflix';
+const { Notify } = pkg;
 
 // Actions
 import { actions } from "astro:actions";
@@ -20,17 +22,67 @@ interface UpdateProfileTabsProps {
 
 export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: UpdateProfileTabsProps) {
   const [name, setName] = useState(initialName);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [successMsg, setSuccessMsg] = useState<string>('');
 
-  const handleUpdateProfile = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updateFormData = new FormData(e.currentTarget);
-    actions.updateProfileAction(updateFormData);
+    setErrorMsg('');
+    setSuccessMsg('');
+    setIsLoading(true);
+
+    try {
+      const updateFormData = new FormData(e.currentTarget);
+      const { data, error } = await actions.updateProfileAction(updateFormData);
+
+      if (error) {
+        const message = error instanceof Error ? error.message : 'Error al actualizar el perfil';
+        setErrorMsg(message);
+        Notify.failure(message);
+      }
+
+      if (data) {
+        const message = 'Perfil actualizado correctamente';
+        setSuccessMsg(message);
+        Notify.success(message);
+      }
+
+    } catch (error) {
+      setErrorMsg(error instanceof Error ? error.message : 'Error desconocido');
+    } finally {
+      setIsLoading(false);
+    }
+
   }
 
-  const handleUpdatePassword = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdatePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updatePasswordFormData = new FormData(e.currentTarget);
-    actions.updatePasswordAction(updatePasswordFormData);
+    setErrorMsg('');
+    setSuccessMsg('');
+    setIsLoading(true);
+
+    try {
+      const updatePasswordFormData = new FormData(e.currentTarget);
+      const { data, error } = await actions.updatePasswordAction(updatePasswordFormData);
+
+      if (error) {
+        const message = error instanceof Error ? error.message : 'Error al actualizar la contraseña';
+        setErrorMsg(message);
+        Notify.failure(message);
+      }
+
+      if (data) {
+        const message = 'Contraseña actualizada correctamente';
+        setSuccessMsg(message);
+        Notify.success(message);
+      }
+
+    } catch (error) {
+      setErrorMsg(error instanceof Error ? error.message : 'Error desconocido');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -50,34 +102,53 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
             <Label htmlFor="name"><User size={16} className="text-primary-title" /> Nombre</Label>
             <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} />
           </div>
-          <button type="submit" className="btn-primary">Actualizar Perfil</button>
+          <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading}>
+            {isLoading && (
+              <LoaderCircleIcon size={16} className="animate-spin text-background place-self-center" />
+            )} <p>Actualizar Perfil</p>
+          </button>
         </form>
       </TabsContent>
       <TabsContent value="password" className="w-full md:w-1/2 py-5">
         <form onSubmit={handleUpdatePassword} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="password">Contraseña</Label>
+            <Label htmlFor="current_password"><Lock size={16} className="text-primary-title" /> Contraseña Actual</Label>
+            <FormattedInput
+              autoComplete="current-password"
+              type="password"
+              name="current_password"
+              id="current_password"
+              placeholder="Tu contraseña actual"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="password">Nueva Contraseña</Label>
             <FormattedInput
               autoComplete="new-password"
               type="password"
               name="password"
               id="password"
-              placeholder="Digita tu Contraseña"
+              placeholder="Digita tu nueva contraseña"
               required
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="password_confirmation">Confirmar Contraseña</Label>
+            <Label htmlFor="password_confirmation">Confirmar Nueva Contraseña</Label>
             <FormattedInput
               autoComplete="new-password"
               type="password"
               name="password_confirmation"
               id="password_confirmation"
-              placeholder="Digita tu Contraseña"
+              placeholder="Confirma tu nueva contraseña"
               required
             />
           </div>
-          <button type="submit" className="btn-primary">Actualizar Contraseña</button>
+          <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading}>
+            {isLoading && (
+              <LoaderCircleIcon size={16} className="animate-spin text-background place-self-center" />
+            )} <p>Actualizar Contraseña</p>
+          </button>
         </form>
       </TabsContent>
     </Tabs>
