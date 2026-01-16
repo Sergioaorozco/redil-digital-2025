@@ -3,8 +3,7 @@ import "@/styles/global.css";
 import Nav from "@/components/shared/Nav.astro";
 import Footer from "@/components/shared/Footer.astro";
 import { ClientRouter } from "astro:transitions";
-
-const { isLoggedIn } = Astro.locals;
+import { Toaster } from "@/components/ui/sonner";
 
 interface Props {
 	pageTitle?: string;
@@ -69,6 +68,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		</script>
 	</head>
 	<body>
+		<Toaster client:load />
 		<div
 			class:list={[
 				"mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32",

@@ -2,8 +2,7 @@
 
 // Icons
 import { User, Lock, LoaderCircleIcon } from "lucide-react";
-import pkg from 'notiflix';
-const { Notify } = pkg;
+import { toast } from "sonner";
 
 // Actions
 import { actions } from "astro:actions";
@@ -39,13 +38,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
       if (error) {
         const message = error instanceof Error ? error.message : 'Error al actualizar el perfil';
         setErrorMsg(message);
-        Notify.failure(message);
+        toast.error(message);
       }
 
       if (data) {
         const message = 'Perfil actualizado correctamente';
         setSuccessMsg(message);
-        Notify.success(message);
+        toast.success(message);
       }
 
     } catch (error) {
@@ -69,13 +68,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
       if (error) {
         const message = error instanceof Error ? error.message : 'Error al actualizar la contraseña';
         setErrorMsg(message);
-        Notify.failure(message);
+        toast.error(message);
       }
 
       if (data) {
         const message = 'Contraseña actualizada correctamente';
         setSuccessMsg(message);
-        Notify.success(message);
+        toast.success(message);
       }
 
     } catch (error) {
