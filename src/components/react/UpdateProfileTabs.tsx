@@ -3,6 +3,7 @@
 // Icons
 import { User, Lock, LoaderCircleIcon } from "lucide-react";
 import { toast } from "sonner";
+import { navigate } from "astro:transitions/client";
 
 // Actions
 import { actions } from "astro:actions";
@@ -45,6 +46,8 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
         const message = 'Perfil actualizado correctamente';
         setSuccessMsg(message);
         toast.success(message);
+
+        navigate(window.location.pathname);
       }
 
     } catch (error) {
@@ -75,6 +78,11 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
         const message = 'Contraseña actualizada correctamente';
         setSuccessMsg(message);
         toast.success(message);
+
+        // Soft reload to refresh server-rendered user data
+        setTimeout(() => {
+          navigate(window.location.pathname);
+        }, 1000);
       }
 
     } catch (error) {

@@ -68,7 +68,7 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		</script>
 	</head>
 	<body>
-		<Toaster client:load />
+		<Toaster client:only="react" transition:persist />
 		<div
 			class:list={[
 				"mb-3 flex flex-col justify-between w-full layout-bg min-md:min-h-32",
