@@ -4,6 +4,8 @@ import { GraduationCap, Scale, UserCheck } from "lucide-react";
 import { DocumentTabs } from "@/components/react/DocumentTabs";
 import IconCard from "@/components/shared/IconCard.astro";
 import { Modal } from "@/components/ui/modal";
+import LinkItem from "@/components/shared/LinkItem.astro";
+import { RenderDocument } from "./react/RenderDocument";
 
 const memberLinks = [
   {
@@ -23,6 +25,21 @@ const memberLinks = [
     href: "/miembros/asambleas",
     icon: UserCheck,
     description: "Consulta información sobre las asambleas del Redil Laureles.",
+  },
+];
+
+const documentosAsamblea = [
+  {
+    title: "Carta de Delegación de Voto",
+    url: "https://docs.google.com/document/d/1b5b8ERhDvidbwUIlFhIk2aAixRG58sO4WYi667WMOu8/edit?usp=sharing",
+    action: "Abrir",
+    description: "Asistencia de carácter obligatorio.",
+  },
+  {
+    title: "Estados Financieros",
+    url: "https://drive.google.com/file/d/1rByGJZoHWPodJEFoGbSNF-H1uCgF1_9H/preview",
+    action: "Ver",
+    description: "Información de uso exclusivo de la Junta Directiva.",
   },
 ];
 ---
@@ -45,6 +62,18 @@ const memberLinks = [
   </section>
 
   <section class="w-full relative">
+    <div class="w-full mb-5">
+      <Modal>
+        <div slot="trigger">
+          <LinkItem
+            title={documentosAsamblea[1].title}
+            action={documentosAsamblea[1].action}
+            description={documentosAsamblea[1].description}
+          />
+        </div>
+        <RenderDocument client:visible url={documentosAsamblea[1].url} />
+      </Modal>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Cursos -->
       <IconCard
@@ -79,7 +108,15 @@ const memberLinks = [
         <h1 class="text-xl font-bold text-primary-title">
           Próxima Asamblea: 15 de Febrero
         </h1>
-        <p>Documentos Necesarios:</p>
+        <p class="my-4">Documentos Necesarios:</p>
+        <div class="flex flex-col gap-3">
+          <LinkItem
+            title={documentosAsamblea[0].title}
+            url={documentosAsamblea[0].url}
+            action={documentosAsamblea[0].action}
+            description={documentosAsamblea[0].description}
+          />
+        </div>
       </Modal>
     </div>
   </section>

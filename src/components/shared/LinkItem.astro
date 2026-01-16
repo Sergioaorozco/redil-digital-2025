@@ -1,0 +1,50 @@
+---
+import { ArrowUpRight } from "lucide-react";
+
+interface linkItemProps {
+  title: string;
+  url: string;
+  action: string;
+  description: string;
+}
+
+const { title, url, action, description } = Astro.props;
+---
+
+<article
+  class="group relative w-full overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-2xl border border-muted-foreground/10 bg-card/40 backdrop-blur-md hover:bg-card/60 transition-all duration-500 shadow-sm"
+>
+  <!-- Glow Effect -->
+  <div
+    class="absolute top-0 right-0 -mr-20 -mt-20 w-48 h-48 bg-primary-title/5 rounded-full blur-3xl group-hover:bg-primary-title/10 transition-colors duration-700 pointer-events-none"
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Content -->
+  <div class="relative flex flex-1 flex-col gap-1 text-left w-full">
+    <h3
+      class="text-lg font-bold tracking-tight text-foreground group-hover:text-primary-title transition-colors duration-300"
+    >
+      {title}
+    </h3>
+    <p
+      class="text-sm text-muted-foreground/80 leading-relaxed text-balance line-clamp-2"
+    >
+      {description}
+    </p>
+  </div>
+
+  <!-- Action Button -->
+  <div class="relative shrink-0 w-full sm:w-auto">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center justify-between gap-2 px-6 py-3 rounded-xl bg-primary-title/10 text-primary-title font-semibold hover:bg-primary-title hover:text-background transition-all duration-300 hover:shadow-lg hover:shadow-primary-title/20 text-sm"
+    >
+      {action}
+      <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+    </a>
+  </div>
+</article>
