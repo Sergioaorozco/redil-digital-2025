@@ -14,6 +14,7 @@ export interface iconCardProps {
   title: string;
   description: string;
   href?: string;
+  url?: string;
   icon: LucideIcon;
   target?: HTMLAttributeAnchorTarget;
   [key: string]: any;

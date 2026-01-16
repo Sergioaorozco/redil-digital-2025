@@ -2,8 +2,8 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useState } from "react";
+import { useDocumentSecurity } from "@/hooks/use-document-security";
 
 export function DocumentTabs() {
   // Track loading state for each tab independently
@@ -12,46 +12,7 @@ export function DocumentTabs() {
     reglamento: true,
   });
 
-  useEffect(() => {
-    const handleBeforePrint = () => {
-      setLoadingMap((prev) => ({ ...prev, estatutos: true, reglamento: true }));
-    };
-
-    const handleAfterPrint = () => {
-      setLoadingMap((prev) => ({ ...prev, estatutos: false, reglamento: false }));
-    };
-
-    const preventScreenshot = (e: KeyboardEvent) => {
-      if (
-        e.key === 'PrintScreen' ||
-        e.code === 'PrintScreen' ||
-        ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) ||
-        ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 's' || e.key === 'S')) ||
-        ((e.metaKey) && e.shiftKey && (e.key === '3' || e.key === '4'))
-      ) {
-        e.preventDefault();
-        e.stopPropagation();
-        setLoadingMap((prev) => ({ ...prev, estatutos: true, reglamento: true }));
-        toast.error('Por razones de seguridad, las capturas de pantalla están deshabilitadas.');
-
-        setTimeout(() => {
-          setLoadingMap((prev) => ({ ...prev, estatutos: false, reglamento: false }));
-        }, 2000);
-      }
-    };
-
-    window.addEventListener('beforeprint', handleBeforePrint);
-    window.addEventListener('afterprint', handleAfterPrint);
-    window.addEventListener('keydown', preventScreenshot);
-    window.addEventListener('keyup', preventScreenshot);
-
-    return () => {
-      window.removeEventListener('beforeprint', handleBeforePrint);
-      window.removeEventListener('afterprint', handleAfterPrint);
-      window.removeEventListener('keydown', preventScreenshot);
-      window.removeEventListener('keyup', preventScreenshot);
-    };
-  }, []);
+  const isSecureHidden = useDocumentSecurity();
 
   const handleLoad = (value: string) => {
     setLoadingMap((prev) => ({ ...prev, [value]: false }));
@@ -73,24 +34,24 @@ export function DocumentTabs() {
 
       <TabsContent value="estatutos" className="w-full mt-5 relative min-h-[70vh]">
         {/* Skeleton overlays the iframe while loading */}
-        {loadingMap['estatutos'] && (
+        {(loadingMap['estatutos'] || isSecureHidden) && (
           <Skeleton className="absolute inset-0 w-full h-full rounded-lg z-10" />
         )}
         <iframe
           src={estatutosUrl}
-          className={`w-full h-[70vh] rounded-lg bg-white! print:hidden ${loadingMap['estatutos'] ? 'invisible' : ''}`}
+          className={`w-full h-[70vh] rounded-lg bg-white! print:hidden ${(loadingMap['estatutos'] || isSecureHidden) ? 'invisible' : ''}`}
           loading="lazy"
           onLoad={() => handleLoad('estatutos')}
         />
       </TabsContent>
 
       <TabsContent value="reglamento" className="w-full mt-5 relative h-full">
-        {loadingMap['reglamento'] && (
+        {(loadingMap['reglamento'] || isSecureHidden) && (
           <Skeleton className="absolute inset-0 w-full h-full rounded-lg z-10" />
         )}
         <iframe
           src={reglamentoUrl}
-          className={`w-full h-[70vh] rounded-lg bg-white! print:hidden ${loadingMap['reglamento'] ? 'invisible' : ''}`}
+          className={`w-full h-[70vh] rounded-lg bg-white! print:hidden ${(loadingMap['reglamento'] || isSecureHidden) ? 'invisible' : ''}`}
           loading="lazy"
           onLoad={() => handleLoad('reglamento')}
         />

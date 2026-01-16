@@ -13,16 +13,16 @@ const memberLinks = [
     description: "Accede a tus cursos y gestiona tus certificados.",
   },
   {
-    title: "Estatutos",
+    title: "Documentos Oficiales",
     href: "/miembros/estatutos",
     icon: Scale,
-    description: "Consulta los lineamientos y estatutos del Redil Laureles.",
+    description: "Consulta los documentos oficiales del Redil Laureles.",
   },
   {
     title: "Asambleas",
     href: "/miembros/asambleas",
     icon: UserCheck,
-    description: "Consulta las asambleas del Redil Laureles.",
+    description: "Consulta información sobre las asambleas del Redil Laureles.",
   },
 ];
 ---
@@ -55,7 +55,7 @@ const memberLinks = [
       />
 
       <!-- Estatutos -->
-      <Modal client:visible header="Estatutos">
+      <Modal client:visible header="Documentos Oficiales">
         <div slot="trigger">
           <IconCard
             title={memberLinks[1].title}

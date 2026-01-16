@@ -12,6 +12,8 @@ import { BookOpen, ScrollText, Heart } from "lucide-react";
 // Types
 import type { cardProps, iconCardProps } from "@/components/types/card";
 import IconCard from "@/components/shared/IconCard.astro";
+import { Modal } from "@/components/ui/modal";
+import { RenderDocument } from "@/components/react/RenderDocument";
 
 interface pastorProps {
   image: ImageMetadata;
@@ -45,19 +47,19 @@ const utilLinks: iconCardProps[] = [
     title: "Confesión de Fe",
     description: "Nuestra base doctrinal y declaración de fe fundamental.",
     icon: BookOpen,
-    href: "https://drive.google.com/file/d/1PsSIH1ixwti6Ix_zteCwB7WdPDf7ulqO/view?usp=sharing",
+    url: "https://drive.google.com/file/d/1PsSIH1ixwti6Ix_zteCwB7WdPDf7ulqO/preview",
   },
   {
     title: "Nuestros Principios",
     description: "Los pilares que guían nuestro caminar como comunidad.",
     icon: ScrollText,
-    href: "https://drive.google.com/file/d/1AJi0h21EzAMjXlxQhWsumSXP4cL2-TRt/view?usp=share_link",
+    url: "https://drive.google.com/file/d/1AJi0h21EzAMjXlxQhWsumSXP4cL2-TRt/preview",
   },
   {
     title: "¿Qué valoramos?",
     description: "Los valores esenciales que definen nuestra identidad.",
     icon: Heart,
-    href: "https://drive.google.com/file/d/1-l2aR8ls92op0SZWRsuxgc98--1Nca2C/view?usp=sharing",
+    url: "https://drive.google.com/file/d/1-l2aR8ls92op0SZWRsuxgc98--1Nca2C/preview",
   },
 ];
 ---
@@ -76,14 +78,13 @@ const utilLinks: iconCardProps[] = [
       class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mx-auto"
     >
       {
-        utilLinks.map(({ title, href, icon: Icon, description }) => (
-          <IconCard
-            target="_blank"
-            title={title}
-            icon={Icon}
-            href={href}
-            description={description}
-          />
+        utilLinks.map(({ title, url, icon: Icon, description }) => (
+          <Modal client:visible header={title}>
+            <div slot="trigger">
+              <IconCard title={title} icon={Icon} description={description} />
+            </div>
+            <RenderDocument client:visible url={url ?? ""} />
+          </Modal>
         ))
       }
     </section>
