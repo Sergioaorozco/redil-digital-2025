@@ -26,6 +26,7 @@ export function useDocumentSecurity() {
         setIsHidden(true);
         toast.error('Por razones de seguridad, las capturas de pantalla están deshabilitadas.');
 
+        // Hide content for 2 seconds to deter the screenshot attempt, then restore.
         setTimeout(() => {
           setIsHidden(false);
         }, 2000);

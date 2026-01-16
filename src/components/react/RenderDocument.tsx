@@ -19,7 +19,7 @@ export function RenderDocument({ url }: RenderDocumentProps) {
   const showSkeleton = isLoading || isSecureHidden;
 
   return (
-    <div className="relative w-full h-[calc(100vh-18rem)]">
+    <div className="relative w-full h-[70vh]">
       {showSkeleton && (
         <Skeleton className="absolute inset-0 w-full h-full rounded-lg z-10" />
       )}
