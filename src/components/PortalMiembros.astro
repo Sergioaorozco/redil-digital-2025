@@ -54,7 +54,7 @@ const memberLinks = [
       />
 
       <!-- Estatutos -->
-      <Modal client:load header="Estatutos">
+      <Modal client:visible header="Estatutos">
         <div slot="trigger">
           <IconCard
             title={memberLinks[1].title}
@@ -67,7 +67,7 @@ const memberLinks = [
       </Modal>
 
       <!-- Asambleas -->
-      <Modal client:load header="Asambleas">
+      <Modal client:visible header="Asambleas">
         <div slot="trigger">
           <IconCard
             title={memberLinks[2].title}

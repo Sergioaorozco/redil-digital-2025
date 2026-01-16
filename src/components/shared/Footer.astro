@@ -20,7 +20,7 @@ const { videoId, videoTitle } = Astro.locals;
       >
         <Modal
           videoId={videoId}
-          client:load
+          client:visible
           header={`Ultima celebración: ${videoTitle}`}
         >
           <div slot="trigger">

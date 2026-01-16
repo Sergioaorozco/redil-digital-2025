@@ -81,7 +81,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
     <article
       class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mb-32 mx-auto"
     >
-      <Modal client:load header="¿Cómo llegar al Redil Laureles?">
+      <Modal client:visible header="¿Cómo llegar al Redil Laureles?">
         <div
           slot="trigger"
           class="cursor-pointer rounded-md h-full w-full flex items-end justify-start overflow-clip relative"
@@ -147,7 +147,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
             <div
               class="h-[300px] md:h-full w-full rounded-lg overflow-hidden relative shadow-sm border border-neutral-200 dark:border-neutral-800"
             >
-              <RedilMap client:load />
+              <RedilMap client:visible />
             </div>
           </div>
         </div>
@@ -160,7 +160,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
       />
       <!-- Modal Donaciones -->
       <Modal
-        client:load
+        client:visible
         header="¿Cómo hacer una donación - El Redil Iglesia Bautista?"
       >
         <div
