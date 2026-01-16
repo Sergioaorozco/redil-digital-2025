@@ -59,6 +59,7 @@ export default function Menu({ isLoggedIn, userInfo, slugProfile, logoSvg, bgIma
         <div className="max-sm:hidden lg:block">
           <a
             href="/ingreso"
+            data-astro-prefetch
             className="special-nav-link nav-button md:transition-colors md:duration-100 sm:animate-none"
           >
             Membresía
@@ -118,6 +119,7 @@ export default function Menu({ isLoggedIn, userInfo, slugProfile, logoSvg, bgIma
                 >
                   <a
                     href={item.href}
+                    data-astro-prefetch
                     referrerPolicy="no-referrer"
                     className="text-neutral-800 dark:text-neutral-300 text-3xl md:text-7xl font-bold py-3 hover:text-neutral-600 dark:hover:text-white transition-colors duration-200 block"
                   >

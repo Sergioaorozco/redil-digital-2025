@@ -107,10 +107,26 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 	</body>
 </html>
 
-<!-- In Layout.astro -->
 <style>
+	/* Optimized View Transitions */
 	::view-transition-old(root),
 	::view-transition-new(root) {
-		animation-duration: 0.1s;
+		animation-duration: 200ms; /* Sweet spot: fast but smooth */
+		animation-timing-function: cubic-bezier(
+			0.4,
+			0,
+			0.2,
+			1
+		); /* Smooth ease-in-out */
+	}
+
+	/* Prepare elements for transitions (performance hint) */
+	html {
+		will-change: auto;
+	}
+
+	/* Faster transitions for same-page navigation */
+	html.astro-transitioning {
+		view-transition-name: root;
 	}
 </style>

@@ -15,9 +15,35 @@ interface ProfileMenuProps {
   slugProfile: string;
 }
 
-export default function ProfileMenu({ userInfo, isLoggedIn, slugProfile }: ProfileMenuProps) {
+export default function ProfileMenu({ userInfo, isLoggedIn, slugProfile: initialSlugProfile }: ProfileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [userName, setUserName] = useState(userInfo?.userName);
+  const [slugProfile, setSlugProfile] = useState(initialSlugProfile);
+
+  // Listen for profile updates from other components
+  useEffect(() => {
+    const handleProfileUpdate = (event: CustomEvent) => {
+      const newName = event.detail.displayName;
+      setUserName(newName);
+
+      // Update slug/initials
+      if (newName) {
+        const initials = newName
+          .split(" ")
+          .map((n: string) => n[0])
+          .join("")
+          .toUpperCase()
+          .slice(0, 2);
+        setSlugProfile(initials);
+      }
+    };
+
+    window.addEventListener('profile-updated', handleProfileUpdate as EventListener);
+    return () => {
+      window.removeEventListener('profile-updated', handleProfileUpdate as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -75,12 +101,13 @@ export default function ProfileMenu({ userInfo, isLoggedIn, slugProfile }: Profi
             {slugProfile}
           </span>
           <span className="mb-1 text-chart-2 truncate">
-            {userInfo?.userName ?? userInfo?.userEmail}
+            {userName ?? userInfo?.userEmail}
           </span>
         </li>
         <li className="cursor-pointer border-b border-blue-200 dark:border-neutral-600">
           <a
             href="/miembros/perfil"
+            data-astro-prefetch
             className="px-5 py-3 block w-full dark:hover:bg-neutral-700 hover:bg-neutral-100 transition-colors duration-200"
           >
             Actualizar Perfil

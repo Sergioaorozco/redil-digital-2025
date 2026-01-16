@@ -5,7 +5,7 @@ import { getLatestVideo } from "./utils/youtube";
 const isProtectedRoute = ['/miembros(.*)'];
 const loggedInRoutes = ['/ingreso'];
 
-export const onRequest = defineMiddleware(async ({ url, locals, redirect }, next) => {
+export const onRequest = defineMiddleware(async ({ url, locals, redirect, cookies }, next) => {
   const user = firebaseApp.auth.currentUser;
   const isLoggedIn = !!user;
 
@@ -17,11 +17,46 @@ export const onRequest = defineMiddleware(async ({ url, locals, redirect }, next
     userPhoto: user.photoURL
   } : null
 
-  // Fetch global video data (cached)
-  const videoData = await getLatestVideo();
-  if (videoData) {
-    locals.videoId = videoData.videoId;
-    locals.videoTitle = videoData.title;
+  // Only fetch YouTube data on pages that display it (skip /miembros/* for speed)
+  const shouldFetchVideo = !url.pathname.startsWith('/miembros');
+
+  if (shouldFetchVideo) {
+    // 1. Try to get from Cookie first (Fastest! ⚡)
+    const cachedCookie = cookies.get('yt_latest_video');
+    let foundInCookie = false;
+
+    if (cachedCookie?.value) {
+      try {
+        const cachedData = JSON.parse(cachedCookie.value);
+        if (cachedData.videoId && cachedData.title) {
+          locals.videoId = cachedData.videoId;
+          locals.videoTitle = cachedData.title;
+          foundInCookie = true;
+        }
+      } catch (e) {
+        // Cookie invalid, ignore
+      }
+    }
+
+    // 2. If not in cookie, fetch from API (or memory cache)
+    if (!foundInCookie) {
+      const videoData = await getLatestVideo();
+      if (videoData) {
+        locals.videoId = videoData.videoId;
+        locals.videoTitle = videoData.title;
+
+        // Cache in cookie for 1 hour
+        cookies.set('yt_latest_video', JSON.stringify(videoData), {
+          path: '/',
+          maxAge: 3600, // 1 hour duration
+          sameSite: 'lax'
+        });
+      }
+    }
+  } else {
+    // Set fallback for member pages (not displayed anyway)
+    locals.videoId = 'd0HIs_vBf30'; // fallback
+    locals.videoTitle = '';
   }
 
   // Check if no logged user is trying to access a protected route
