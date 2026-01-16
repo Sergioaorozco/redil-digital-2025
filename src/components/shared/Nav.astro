@@ -3,8 +3,15 @@ import ModalMenu from "@/components/shared/Menu.astro";
 import LogoImage from "@/assets/LogoImage.astro";
 ---
 
-<nav class="px-5 lg:px-0 py-5 flex justify-between items-center z-10 mx-auto max-w-7xl w-full">
-  <a aria-label="main-logo-nav" href="/" class="w-40 dark:text-white text-neutral-900">
+<nav
+  class="px-5 lg:px-0 py-5 flex justify-between items-center z-10 mx-auto max-w-7xl w-full"
+>
+  <a
+    aria-label="main-logo-nav"
+    href="/"
+    class="w-40 dark:text-white text-neutral-900"
+    data-astro-prefetch
+  >
     <LogoImage />
   </a>
   <section class="flex items-center justify-between h-full">
