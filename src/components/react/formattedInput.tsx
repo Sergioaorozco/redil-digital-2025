@@ -23,7 +23,7 @@ const formattedInput = ({ type = 'text', placeholder, autoComplete, name, id, re
   return (
     <div className="w-full">
       <div className="relative">
-        <Input id={id} name={name} placeholder={placeholder} autoComplete={autoComplete} className="p-2.5 bg-neutral-50 border border-gray-500 text-neutral-900 rounded-lg block w-full dark:bg-neutral-700 dark:border-gray-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-blue-600 focus:border-blue-600 pr-9" type={inputType} required={required}></Input>
+        <Input id={id} name={name} placeholder={placeholder} autoComplete={autoComplete} className="" type={inputType} required={required}></Input>
         {type === 'password' && (
           <>
             <Button

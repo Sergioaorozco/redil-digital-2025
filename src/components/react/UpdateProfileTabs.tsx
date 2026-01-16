@@ -9,12 +9,26 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import FormattedInput from "./formattedInput";
 
+// Components
+import { useState } from "react";
+
 interface UpdateProfileTabsProps {
   initialName?: string;
   initialEmail?: string;
 }
 
 export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: UpdateProfileTabsProps) {
+  const [name, setName] = useState(initialName);
+
+
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+  }
+
+  const handleUpdatePassword = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <Tabs defaultValue="account" className="flex items-center px-5 md:px-0">
       <TabsList className="flex flex-row w-full md:w-1/2 bg-accent/30 p-1 md:h-auto">
@@ -26,11 +40,11 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input type="email" name="email" id="email" disabled readOnly value={initialEmail} />
-            <p className="text-muted-foreground text-sm">Aún no es posible cambiar el email. Contacta a un administrador para hacerlo.</p>
+            <p className="text-muted-foreground text-sm italic">Por seguridad, no se puede cambiar el email.</p>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="name">Nombre</Label>
-            <Input type="text" name="name" id="name" value={initialName} />
+            <Label htmlFor="name"><User size={16} className="text-primary-title" /> Nombre</Label>
+            <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} />
           </div>
           <button type="submit" className="btn-primary">Actualizar Perfil</button>
         </form>
