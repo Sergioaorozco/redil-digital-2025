@@ -19,6 +19,32 @@ export const loginUser = defineAction({
         inputEmail,
         password
       );
+
+      // Persist session in cookies so Middleware can see it
+      const user = authAction.user;
+
+      // Set session cookies
+      cookies.set('session', JSON.stringify({
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        refreshToken: user.refreshToken, // Be careful with this, but needed for persistence
+      }), {
+        path: '/',
+        httpOnly: true,
+        secure: true,
+        maxAge: 60 * 60 * 24 * 5, // 5 days
+      });
+
+      // Also set a separate token cookie if needed for API verification
+      const token = await user.getIdToken();
+      cookies.set('__session', token, {
+        path: '/',
+        httpOnly: true,
+        secure: true,
+        maxAge: 60 * 60 * 24 * 5,
+      });
     } catch (error) {
       const authError = error as AuthError;
       if (authError.code === 'auth/invalid-credential') {

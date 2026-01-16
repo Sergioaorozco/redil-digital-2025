@@ -6,7 +6,18 @@ const isProtectedRoute = ['/miembros(.*)'];
 const loggedInRoutes = ['/ingreso'];
 
 export const onRequest = defineMiddleware(async ({ url, locals, redirect, cookies }, next) => {
-  const user = firebaseApp.auth.currentUser;
+  // Check for session cookie
+  const sessionCookie = cookies.get('session');
+  let user = null;
+
+  if (sessionCookie?.value) {
+    try {
+      user = JSON.parse(sessionCookie.value);
+    } catch (e) {
+      // Invalid cookie
+    }
+  }
+
   const isLoggedIn = !!user;
 
   locals.isLoggedIn = isLoggedIn;
@@ -14,7 +25,7 @@ export const onRequest = defineMiddleware(async ({ url, locals, redirect, cookie
   locals.userInfo = isLoggedIn ? {
     userName: user?.displayName,
     userEmail: user?.email,
-    userPhoto: user.photoURL
+    userPhoto: user?.photoURL
   } : null
 
   // Only fetch YouTube data on pages that display it (skip /miembros/* for speed)

@@ -27,6 +27,25 @@ export const updateProfileAction = defineAction({
       // Is it possible to re-authenticate the user?
       await user.reload();
 
+      // Update the session cookie so the new name persists on refresh
+      const sessionCookie = cookies.get('session');
+      if (sessionCookie?.value) {
+        try {
+          const sessionData = JSON.parse(sessionCookie.value);
+          sessionData.displayName = name;
+          // You might also update photoURL if you add that later
+
+          cookies.set('session', JSON.stringify(sessionData), {
+            path: '/',
+            httpOnly: true,
+            secure: true,
+            maxAge: 60 * 60 * 24 * 5, // 5 days
+          });
+        } catch (e) {
+          // Ignore
+        }
+      }
+
       return {
         success: true,
         user: {
