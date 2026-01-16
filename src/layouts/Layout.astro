@@ -106,3 +106,11 @@ const { pageTitle, pageDescription } = Astro.props as Props;
 		<Footer />
 	</body>
 </html>
+
+<!-- In Layout.astro -->
+<style>
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.1s;
+	}
+</style>
