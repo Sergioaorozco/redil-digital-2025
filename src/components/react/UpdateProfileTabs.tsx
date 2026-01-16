@@ -4,8 +4,7 @@
 import { User, Lock } from "lucide-react";
 
 // Actions
-import { updateProfileAction, updatePasswordAction } from "@/actions/auth";
-
+import { actions } from "astro:actions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,20 +20,17 @@ interface UpdateProfileTabsProps {
 
 export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: UpdateProfileTabsProps) {
   const [name, setName] = useState(initialName);
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
-
 
   const handleUpdateProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const updateFormData = new FormData(e.currentTarget);
-    updateProfileAction(updateFormData);
+    actions.updateProfileAction(updateFormData);
   }
 
   const handleUpdatePassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const updatePasswordFormData = new FormData(e.currentTarget);
-    updatePasswordAction(updatePasswordFormData);
+    actions.updatePasswordAction(updatePasswordFormData);
   }
 
   return (
@@ -61,25 +57,23 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
         <form onSubmit={handleUpdatePassword} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Contraseña</Label>
-            <Input
+            <FormattedInput
               autoComplete="new-password"
               type="password"
               name="password"
               id="password"
               placeholder="Digita tu Contraseña"
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="password_confirmation">Confirmar Contraseña</Label>
-            <Input
+            <FormattedInput
               autoComplete="new-password"
               type="password"
               name="password_confirmation"
               id="password_confirmation"
               placeholder="Digita tu Contraseña"
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
               required
             />
           </div>
