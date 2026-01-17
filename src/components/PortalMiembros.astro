@@ -10,7 +10,7 @@ import {
 import { DocumentTabs } from "@/components/react/DocumentTabs";
 import IconCard from "@/components/shared/IconCard.astro";
 import { Modal } from "@/components/ui/modal";
-import LinkItem from "@/components/shared/LinkItem.astro";
+import QuickInfo from "@/components/shared/QuickInfo.astro";
 import { RenderDocument } from "./react/RenderDocument";
 import Notification from "./shared/Notification.astro";
 
@@ -40,7 +40,7 @@ const documentosAsamblea = [
     title: "Carta de Delegación de Voto",
     url: "https://docs.google.com/document/d/1b5b8ERhDvidbwUIlFhIk2aAixRG58sO4WYi667WMOu8/edit?usp=sharing",
     action: "Abrir",
-    description: "Asistencia de carácter obligatorio.",
+    description: "Documento en Google Docs para descargar",
   },
   {
     title: "Estados Financieros",
@@ -72,8 +72,9 @@ const documentosAsamblea = [
     <div class="mb-5">
       <Modal client:visible header="Estados Financieros">
         <div slot="trigger">
-          <LinkItem
-            title={documentosAsamblea[1].title}
+          <QuickInfo
+            variant="amber"
+            label={documentosAsamblea[1].title}
             action={documentosAsamblea[1].action}
             description={documentosAsamblea[1].description}
           />
@@ -124,9 +125,9 @@ const documentosAsamblea = [
           En caso de no poder asistir a la asamblea, debes diligenciar la carta
           de delegación de voto:
         </Notification>
-        <div class="flex flex-col gap-3">
-          <LinkItem
-            title={documentosAsamblea[0].title}
+        <div class="flex flex-col gap-3 mt-4">
+          <QuickInfo
+            label={documentosAsamblea[0].title}
             url={documentosAsamblea[0].url}
             action={documentosAsamblea[0].action}
             description={documentosAsamblea[0].description}
