@@ -25,8 +25,9 @@ export function RenderDocument({ url }: RenderDocumentProps) {
       )}
       <iframe
         src={url}
-        className={`w-full h-full rounded-lg bg-white! print:hidden ${showSkeleton ? 'invisible' : ''}`}
-        loading="lazy"
+        title="Visualizador de documento"
+        className={`w-full h-full rounded-lg bg-white! print:hidden transition-all duration-500 ${showSkeleton ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        referrerPolicy="origin"
         onLoad={handleLoad}
       />
     </div>
