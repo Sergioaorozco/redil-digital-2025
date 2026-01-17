@@ -16,7 +16,15 @@ import { ArrowRight } from "lucide-react";
 import RedilMap from "@/components/react/RedilMap";
 import Notification from "@/components/shared/Notification.astro";
 import QuickInfo from "@/components/shared/QuickInfo.astro";
-import { MapPin, Clock } from "lucide-react";
+import {
+  MapPin,
+  Clock,
+  MessageCircleQuestionIcon as ChatIcon,
+} from "lucide-react";
+import FacebookIcon from "@/assets/FacebookIcon.astro";
+import InstragramIcon from "@/assets/InstragramIcon.astro";
+
+const encodedText = "Dios los bendiga, tengo una pregunta";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -25,7 +33,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
 
 <HomeLayout>
   <section
-    class="px-5 pt-24 gap-5 min-h-[calc(100vh-7rem)] text-center relative pb-5"
+    class="px-5 pt-24 gap-5 min-h-[calc(100vh-7rem)] text-center relative pb-32"
   >
     <main>
       <div class="absolute top-0 left-0 right-0">
@@ -87,7 +95,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
       </article>
     </main>
     <article
-      class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mb-32 mx-auto"
+      class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 h-full mx-auto"
     >
       <Modal client:visible header="¿Cómo llegar al Redil Laureles?">
         <div
@@ -217,5 +225,34 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         </section>
       </Modal>
     </article>
+    <!-- Social -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto mt-8 w-full"
+    >
+      <QuickInfo
+        variant="neutral"
+        label="Facebook"
+        description="Sigue nuestras transmisiones"
+        url="https://www.facebook.com/redildelaureles/"
+        icon={FacebookIcon as any}
+        action="Seguir"
+      />
+      <QuickInfo
+        variant="neutral"
+        label="Instagram"
+        description="Mira nuestro día a día"
+        url="https://www.instagram.com/redildelaureles/"
+        icon={InstragramIcon as any}
+        action="Seguir"
+      />
+      <QuickInfo
+        variant="neutral"
+        label="WhatsApp"
+        description="Escríbenos tus dudas"
+        url={`https://wa.me/573007869517?text=${encodedText}`}
+        icon={ChatIcon as any}
+        action="Chatear"
+      />
+    </div>
   </section>
 </HomeLayout>
