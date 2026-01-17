@@ -15,6 +15,7 @@ import { Modal } from "@/components/ui/modal";
 import { ArrowRight } from "lucide-react";
 import RedilMap from "@/components/react/RedilMap";
 import Notification from "@/components/shared/Notification.astro";
+import LinkItem from "@/components/shared/LinkItem.astro";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -53,7 +54,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         </article>
         <!-- Bienvenidos -->
         <div
-          class="r-well flex flex-col justify-center md:justify-around gap-6 h-full relative"
+          class="r-well flex flex-col justify-center md:justify-around gap-6 h-full"
         >
           <span class="">
             <h1 class="text-4xl md:text-5xl font-bold mb-3 text-primary-title">
@@ -66,13 +67,17 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
               bienvenido!
             </p>
           </span>
-          <span class="mt-5 md:text-md py-3 relative">
-            <p class="font-bold text-balance">
-              Diagonal 75# 72-108, Medellín - Colombia
-            </p>
+          <span class="mt-5 md:text-md py-3">
+            <LinkItem
+              client:visible
+              url="https://www.google.com/maps/dir//Iglesia+Redil+Laureles,+Dg+75E+%23+72-108,+Laureles+-+Estadio,+Medell%C3%ADn,+Laureles,+Medell%C3%ADn,+Antioquia/@6.2402159,-75.5961931,17z/data=!4m17!1m7!3m6!1s0x8e44299d9e9acbdb:0xb0d006e7fcabf0af!2sIglesia+Redil+Laureles!8m2!3d6.2402159!4d-75.5961931!16s%2Fg%2F11j7ywdxbv!4m8!1m0!1m5!1m1!1s0x8e44299d9e9acbdb:0xb0d006e7fcabf0af!2m2!1d-75.596162!2d6.2402434!3e0?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D"
+              title="Ubicación"
+              description="Diagonal 75# 72-108, Medellín - Colombia"
+              action="Mapa"
+            />
             <div class="my-3 border-b h-1 border-muted-foreground"></div>
             <p class="font-bold text-balance">
-              Celebraciones: Domingos 9AM | 11AM
+              Celebraciones Dominicales: 9AM | 11AM
             </p>
           </span>
         </div>
