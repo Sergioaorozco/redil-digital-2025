@@ -37,6 +37,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
       const { data, error } = await actions.updateProfileAction(updateFormData);
 
       if (error) {
+        if (error.code === 'UNAUTHORIZED') {
+          toast.error('Tu sesión ha expirado. Redirigiendo...');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          return;
+        }
         const message = error instanceof Error ? error.message : 'Error al actualizar el perfil';
         setErrorMsg(message);
         toast.error(message);
@@ -72,6 +79,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
       const { data, error } = await actions.updatePasswordAction(updatePasswordFormData);
 
       if (error) {
+        if (error.code === 'UNAUTHORIZED' && !error.message.includes('incorrecta')) {
+          toast.error('Tu sesión ha expirado. Redirigiendo...');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          return;
+        }
         const message = error instanceof Error ? error.message : 'Error al actualizar la contraseña';
         setErrorMsg(message);
         toast.error(message);

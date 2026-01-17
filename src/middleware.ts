@@ -7,7 +7,7 @@ const loggedInRoutes = ['/ingreso'];
 
 export const onRequest = defineMiddleware(async ({ url, locals, redirect, cookies }, next) => {
   // Check for session cookie
-  const sessionCookie = cookies.get('session');
+  const sessionCookie = cookies.get('auth_session');
   let user = null;
 
   if (sessionCookie?.value) {

@@ -9,9 +9,8 @@ export const signOutAction = defineAction({
     try {
       await signOut(auth);
 
-      // Clear cookies
-      cookies.delete('session', { path: '/' });
-      cookies.delete('__session', { path: '/' });
+      // Clear session cookie
+      cookies.delete('auth_session', { path: '/' });
 
       return { success: true };
     } catch (error) {

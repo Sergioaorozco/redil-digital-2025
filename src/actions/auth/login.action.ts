@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, type AuthError } from "firebase/auth";
 import { z } from "astro:schema";
 
 import { firebaseApp } from "@/firebase/config";
-
+import { setSession } from "@/utils/auth-utils";
 
 export const loginUser = defineAction({
   accept: 'form',
@@ -13,38 +13,24 @@ export const loginUser = defineAction({
   }),
   handler: async ({ email: inputEmail, password }, { cookies }) => {
     try {
-      // Logic to login user with firebase
       const authAction = await signInWithEmailAndPassword(
         firebaseApp.auth,
         inputEmail,
         password
       );
 
-      // Persist session in cookies so Middleware can see it
       const user = authAction.user;
+      const idToken = await user.getIdToken();
 
-      // Set session cookies
-      cookies.set('session', JSON.stringify({
+      setSession(cookies, {
         uid: user.uid,
-        email: user.email,
+        email: user.email!,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        refreshToken: user.refreshToken, // Be careful with this, but needed for persistence
-      }), {
-        path: '/',
-        httpOnly: true,
-        secure: true,
-        maxAge: 60 * 60 * 24 * 5, // 5 days
+        refreshToken: user.refreshToken,
+        idToken: idToken
       });
 
-      // Also set a separate token cookie if needed for API verification
-      const token = await user.getIdToken();
-      cookies.set('__session', token, {
-        path: '/',
-        httpOnly: true,
-        secure: true,
-        maxAge: 60 * 60 * 24 * 5,
-      });
     } catch (error) {
       const authError = error as AuthError;
       if (authError.code === 'auth/invalid-credential' || authError.code === 'invalid_type') {
