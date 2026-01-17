@@ -22,6 +22,10 @@ export const updatePasswordAction = defineAction({
         });
       }
 
+      // Re-authenticate the user before changing password (Firebase security requirement)
+      const credential = EmailAuthProvider.credential(user.email, current_password);
+      await reauthenticateWithCredential(user, credential);
+
       if (current_password === password) {
         throw new ActionError({
           code: "BAD_REQUEST",
@@ -35,10 +39,6 @@ export const updatePasswordAction = defineAction({
           message: 'Las contraseñas no coinciden'
         })
       }
-
-      // Re-authenticate the user before changing password (Firebase security requirement)
-      const credential = EmailAuthProvider.credential(user.email, current_password);
-      await reauthenticateWithCredential(user, credential);
 
       // Now update the password
       await updatePassword(user, password);

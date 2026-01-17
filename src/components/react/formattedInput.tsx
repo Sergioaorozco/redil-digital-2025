@@ -11,9 +11,10 @@ interface PasswordInputProps {
   id?: string;
   name?: string;
   required?: boolean;
+  isInvalid?: boolean;
 }
 
-const formattedInput = ({ type = 'text', placeholder, autoComplete, name, id, required = false }: PasswordInputProps) => {
+const formattedInput = ({ type = 'text', placeholder, autoComplete, name, id, required = false, isInvalid }: PasswordInputProps) => {
   const [isEyeVisible, setIsEyeVisible] = useState(false);
 
   const inputType = type === 'password'
@@ -23,7 +24,7 @@ const formattedInput = ({ type = 'text', placeholder, autoComplete, name, id, re
   return (
     <div className="w-full">
       <div className="relative">
-        <Input id={id} name={name} placeholder={placeholder} autoComplete={autoComplete} className="" type={inputType} required={required}></Input>
+        <Input id={id} name={name} placeholder={placeholder} autoComplete={autoComplete} className="" type={inputType} required={required} aria-invalid={isInvalid}></Input>
         {type === 'password' && (
           <>
             <Button

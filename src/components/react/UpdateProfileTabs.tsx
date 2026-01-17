@@ -134,6 +134,7 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
               id="current_password"
               placeholder="Tu contraseña actual"
               required
+              isInvalid={errorMsg.includes('actual') || errorMsg.includes('incorrecta')}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -145,6 +146,7 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
               id="password"
               placeholder="Digita tu nueva contraseña"
               required
+              isInvalid={errorMsg.includes('diferente') || errorMsg.includes('Confirmar')}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -156,6 +158,7 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
               id="password_confirmation"
               placeholder="Confirma tu nueva contraseña"
               required
+              isInvalid={errorMsg.includes('Confirmar') || errorMsg.includes('coinciden')}
             />
           </div>
           <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading}>
