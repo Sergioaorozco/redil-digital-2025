@@ -1,6 +1,6 @@
 ---
 const { userInfo } = Astro.locals;
-import { GraduationCap, Scale, UserCheck } from "lucide-react";
+import { ArrowUpRight, GraduationCap, Scale, UserCheck } from "lucide-react";
 import { DocumentTabs } from "@/components/react/DocumentTabs";
 import IconCard from "@/components/shared/IconCard.astro";
 import { Modal } from "@/components/ui/modal";
@@ -50,8 +50,8 @@ const documentosAsamblea = [
       class="text-primary-title font-semibold tracking-wider uppercase text-sm text-center md:text-left"
       >Panel de Control</span
     >
-    <h1 class="text-3xl md:text-5xl font-bold text-center md:text-left">
-      Bienvenido, <span class="text-primary-title"
+    <h1 class="text-2xl md:text-4xl font-bold text-center md:text-left">
+      Bienvenido, <span class="text-primary-title text-balance"
         >{userInfo?.userName ?? userInfo?.userEmail?.split("@")[0]}</span
       >
     </h1>
@@ -62,8 +62,8 @@ const documentosAsamblea = [
   </section>
 
   <section class="w-full relative">
-    <div class="w-full mb-5">
-      <Modal>
+    <div class="mb-5">
+      <Modal client:visible header="Estados Financieros">
         <div slot="trigger">
           <LinkItem
             title={documentosAsamblea[1].title}
@@ -105,7 +105,7 @@ const documentosAsamblea = [
           />
         </div>
 
-        <h1 class="text-xl font-bold text-primary-title">
+        <h1 class="text-xl font-bold text-primary-title text-pretty">
           Próxima Asamblea: 15 de Febrero
         </h1>
         <p class="my-4">Documentos Necesarios:</p>
