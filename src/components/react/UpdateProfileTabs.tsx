@@ -1,4 +1,4 @@
-'use-client';
+'use client';
 
 // Icons
 import { User, Lock, LoaderCircleIcon } from "lucide-react";
@@ -9,6 +9,7 @@ import { actions } from "astro:actions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import FormattedInput from "./formattedInput";
 
 // Components
@@ -106,11 +107,20 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
             <Label htmlFor="name"><User size={16} className="text-primary-title" /> Nombre</Label>
             <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} required />
           </div>
-          <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading || !name}>
-            {isLoading && (
-              <LoaderCircleIcon size={16} className="animate-spin text-background place-self-center" />
-            )} <p>Actualizar Perfil</p>
-          </button>
+          <Tooltip open={name ? false : undefined}>
+            <TooltipTrigger asChild>
+              <div className="w-full">
+                <button type="submit" className="flex w-full justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading || !name}>
+                  {isLoading && (
+                    <LoaderCircleIcon size={16} className="animate-spin text-background place-self-center" />
+                  )} <p>Actualizar Perfil</p>
+                </button>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>El nombre es requerido para actualizar el perfil</p>
+            </TooltipContent>
+          </Tooltip>
         </form>
       </TabsContent>
       <TabsContent value="password" className="w-full md:w-1/2 py-5">
