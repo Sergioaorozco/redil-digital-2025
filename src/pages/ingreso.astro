@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import FormattedInput from "@/components/react/formattedInput";
+import { Input } from "@/components/ui/input";
 ---
 
 <Layout pageTitle="Ingreso">
@@ -16,7 +17,7 @@ import FormattedInput from "@/components/react/formattedInput";
               class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
               >Correo Electrónico</label
             >
-            <FormattedInput
+            <Input
               autoComplete="current-email"
               type="email"
               name="email"
@@ -38,6 +39,7 @@ import FormattedInput from "@/components/react/formattedInput";
               id="password"
               placeholder="Digita tu Contraseña"
               autoComplete="current-password"
+              required
             />
           </div>
           <button
@@ -56,10 +58,11 @@ import FormattedInput from "@/components/react/formattedInput";
 </Layout>
 
 <script>
-  import { Report, Notify } from "notiflix";
+  import { Report } from "notiflix";
   import type { AuthError } from "firebase/auth";
   import { navigate } from "astro:transitions/client";
   import { actions } from "astro:actions";
+  import { toast } from "sonner";
 
   const modalOptions = {
     className: "text-center",
@@ -86,12 +89,8 @@ import FormattedInput from "@/components/react/formattedInput";
           if (error) throw error;
 
           navigate("/miembros");
-
-          setTimeout(() => {
-            Notify.success("Bienvenido al Redil Laureles", {
-              position: "center-bottom",
-            });
-          }, 600);
+          // Showing success notification
+          toast.success("Bienvenido al Redil Laureles");
         } catch (error) {
           const firebaseError = error as AuthError;
 

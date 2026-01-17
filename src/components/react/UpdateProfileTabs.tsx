@@ -104,9 +104,9 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="name"><User size={16} className="text-primary-title" /> Nombre</Label>
-            <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} />
+            <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} required />
           </div>
-          <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading}>
+          <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading || !name}>
             {isLoading && (
               <LoaderCircleIcon size={16} className="animate-spin text-background place-self-center" />
             )} <p>Actualizar Perfil</p>

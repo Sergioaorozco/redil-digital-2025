@@ -47,7 +47,7 @@ export const loginUser = defineAction({
       });
     } catch (error) {
       const authError = error as AuthError;
-      if (authError.code === 'auth/invalid-credential') {
+      if (authError.code === 'auth/invalid-credential' || authError.code === 'invalid_type') {
         throw new ActionError({
           code: "BAD_REQUEST",
           message: 'Credenciales inválidas, intenta de nuevo'
