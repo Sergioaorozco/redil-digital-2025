@@ -8,6 +8,7 @@ export interface cardProps {
   link?: string;
   icon?: LucideIcon;
   target?: HTMLAttributeAnchorTarget;
+  disabled?: boolean;
 }
 
 export interface iconCardProps {
@@ -17,5 +18,6 @@ export interface iconCardProps {
   url?: string;
   icon: LucideIcon;
   target?: HTMLAttributeAnchorTarget;
+  disabled?: boolean;
   [key: string]: any;
 }

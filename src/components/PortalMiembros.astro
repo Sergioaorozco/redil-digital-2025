@@ -20,6 +20,7 @@ const memberLinks = [
     href: "/miembros/cursos",
     icon: GraduationCap,
     description: "Accede a tus cursos y gestiona tus certificados.",
+    disabled: true,
   },
   {
     title: "Documentos Oficiales",
@@ -89,6 +90,7 @@ const documentosAsamblea = [
         icon={memberLinks[0].icon}
         href={memberLinks[0].href}
         description={memberLinks[0].description}
+        disabled={true}
       />
 
       <!-- Estatutos -->
@@ -100,7 +102,10 @@ const documentosAsamblea = [
             description={memberLinks[1].description}
           />
         </div>
-        <DocumentTabs client:visible />
+        <DocumentTabs
+          client:visible
+          userEmail={userInfo?.userEmail ?? undefined}
+        />
       </Modal>
 
       <!-- Asambleas -->

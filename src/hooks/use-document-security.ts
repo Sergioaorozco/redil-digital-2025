@@ -41,21 +41,11 @@ export function useDocumentSecurity() {
       }
     };
 
-    const handleWindowBlur = () => {
-      setIsHidden(true);
-    };
-
-    const handleWindowFocus = () => {
-      setIsHidden(false);
-    };
-
     window.addEventListener('beforeprint', handleBeforePrint);
     window.addEventListener('afterprint', handleAfterPrint);
     window.addEventListener('keydown', preventScreenshot);
     window.addEventListener('keyup', preventScreenshot);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('blur', handleWindowBlur);
-    window.addEventListener('focus', handleWindowFocus);
 
     return () => {
       window.removeEventListener('beforeprint', handleBeforePrint);
@@ -63,8 +53,6 @@ export function useDocumentSecurity() {
       window.removeEventListener('keydown', preventScreenshot);
       window.removeEventListener('keyup', preventScreenshot);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('blur', handleWindowBlur);
-      window.removeEventListener('focus', handleWindowFocus);
     };
   }, []);
 
