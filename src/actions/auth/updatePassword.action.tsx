@@ -22,6 +22,13 @@ export const updatePasswordAction = defineAction({
         });
       }
 
+      if (current_password === password) {
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: 'Intenta una contraseña diferente a la actual'
+        })
+      }
+
       if (password !== password_confirmation) {
         throw new ActionError({
           code: "BAD_REQUEST",
@@ -49,6 +56,13 @@ export const updatePasswordAction = defineAction({
 
       // Provide better error messages for common cases
       if (authError.code === 'auth/wrong-password') {
+        throw new ActionError({
+          code: "UNAUTHORIZED",
+          message: 'La contraseña actual es incorrecta'
+        });
+      }
+
+      if (authError.code === 'auth/invalid-credential') {
         throw new ActionError({
           code: "UNAUTHORIZED",
           message: 'La contraseña actual es incorrecta'
