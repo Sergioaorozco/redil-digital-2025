@@ -47,7 +47,7 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
 }
 
 .r-well {
-  @apply bg-card px-6 py-4 rounded-lg border border-border;
+  @apply bg-card px-3 py-4 md:px-6 md:py-4 rounded-lg border border-border;
 }
 
 .flex-responsive {
@@ -64,6 +64,10 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
 
 .btn-primary {
   @apply bg-primary-title hover:bg-primary-title-hover text-background rounded-lg p-3 font-semibold;
+}
+
+.highlight-info {
+  @apply text-xs md:text-sm font-bold py-2 bg-primary-title/10 px-3 rounded-md;
 }
 
 @theme inline {

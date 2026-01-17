@@ -1,11 +1,18 @@
 ---
 const { userInfo } = Astro.locals;
-import { ArrowUpRight, GraduationCap, Scale, UserCheck } from "lucide-react";
+import {
+  ArrowUpRight,
+  Clock,
+  GraduationCap,
+  Scale,
+  UserCheck,
+} from "lucide-react";
 import { DocumentTabs } from "@/components/react/DocumentTabs";
 import IconCard from "@/components/shared/IconCard.astro";
 import { Modal } from "@/components/ui/modal";
 import LinkItem from "@/components/shared/LinkItem.astro";
 import { RenderDocument } from "./react/RenderDocument";
+import Notification from "./shared/Notification.astro";
 
 const memberLinks = [
   {
@@ -96,7 +103,7 @@ const documentosAsamblea = [
       </Modal>
 
       <!-- Asambleas -->
-      <Modal client:visible header="Asambleas">
+      <Modal client:visible header="Próxima Asamblea">
         <div slot="trigger">
           <IconCard
             title={memberLinks[2].title}
@@ -105,10 +112,18 @@ const documentosAsamblea = [
           />
         </div>
 
-        <h1 class="text-xl font-bold text-primary-title text-pretty">
-          Próxima Asamblea: 15 de Febrero
+        <h1
+          class="text-lg text-muted-foreground font-bold text-pretty flex-responsive justify-between"
+        >
+          <span class="text-primary-title">Fecha: 15 de Febrero de 2026</span>
+          <span class="text-primary-title flex gap-2 items-center"
+            ><Clock size={20} /> Hora: 2:30 PM</span
+          >
         </h1>
-        <p class="my-4">Documentos Necesarios:</p>
+        <Notification variant="info" className="my-4">
+          En caso de no poder asistir a la asamblea, debes diligenciar la carta
+          de delegación de voto:
+        </Notification>
         <div class="flex flex-col gap-3">
           <LinkItem
             title={documentosAsamblea[0].title}

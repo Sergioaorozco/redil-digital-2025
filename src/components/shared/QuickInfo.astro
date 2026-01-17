@@ -1,0 +1,79 @@
+---
+import { ArrowUpRight, type LucideIcon } from "lucide-react";
+
+interface Props {
+  label: string;
+  description: string;
+  icon: LucideIcon;
+  url?: string;
+  variant?: "primary" | "amber" | "neutral";
+}
+
+const {
+  label,
+  description,
+  icon: Icon,
+  url,
+  variant = "primary",
+} = Astro.props;
+
+const variants = {
+  primary: {
+    bg: "bg-primary-title/[0.04] border-primary-title/10 hover:bg-primary-title/[0.08] hover:border-primary-title/20",
+    iconBg: "bg-primary-title/10 text-primary-title",
+    label: "text-primary-title/80",
+  },
+  amber: {
+    bg: "bg-amber-500/[0.04] border-amber-500/10 hover:bg-amber-500/[0.08] hover:border-amber-500/20",
+    iconBg: "bg-amber-500/10 text-amber-600",
+    label: "text-amber-600",
+  },
+  neutral: {
+    bg: "bg-muted/30 border-border/60 hover:bg-muted/50 hover:border-border",
+    iconBg: "bg-muted text-muted-foreground",
+    label: "text-muted-foreground/80",
+  },
+};
+
+const currentVariant = variants[variant];
+const Element = url ? "a" : "div";
+---
+
+<Element
+  href={url}
+  target={url ? "_blank" : undefined}
+  rel={url ? "noopener noreferrer" : undefined}
+  class={`group relative flex items-start gap-4 p-4 rounded-2xl border transition-all duration-500 ${currentVariant.bg}`}
+>
+  <!-- Icon Container -->
+  <div
+    class={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-500 shadow-sm ${currentVariant.iconBg} group-hover:scale-110`}
+  >
+    <Icon className="w-5 h-5" />
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-1 flex-col text-start overflow-hidden">
+    <span
+      class={`text-[10px] font-black uppercase tracking-[0.15em] mb-0.5 ${currentVariant.label}`}
+    >
+      {label}
+    </span>
+    <p
+      class="text-sm font-bold text-foreground leading-snug whitespace-pre-line text-pretty"
+    >
+      {description}
+    </p>
+  </div>
+
+  <!-- Optional Arrow for Links -->
+  {
+    url && (
+      <div class="group-hover:scale-110 transition-all duration-500 self-center">
+        <ArrowUpRight
+          className={`w-5 h-5 ${variant === "amber" ? "text-amber-600" : variant === "neutral" ? "text-muted-foreground" : "text-primary-title"}`}
+        />
+      </div>
+    )
+  }
+</Element>
