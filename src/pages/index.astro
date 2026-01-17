@@ -12,7 +12,7 @@ import Nav from "@/components/shared/Nav.astro";
 import ButtonCard from "@/components/shared/ButtonCard.astro";
 import { Modal } from "@/components/ui/modal";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 import RedilMap from "@/components/react/RedilMap";
 import Notification from "@/components/shared/Notification.astro";
 import QuickInfo from "@/components/shared/QuickInfo.astro";
@@ -227,14 +227,14 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
     </article>
     <!-- Social -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto mt-8 w-full"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto mt-3 w-full"
     >
       <QuickInfo
         variant="neutral"
         label="Facebook"
         description="Sigue nuestras transmisiones"
         url="https://www.facebook.com/redildelaureles/"
-        icon={FacebookIcon as any}
+        icon={FacebookIcon as LucideIcon}
         action="Seguir"
       />
       <QuickInfo
@@ -242,7 +242,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         label="Instagram"
         description="Mira nuestro día a día"
         url="https://www.instagram.com/redildelaureles/"
-        icon={InstragramIcon as any}
+        icon={InstragramIcon as LucideIcon}
         action="Seguir"
       />
       <QuickInfo
@@ -250,7 +250,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         label="WhatsApp"
         description="Escríbenos tus dudas"
         url={`https://wa.me/573007869517?text=${encodedText}`}
-        icon={ChatIcon as any}
+        icon={ChatIcon as LucideIcon}
         action="Chatear"
       />
     </div>

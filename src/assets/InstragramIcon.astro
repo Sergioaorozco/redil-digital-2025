@@ -1,5 +1,5 @@
 ---
-const { size = 24, class: className } = Astro.props;
+const { size = 24 } = Astro.props;
 ---
 
 <svg
@@ -9,8 +9,7 @@ const { size = 24, class: className } = Astro.props;
   viewBox="0 0 24 24"
   fill="none"
   class:list={[
-    "icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram",
-    className,
+    "icon size-7 icon-tabler icons-tabler-outline icon-tabler-brand-instagram",
   ]}
   stroke="currentColor"
   stroke-width="1.5"
