@@ -5,7 +5,7 @@ import { User, Lock, LoaderCircleIcon } from "lucide-react";
 import { toast } from "sonner";
 
 // Actions
-import { actions } from "astro:actions";
+import { actions, isInputError } from "astro:actions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,13 +23,11 @@ interface UpdateProfileTabsProps {
 export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: UpdateProfileTabsProps) {
   const [name, setName] = useState(initialName);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState<string>('');
-  const [successMsg, setSuccessMsg] = useState<string>('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
 
   const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrorMsg('');
-    setSuccessMsg('');
+    setFieldErrors({});
     setIsLoading(true);
 
     try {
@@ -44,14 +42,21 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
           }, 2000);
           return;
         }
-        const message = error instanceof Error ? error.message : 'Error al actualizar el perfil';
-        setErrorMsg(message);
+
+        // Handle specific field validation errors (Zod)
+        if (isInputError(error)) {
+          setFieldErrors(error.fields);
+          const messages = Object.values(error.fields).flat().join(', ');
+          toast.error(messages);
+          return;
+        }
+
+        const message = error.message || 'Error al actualizar el perfil';
         toast.error(message);
       }
 
       if (data) {
         const message = 'Perfil actualizado correctamente';
-        setSuccessMsg(message);
         toast.success(message);
 
         // Dispatch custom event to notify other components (like Nav) to update
@@ -61,7 +66,7 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
       }
 
     } catch (error) {
-      setErrorMsg(error instanceof Error ? error.message : 'Error desconocido');
+      toast.error(error instanceof Error ? error.message : 'Error desconocido');
     } finally {
       setIsLoading(false);
     }
@@ -70,8 +75,7 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
 
   const handleUpdatePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrorMsg('');
-    setSuccessMsg('');
+    setFieldErrors({});
     setIsLoading(true);
 
     try {
@@ -86,19 +90,29 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
           }, 2000);
           return;
         }
-        const message = error instanceof Error ? error.message : 'Error al actualizar la contraseña';
-        setErrorMsg(message);
+
+        // Handle specific field validation errors (Zod)
+        if (isInputError(error)) {
+          setFieldErrors(error.fields);
+          const messages = Object.values(error.fields).flat().join(', ');
+          toast.error(messages);
+          return;
+        }
+
+        if (error.message.includes('contraseña actual')) {
+          setFieldErrors({ current_password: [error.message] });
+        }
+
+        const message = error.message || 'Error al actualizar la contraseña';
         toast.error(message);
       }
 
       if (data) {
-        const message = 'Contraseña actualizada correctamente';
-        setSuccessMsg(message);
-        toast.success(message);
+        toast.success('Contraseña actualizada correctamente');
       }
 
     } catch (error) {
-      setErrorMsg(error instanceof Error ? error.message : 'Error desconocido');
+      toast.error(error instanceof Error ? error.message : 'Error desconocido');
     } finally {
       setIsLoading(false);
     }
@@ -119,7 +133,12 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="name"><User size={16} className="text-primary-title" /> Nombre</Label>
-            <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} required />
+            <Input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" value={name} required aria-invalid={!!fieldErrors.name} />
+            {fieldErrors.name && (
+              <p className="text-[10px] font-bold uppercase tracking-tight text-destructive animate-in fade-in slide-in-from-top-1">
+                {fieldErrors.name[0]}
+              </p>
+            )}
           </div>
           <Tooltip open={name ? false : undefined}>
             <TooltipTrigger asChild>
@@ -148,8 +167,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
               id="current_password"
               placeholder="Tu contraseña actual"
               required
-              isInvalid={errorMsg.includes('actual') || errorMsg.includes('incorrecta')}
+              isInvalid={!!fieldErrors.current_password}
             />
+            {fieldErrors.current_password && (
+              <p className="text-[10px] font-bold uppercase tracking-tight text-destructive animate-in fade-in slide-in-from-top-1">
+                {fieldErrors.current_password[0]}
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Nueva Contraseña</Label>
@@ -160,8 +184,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
               id="password"
               placeholder="Digita tu nueva contraseña"
               required
-              isInvalid={errorMsg.includes('diferente') || errorMsg.includes('Confirmar')}
+              isInvalid={!!fieldErrors.password}
             />
+            {fieldErrors.password && (
+              <p className="text-[10px] font-bold uppercase tracking-tight text-destructive animate-in fade-in slide-in-from-top-1">
+                {fieldErrors.password[0]}
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="password_confirmation">Confirmar Nueva Contraseña</Label>
@@ -172,8 +201,13 @@ export function UpdateProfileTabs({ initialName = '', initialEmail = '' }: Updat
               id="password_confirmation"
               placeholder="Confirma tu nueva contraseña"
               required
-              isInvalid={errorMsg.includes('Confirmar') || errorMsg.includes('coinciden')}
+              isInvalid={!!fieldErrors.password_confirmation}
             />
+            {fieldErrors.password_confirmation && (
+              <p className="text-[10px] font-bold uppercase tracking-tight text-destructive animate-in fade-in slide-in-from-top-1">
+                {fieldErrors.password_confirmation[0]}
+              </p>
+            )}
           </div>
           <button type="submit" className="flex justify-center gap-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading}>
             {isLoading && (

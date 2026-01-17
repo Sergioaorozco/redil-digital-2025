@@ -9,13 +9,17 @@ export const updatePasswordAction = defineAction({
     current_password: z.string(),
     password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
     password_confirmation: z.string(),
-  }),
-  handler: async ({ current_password, password, password_confirmation }, { cookies }) => {
+  })
+    .refine((data) => data.password === data.password_confirmation, {
+      message: "Las contraseñas no coinciden",
+      path: ["password_confirmation"],
+    })
+    .refine((data) => data.password !== data.current_password, {
+      message: "Por favor, elige una contraseña diferente a la actual",
+      path: ["password"],
+    }),
+  handler: async ({ current_password, password }, { cookies }) => {
     try {
-      if (password !== password_confirmation) {
-        throw new ActionError({ code: "BAD_REQUEST", message: 'Las contraseñas no coinciden' });
-      }
-
       // 1. Get valid session
       const { user } = await getValidSession(cookies);
 
