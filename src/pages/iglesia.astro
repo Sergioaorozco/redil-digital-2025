@@ -81,12 +81,13 @@ const utilLinks: iconCardProps[] = [
     >
       {
         utilLinks.map(({ title, url, icon: Icon, description }) => (
-          <Modal client:visible header={title}>
-            <div slot="trigger">
-              <IconCard title={title} icon={Icon} description={description} />
-            </div>
-            <RenderDocument client:visible url={url ?? ""} />
-          </Modal>
+          <IconCard
+            href={url}
+            target="_blank"
+            title={title}
+            icon={Icon}
+            description={description}
+          />
         ))
       }
     </section>
