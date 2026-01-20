@@ -1,12 +1,9 @@
 ---
-import FullCalendar, {
-  type CalendarEvent,
-} from "@/components/react/EventPageCalendar";
 import QuickInfo from "@/components/shared/QuickInfo.astro";
 import Layout from "@/layouts/Layout.astro";
 import { Clock } from "lucide-react";
 
-const listOfEvents: CalendarEvent[] = [
+const listOfEvents = [
   {
     id: "1",
     start: new Date("2024-08-26T09:30:00Z"),
@@ -27,9 +24,9 @@ const listOfEvents: CalendarEvent[] = [
 ---
 
 <Layout pageTitle="Próximos Eventos">
-  <section class="flex-responsive px-5 sm:px-0 max-w-7xl mx-auto gap-5">
+  <section class="w-full flex-responsive px-5 md:px-0 max-w-7xl mx-auto gap-5">
     <!-- Event Card -->
-    <article class="w-full sm:w-1/3 flex flex-col gap-3">
+    <article class="w-full md:w-1/3 flex flex-col gap-3">
       {
         listOfEvents.map((event) => (
           <QuickInfo
@@ -42,10 +39,7 @@ const listOfEvents: CalendarEvent[] = [
       }
     </article>
     <!-- Calendar -->
-    <article
-      class="w-full sm:w-2/3 bg-muted/30 rounded-2xl p-5 overflow-clip min-h-full"
-    >
-      <FullCalendar listOfEvents={listOfEvents} />
+    <article class="w-full md:w-2/3 bg-muted/30 rounded-2xl p-5 md:min-h-full">
     </article>
   </section>
 </Layout>
