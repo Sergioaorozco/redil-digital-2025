@@ -12,6 +12,7 @@ export interface SessionData {
 }
 
 const COOKIE_NAME = 'auth_session';
+const SESSION_TTL = 60 * 60 * 1; // 1 hour
 
 /**
  * Gets a valid ID token. If the current one is expired or invalid, 
@@ -40,7 +41,7 @@ export async function getValidSession(cookies: AstroCookies): Promise<{ token: s
       httpOnly: true,
       secure: true,
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 5, // 5 days
+      maxAge: SESSION_TTL,
     });
   };
 
@@ -99,6 +100,6 @@ export function setSession(cookies: AstroCookies, data: SessionData) {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 5,
+    maxAge: SESSION_TTL,
   });
 }
