@@ -64,7 +64,7 @@ const getEvents = () => {
           <div class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
             <span
               class:list={[
-                "w-1.5 md:w-1 self-stretch shrink-0 rounded h-full",
+                "w-1 md:w-1 self-stretch shrink-0 rounded min-h-[40px]",
                 isSoon(date)
                   ? "bg-green-600 animate-pulse"
                   : "bg-yellow-600/40",
