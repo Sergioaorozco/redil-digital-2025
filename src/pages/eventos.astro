@@ -1,6 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Clock, FunctionSquare } from "lucide-react";
+import { Clock } from "lucide-react";
+
+import bazar2025 from "@/images/iglesia/bazar-2025.webp";
+import { Image } from "astro:assets";
 
 const listOfEvents = [
   {
@@ -12,15 +15,15 @@ const listOfEvents = [
   },
   {
     id: "2",
-    date: new Date("2026-01-24T09:30:00Z"),
-    title: "Reunión Hombres",
+    date: new Date("2026-01-28T09:30:00Z"),
+    title: "Tiempo de Oración",
     icon: Clock,
-    description: "Primera Reunion de hombres 2026",
+    description: "Hora: 5:00 AM - Link de Zoom",
   },
   {
     id: "3",
-    date: new Date("2026-01-29T09:30:00Z"),
-    title: "Reunión Hombres",
+    date: new Date("2026-01-30T09:30:00Z"),
+    title: "Reunión Compañía T",
     icon: Clock,
     description: "Primera Reunion de hombres 2026",
   },
@@ -57,43 +60,58 @@ const getEvents = () => {
 
 <Layout pageTitle="Próximos Eventos">
   <section class="w-full flex-responsive px-5 md:px-0 max-w-7xl mx-auto gap-5">
-    <!-- Event Card -->
-    <article class="w-full md:w-1/3 flex flex-col gap-3 relative">
+    <ul class="w-full md:w-1/2 flex flex-col gap-3 relative">
       {
         getEvents().map(({ title, date, description }) => (
-          <div class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
-            <span
-              class:list={[
-                "w-1 md:w-1 self-stretch shrink-0 rounded min-h-[40px]",
-                isSoon(date)
-                  ? "bg-green-600 animate-pulse"
-                  : "bg-yellow-600/40",
-              ]}
-            />
-            <div class="w-full flex flex-col gap-2 items-start text-xs pr-16">
-              <p class="text-muted-foreground font-bold">
-                {date.toLocaleDateString("es-ES", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </p>
-              <span>
-                <h3 class="font-bold">{title}</h3>
-                <p class="text-muted-foreground">{description}</p>
-              </span>
-              {isSoon(date) && (
-                <span class="text-xs text-muted-foreground absolute top-3 right-3 px-2 py-1 rounded-lg bg-muted/70">
-                  Próximamente
-                </span>
-              )}
+          <li class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
+            <div class="flex flex-row justify-between gap-2 w-full h-full">
+              <div class="flex flex-row items-center gap-3">
+                <span
+                  class:list={[
+                    "w-1 self-stretch shrink-0 rounded min-h-[40px]",
+                    isSoon(date)
+                      ? "bg-green-600 animate-pulse"
+                      : "bg-yellow-600/40",
+                  ]}
+                />
+                <div class="text-xs">
+                  <p class="text-muted-foreground font-bold capitalize mb-5">
+                    {date.toLocaleDateString("es-ES", {
+                      day: "numeric",
+                      weekday: "long",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <span>
+                    <h3 class="font-bold">{title}</h3>
+                    <p class="text-muted-foreground text-pretty mt-1">
+                      {description}
+                    </p>
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
+            {isSoon(date) && (
+              <span class="text-xs w-fit text-muted-foreground self-start shrink-0 px-2 py-1 rounded-lg bg-muted/70 -mt-1">
+                Próximamente
+              </span>
+            )}
+          </li>
         ))
       }
-    </article>
+    </ul>
     <!-- Calendar -->
-    <article class="w-full md:w-2/3 bg-muted/30 rounded-2xl p-5 md:min-h-full">
-    </article>
+    <figure
+      class="w-full md:w-1/2 bg-muted/30 rounded-2xl md:min-h-full overflow-clip"
+    >
+      <Image
+        src={bazar2025}
+        alt="imagen del bazar 2025"
+        width={500}
+        height={500}
+        class="w-full h-full object-cover"
+      />
+    </figure>
   </section>
 </Layout>
