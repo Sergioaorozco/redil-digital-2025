@@ -1,13 +1,11 @@
 ---
-import QuickInfo from "@/components/shared/QuickInfo.astro";
 import Layout from "@/layouts/Layout.astro";
-import { date } from "astro:schema";
-import { Clock } from "lucide-react";
+import { Clock, FunctionSquare } from "lucide-react";
 
 const listOfEvents = [
   {
     id: "1",
-    date: new Date("2024-08-26T09:30:00Z"),
+    date: new Date("2026-05-26T09:30:00Z"),
     title: "Reunión Mujeres",
     icon: Clock,
     description: "Reunión semanal de mujeres en el salón principal.",
@@ -19,20 +17,42 @@ const listOfEvents = [
     icon: Clock,
     description: "Primera Reunion de hombres 2026",
   },
+  {
+    id: "3",
+    date: new Date("2026-01-29T09:30:00Z"),
+    title: "Reunión Hombres",
+    icon: Clock,
+    description: "Primera Reunion de hombres 2026",
+  },
 ];
 
+// Helper Contant to get today date
+const todayDate = new Date();
+todayDate.setHours(0, 0, 0, 0);
 
+/**
+ *
+ * Returns true if the event date is this week.
+ * @param eventDate
+ * @returns boolean
+ */
 const isSoon = (eventDate: Date) => {
-  const now = new Date();
-  const timeDifference = eventDate.getTime() - now.getTime();
-  const daysDifference = timeDifference / (1000 * 3600 * 24);
-  return daysDifference >=7
+  const limit = new Date(todayDate);
+  limit.setDate(todayDate.getDate() + 7);
+  limit.setHours(23, 59, 59, 999);
+  return eventDate >= todayDate && eventDate <= limit;
 };
 
-
-const orderEventsByDate = () => {
-  return listOfEvents.sort((a, b) => a.date.getTime() - b.date.getTime());
-}
+/**
+ * Retrieves the list of events ordered and filtered by date.
+ * @returns Array of events
+ */
+const getEvents = () => {
+  const events = listOfEvents.sort(
+    (a, b) => a.date.getTime() - b.date.getTime(),
+  );
+  return events.filter((event) => event.date >= todayDate);
+};
 ---
 
 <Layout pageTitle="Próximos Eventos">
@@ -40,11 +60,24 @@ const orderEventsByDate = () => {
     <!-- Event Card -->
     <article class="w-full md:w-1/3 flex flex-col gap-3">
       {
-        orderEventsByDate().map(({title, date, description}) => (
+        getEvents().map(({ title, date, description }) => (
           <div class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-2 p-4 border border-boder">
-            <i class:list={['w-1 rounded h-full', isSoon(date) ? 'bg-green-600 animate-pulse' : 'bg-muted-foreground/30']} />
+            <i
+              class:list={[
+                "w-1 rounded h-full",
+                isSoon(date)
+                  ? "bg-green-600 animate-pulse"
+                  : "bg-yellow-600/40",
+              ]}
+            />
             <div class="w-full flex flex-col gap-2 items-start text-xs">
-              <p class="text-muted-foreground font-bold">{date.toLocaleDateString()}</p>
+              <p class="text-muted-foreground font-bold">
+                {date.toLocaleDateString("es-ES", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
               <span>
                 <h3 class="font-bold">{title}</h3>
                 <p class="text-muted-foreground">{description}</p>
