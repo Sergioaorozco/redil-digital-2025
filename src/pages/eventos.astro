@@ -61,16 +61,16 @@ const getEvents = () => {
     <article class="w-full md:w-1/3 flex flex-col gap-3 relative">
       {
         getEvents().map(({ title, date, description }) => (
-          <div class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-2 p-4 border border-boder">
-            <i
+          <div class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
+            <span
               class:list={[
-                "w-1 rounded h-full",
+                "w-1.5 md:w-1 self-stretch shrink-0 rounded h-full",
                 isSoon(date)
                   ? "bg-green-600 animate-pulse"
                   : "bg-yellow-600/40",
               ]}
             />
-            <div class="w-full flex flex-col gap-2 items-start text-xs">
+            <div class="w-full flex flex-col gap-2 items-start text-xs pr-16">
               <p class="text-muted-foreground font-bold">
                 {date.toLocaleDateString("es-ES", {
                   day: "numeric",

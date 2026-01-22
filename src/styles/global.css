@@ -51,7 +51,7 @@ h1,h2,h3,h4,h5,h6,.special-nav-link {
 }
 
 .flex-responsive {
-  @apply flex flex-col min-md:flex-row;
+  @apply flex flex-col md:flex-row;
 }
 
 .text-responsive {
