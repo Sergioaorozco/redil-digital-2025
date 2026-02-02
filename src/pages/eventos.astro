@@ -1,10 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Clock } from "lucide-react";
+import { Clock, CalendarRangeIcon } from "lucide-react";
 
 import bazar2025 from "@/images/iglesia/bazar-2025.webp";
 import { Image } from "astro:assets";
-import Notification from "@/components/shared/Notification.astro";
 
 const listOfEvents = [
   {
@@ -67,64 +66,67 @@ const getEvents = () => {
 ---
 
 <Layout pageTitle="Próximos Eventos">
-  <section class="w-full flex-responsive px-5 md:px-0 max-w-7xl mx-auto gap-5">
-    <ul class="w-full md:w-1/2 flex flex-col gap-3 relative">
-      { !getEvents().length && (
-        <Notification variant="info">
-          No hay eventos próximos por el momento. ¡Vuelve pronto!
-        </Notification>
-      )}
-      {
-        getEvents().map(({ title, date, description }) => (
-          <li class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
-            <div class="flex flex-row justify-between gap-2 w-full h-full">
-              <div class="flex flex-row items-center gap-3">
-                <span
-                  class:list={[
-                    "w-1 self-stretch shrink-0 rounded min-h-[40px]",
-                    isSoon(date)
-                      ? "bg-green-600 animate-pulse"
-                      : "bg-yellow-600/40",
-                  ]}
-                />
-                <div class="text-xs">
-                  <p class="text-muted-foreground font-bold capitalize mb-5">
-                    {date.toLocaleDateString("es-ES", {
-                      day: "numeric",
-                      weekday: "long",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                  <span>
-                    <h3 class="font-bold">{title}</h3>
-                    <p class="text-muted-foreground text-pretty mt-1">
-                      {description}
+  {
+    !getEvents().length ? (
+      <div class="max-w-7xl px-5 md:px-0 mx-auto">
+        <figure class="w-full justify-center mt-10 flex flex-col items-center gap-4 text-muted-foreground">
+          <CalendarRangeIcon size={200} />
+          <h2 class="text-center font-semibold mt-2 text-2xl md:text-3xl">
+            No hay eventos próximos por el momento. <br /> ¡Vuelve pronto!
+          </h2>
+        </figure>
+      </div>
+    ) : (
+      <section class="w-full flex-responsive px-5 md:px-0 max-w-7xl mx-auto gap-5">
+        <ul class="w-full md:w-1/2 flex flex-col gap-3 relative">
+          {getEvents().map(({ title, date, description }) => (
+            <li class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
+              <div class="flex flex-row justify-between gap-2 w-full h-full">
+                <div class="flex flex-row items-center gap-3">
+                  <span
+                    class:list={[
+                      "w-1 self-stretch shrink-0 rounded min-h-[40px]",
+                      isSoon(date)
+                        ? "bg-green-600 animate-pulse"
+                        : "bg-yellow-600/40",
+                    ]}
+                  />
+                  <div class="text-xs">
+                    <p class="text-muted-foreground font-bold capitalize mb-5">
+                      {date.toLocaleDateString("es-ES", {
+                        day: "numeric",
+                        weekday: "long",
+                        month: "long",
+                        year: "numeric",
+                      })}
                     </p>
-                  </span>
+                    <span>
+                      <h3 class="font-bold">{title}</h3>
+                      <p class="text-muted-foreground text-pretty mt-1">
+                        {description}
+                      </p>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            {isSoon(date) && (
-              <span class="text-xs w-fit text-muted-foreground self-start shrink-0 px-2 py-1 rounded-lg bg-muted/70 -mt-1">
-                Próximamente
-              </span>
-            )}
-          </li>
-        ))
-      }
-    </ul>
-    <!-- Calendar -->
-    <figure
-      class="w-full md:w-1/2 bg-muted/30 rounded-2xl md:min-h-full overflow-clip"
-    >
-      <Image
-        src={bazar2025}
-        alt="imagen del bazar 2025"
-        width={500}
-        height={500}
-        class="w-full h-full object-cover"
-      />
-    </figure>
-  </section>
+              {isSoon(date) && (
+                <span class="text-xs w-fit text-muted-foreground self-start shrink-0 px-2 py-1 rounded-lg bg-muted/70 -mt-1">
+                  Próximamente
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+        <figure class="w-full md:w-1/2 bg-muted/30 rounded-2xl md:min-h-full overflow-clip">
+          <Image
+            src={bazar2025}
+            alt="imagen del bazar 2025"
+            width={500}
+            height={500}
+            class="w-full h-full object-cover"
+          />
+        </figure>
+      </section>
+    )
+  }
 </Layout>
