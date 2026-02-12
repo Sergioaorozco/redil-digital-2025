@@ -35,10 +35,13 @@ const isSoon = (eventDate: Date) => {
  * @returns Array of events
  */
 const getEvents = (): Event[] => {
-  const events = listOfEvents.sort(
-    (a: Event, b: Event) => a.date.getTime() - b.date.getTime(),
-  );
-  return events.filter((event: Event) => event.date >= todayDate);
+  const events = listOfEvents
+    .slice()
+    .sort(
+      (a: Event, b: Event) =>
+        new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
+  return events.filter((event: Event) => new Date(event.date) >= todayDate);
 };
 
 console.log(getEvents());
