@@ -16,11 +16,15 @@ export const getEvents = defineAction({
     }
 
     return values.map((event: any) => {
-      const [title, description, date, time = "9:00pm"] = event;
+      const [title, description, dateStr, time = "9:00pm"] = event;
+
+      const [day, month, year] = dateStr.split("/");
+      const date = new Date(Number(year), Number(month) - 1, Number(day));
+
       return {
         title,
         description,
-        date,
+        date: date,
         time
       }
     })

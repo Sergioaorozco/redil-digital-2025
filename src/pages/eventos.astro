@@ -1,19 +1,17 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Clock, CalendarRangeIcon } from "lucide-react";
-
+import type { Event } from "@/types/eventsTypes";
 import bazar2025 from "@/images/iglesia/bazar-2025.webp";
 import { Image } from "astro:assets";
 import { actions } from "astro:actions";
 
-const { data, error } = await Astro.callAction(actions.getEvents, {});
+const { data, error } = await Astro.callAction(actions.getEvents, []);
 
 if (error) {
   console.log(error);
 }
-const listOfEvents = data;
-
-console.log(listOfEvents);
+const listOfEvents = data || [];
 
 // Helper Contant to get today date
 const todayDate = new Date();
@@ -36,12 +34,14 @@ const isSoon = (eventDate: Date) => {
  * Retrieves the list of events ordered and filtered by date.
  * @returns Array of events
  */
-const getEvents = () => {
+const getEvents = (): Event[] => {
   const events = listOfEvents.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    (a: Event, b: Event) => a.date.getTime() - b.date.getTime(),
   );
-  return events.filter((event) => event.date >= todayDate);
+  return events.filter((event: Event) => event.date >= todayDate);
 };
+
+console.log(getEvents());
 ---
 
 <Layout pageTitle="Próximos Eventos">
@@ -59,7 +59,7 @@ const getEvents = () => {
     ) : (
       <section class="w-full flex-responsive px-5 md:px-0 max-w-7xl mx-auto gap-5">
         <ul class="w-full md:w-1/2 flex flex-col gap-3 relative">
-          {getEvents().map(({ title, date, description }) => (
+          {getEvents().map(({ title, date, description, time }: Event) => (
             <li class="bg-muted/30 hover:bg-muted/50 text-foreground rounded-2xl flex flex-row gap-x-3 p-4 border border-border relative">
               <div class="flex flex-row justify-between gap-2 w-full h-full">
                 <div class="flex flex-row items-center gap-3">
