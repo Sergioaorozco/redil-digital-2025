@@ -63,6 +63,12 @@ export default defineConfig({
         access: 'secret',
         optional: false,
         default: 'INFORM_VALID_KEY'
+      }),
+      GOOGLE_SHEET_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: false,
+        default: 'INFORM_VALID_KEY'
       })
     }
   },

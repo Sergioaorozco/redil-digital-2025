@@ -4,37 +4,16 @@ import { Clock, CalendarRangeIcon } from "lucide-react";
 
 import bazar2025 from "@/images/iglesia/bazar-2025.webp";
 import { Image } from "astro:assets";
+import { actions } from "astro:actions";
 
-const listOfEvents = [
-  {
-    id: "1",
-    date: new Date("2026-01-24T09:30:00Z"),
-    title: "Reunión Mujeres",
-    icon: Clock,
-    description: "Reunión semanal de mujeres en el salón principal.",
-  },
-  {
-    id: "2",
-    date: new Date("2026-01-28T09:30:00Z"),
-    title: "Tiempo de Oración",
-    icon: Clock,
-    description: "Hora: 5:00 AM - Link de Zoom",
-  },
-  {
-    id: "3",
-    date: new Date("2026-01-30T09:30:00Z"),
-    title: "Reunión Compañía T",
-    icon: Clock,
-    description: "Primera Reunion de hombres 2026",
-  },
-  {
-    id: "4",
-    date: new Date("2026-01-31T09:00:00Z"),
-    title: "Su Gracia en Mi - Mujeres",
-    icon: Clock,
-    description: "Primera Reunion de mujeres 2026",
-  },
-];
+const { data, error } = await Astro.callAction(actions.getEvents, {});
+
+if (error) {
+  console.log(error);
+}
+const listOfEvents = data;
+
+console.log(listOfEvents);
 
 // Helper Contant to get today date
 const todayDate = new Date();
@@ -59,7 +38,7 @@ const isSoon = (eventDate: Date) => {
  */
 const getEvents = () => {
   const events = listOfEvents.sort(
-    (a, b) => a.date.getTime() - b.date.getTime(),
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
   return events.filter((event) => event.date >= todayDate);
 };

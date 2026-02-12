@@ -19,69 +19,61 @@ export const updatePasswordAction = defineAction({
       path: ["password"],
     }),
   handler: async ({ current_password, password }, { cookies }) => {
-    try {
-      // 1. Get valid session
-      const { user } = await getValidSession(cookies);
+    // 1. Get valid session
+    const { user } = await getValidSession(cookies);
 
-      // 2. Re-authenticate to get a fresh token for sensitive operation
-      const authResponse = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            email: user.email,
-            password: current_password,
-            returnSecureToken: true
-          }),
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-
-      const authData = await authResponse.json();
-
-      if (!authResponse.ok) {
-        throw new ActionError({
-          code: "UNAUTHORIZED",
-          message: 'La contraseña actual es incorrecta'
-        });
+    // 2. Re-authenticate to get a fresh token for sensitive operation
+    const authResponse = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          email: user.email,
+          password: current_password,
+          returnSecureToken: true
+        }),
+        headers: { 'Content-Type': 'application/json' }
       }
+    );
 
-      // 3. Update password using the fresh token
-      const idToken = authData.idToken;
-      const updateResponse = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FIREBASE_API_KEY}`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            idToken,
-            password,
-            returnSecureToken: true
-          }),
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
+    const authData = await authResponse.json();
 
-      const updateData = await updateResponse.json();
-
-      if (!updateResponse.ok) {
-        throw new ActionError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: updateData.error?.message || 'Error al actualizar la contraseña'
-        });
-      }
-
-      // 4. Update session with new tokens
-      user.idToken = updateData.idToken;
-      user.refreshToken = updateData.refreshToken;
-      setSession(cookies, user);
-
-      return { success: true };
-    } catch (error) {
-      if (error instanceof ActionError) throw error;
+    if (!authResponse.ok) {
       throw new ActionError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: error instanceof Error ? error.message : 'Error al actualizar la contraseña'
+        code: "UNAUTHORIZED",
+        message: 'La contraseña actual es incorrecta'
       });
     }
+
+    // 3. Update password using the fresh token
+    const idToken = authData.idToken;
+    const updateResponse = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FIREBASE_API_KEY}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          idToken,
+          password,
+          returnSecureToken: true
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
+
+    const updateData = await updateResponse.json();
+
+    if (!updateResponse.ok) {
+      throw new ActionError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: updateData.error?.message || 'Error al actualizar la contraseña'
+      });
+    }
+
+    // 4. Update session with new tokens
+    user.idToken = updateData.idToken;
+    user.refreshToken = updateData.refreshToken;
+    setSession(cookies, user);
+
+    return { success: true };
   }
 });
