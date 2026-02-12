@@ -70,9 +70,10 @@ const getEvents = () => {
     !getEvents().length ? (
       <div class="max-w-7xl px-5 md:px-0 mx-auto">
         <figure class="w-full justify-center mt-10 flex flex-col items-center gap-4 text-muted-foreground">
-          <CalendarRangeIcon size={200} />
+          <CalendarRangeIcon strokeWidth={1} size={200} />
           <h2 class="text-center font-semibold mt-2 text-2xl md:text-3xl">
-            No hay eventos próximos por el momento. <br /> ¡Vuelve pronto!
+            No hay eventos próximos por el momento. <br />{" "}
+            <span class="text-primary">¡Vuelve pronto!</span>
           </h2>
         </figure>
       </div>
