@@ -25,6 +25,7 @@ import FacebookIcon from "@/assets/FacebookIcon.astro";
 import InstragramIcon from "@/assets/InstragramIcon.astro";
 
 const encodedText = "Dios los bendiga, tengo una pregunta";
+const comprobanteMsg = "Buen dia, adjunto comprobante de";
 
 // Video data globally fetched in middleware
 const videoId = Astro.locals.videoId ?? "d0HIs_vBf30";
@@ -198,18 +199,20 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
                 <hr class="my-2" />
                 <p class="font-bold">Bancolombia Ahorros: 34400000319</p>
               </span>
-              <button
+              <!-- <button
                 class="my-2 flex items-center justify-between cursor-pointer px-3 py-3 w-full rounded-lg bg-amber-500 hover:bg-amber-300 text-black font-bold"
               >
                 <span>A través de Wompi</span>
                 <i class="bg-white p-1 rounded-full">
                   <ArrowRight size={20} />
                 </i>
-              </button>
+              </button> -->
             </div>
             <p class="text-muted-foreground text-sm mt-4">
               Nota: Recuerda enviar tu comprobante de pago a nuestro correo
-              electrónico: elredillaureles@gmail.com o a cel: 311 226 6666
+              electrónico: elredillaureles@gmail.com o a cel:<span
+                ><a href=`https://wa.me/3137374303?text=${comprobanteMsg}`></a> 313-737-4303</span
+              >
             </p>
           </article>
           <article class="w-full">
@@ -249,7 +252,7 @@ const title = Astro.locals.videoTitle ?? "Bienvenidos al Redil Laureles";
         variant="neutral"
         label="WhatsApp"
         description="Escríbenos tus dudas"
-        url={`https://wa.me/573007869517?text=${encodedText}`}
+        url={`https://wa.me/573124485932?text=${encodedText}`}
         icon={ChatIcon as LucideIcon}
         action="Chatear"
       />
