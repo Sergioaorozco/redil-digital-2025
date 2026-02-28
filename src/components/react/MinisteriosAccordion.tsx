@@ -40,11 +40,6 @@ type Ministerio = {
 
 const ministeriosData: Ministerio[] = [
   {
-    title: "Bienvenida",
-    description: "Bienvenidos a la comunidad de la Iglesia Redil Laureles. Somos un grupo de personas que creemos en la importancia de la Iglesia y su papel en la sociedad. Somos un equipo de servidores que acompañamos a conocer y conectar con la Iglesia Redil Laureles.",
-    images: getSortedImages(bienvenida)
-  },
-  {
     title: "Su Gracia en Mi",
     description: "Buscamos juntas la provisión de Cristo y un mayor entendimiento de la Verdad, y creemos que como mujeres podemos hacer la diferencia solo por Su gracia en Mí. Anhelamos con gratitud que este conocimiento nos lleve a reflejar la imagen de Cristo en nuestros diferentes entornos, en el amor, la compasión y la misericordia hacia otros.",
     images: getSortedImages(mujeresImages)
@@ -55,14 +50,14 @@ const ministeriosData: Ministerio[] = [
     images: getSortedImages(hombres)
   },
   {
-    title: "Redil Junior",
-    description: "Creemos que los más pequeños serán los portavoces de la Palabra del Señor, y continuadores de su obra en la ciudad y en el mundo en general. Somos un equipo de servidores que acompañamos a niños y niñas a profundizar en el conocimiento de la Palabra de Dios, ayudándoles a entender las verdades del Evangelio de Jesucristo.",
-    images: getSortedImages(junior)
-  },
-  {
     title: "Contra Corriente - Jóvenes",
     description: "En este ministerio los jóvenes aprenden a vivir y a disfrutar la juventud centrada en Cristo y en el evangelio. Es un espacio diferente donde los jóvenes preguntan, abren su mente y la renuevan con el objetivo de aprender a nadar contra las corrientes que todos están siguiendo hoy.",
     images: getSortedImages(jovenes)
+  },
+  {
+    title: "Redil Junior",
+    description: "Creemos que los más pequeños serán los portavoces de la Palabra del Señor, y continuadores de su obra en la ciudad y en el mundo en general. Somos un equipo de servidores que acompañamos a niños y niñas a profundizar en el conocimiento de la Palabra de Dios, ayudándoles a entender las verdades del Evangelio de Jesucristo.",
+    images: getSortedImages(junior)
   },
   {
     title: "Unidos",
@@ -73,7 +68,12 @@ const ministeriosData: Ministerio[] = [
     title: "Misiones",
     description: "A través de la Misión Refugio en Granizal, cumplimos la misión de la iglesia en palabra y obra. Allí, compartimos el Evangelio y apoyamos el torneo de fútbol mixto “Para que tengas vida”, un proyecto que protege a los jóvenes de riesgos sociales como el reclutamiento, la prostitución y las adicciones.",
     images: getSortedImages(refugio)
-  }
+  },
+  {
+    title: "Bienvenida",
+    description: "Bienvenidos a la comunidad de la Iglesia Redil Laureles. Somos un grupo de personas que creemos en la importancia de la Iglesia y su papel en la sociedad. Somos un equipo de servidores que acompañamos a conocer y conectar con la Iglesia Redil Laureles.",
+    images: getSortedImages(bienvenida)
+  },
 ];
 
 export default function MinisteriosAccordion() {
