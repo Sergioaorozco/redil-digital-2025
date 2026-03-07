@@ -1,17 +1,10 @@
 ---
 const { userInfo } = Astro.locals;
-import {
-  ArrowUpRight,
-  Clock,
-  GraduationCap,
-  Scale,
-  UserCheck,
-} from "lucide-react";
+import { Clock, GraduationCap, Scale, UserCheck } from "lucide-react";
 import { DocumentTabs } from "@/components/react/DocumentTabs";
 import IconCard from "@/components/shared/IconCard.astro";
 import { Modal } from "@/components/ui/modal";
 import QuickInfo from "@/components/shared/QuickInfo.astro";
-import { RenderDocument } from "./react/RenderDocument";
 import Notification from "./shared/Notification.astro";
 
 const memberLinks = [
@@ -43,12 +36,6 @@ const documentosAsamblea = [
     action: "Abrir",
     description: "Documento en Google Docs para descargar",
   },
-  {
-    title: "Estados Financieros",
-    url: "https://drive.google.com/file/d/1rByGJZoHWPodJEFoGbSNF-H1uCgF1_9H/preview",
-    action: "Ver",
-    description: "Información de uso exclusivo del consejo administrativo.",
-  },
 ];
 ---
 
@@ -70,19 +57,7 @@ const documentosAsamblea = [
   </section>
 
   <section class="w-full relative">
-    <div class="mb-5">
-      <Modal client:visible header="Estados Financieros">
-        <div slot="trigger">
-          <QuickInfo
-            variant="amber"
-            label={documentosAsamblea[1].title}
-            action={documentosAsamblea[1].action}
-            description={documentosAsamblea[1].description}
-          />
-        </div>
-        <RenderDocument client:visible url={documentosAsamblea[1].url} />
-      </Modal>
-    </div>
+    <div class="mb-5"></div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Cursos -->
       <IconCard
