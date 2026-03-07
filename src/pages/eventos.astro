@@ -75,16 +75,16 @@ console.log(getEvents());
                     ]}
                   />
                   <div class="text-xs">
-                    <p class="text-muted-foreground font-bold capitalize mb-5">
-                      {date.toLocaleDateString("es-ES", {
-                        day: "numeric",
-                        weekday: "long",
-                        month: "long",
-                        year: "numeric",
-                      })}
-                    </p>
+                    <h3 class="font-bold tracking-wider">{title}</h3>
                     <span>
-                      <h3 class="font-bold tracking-wider">{title}</h3>
+                      <p class="text-muted-foreground font-bold capitalize mb-5">
+                        {date.toLocaleDateString("es-ES", {
+                          day: "numeric",
+                          weekday: "long",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
                       <p class="text-muted-foreground text-pretty mt-1">
                         Hora: {time}
                       </p>
